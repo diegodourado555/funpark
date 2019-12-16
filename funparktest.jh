@@ -1,0 +1,16 @@
+entity Funpark {
+	id Long,
+    nome String
+}
+
+// Set pagination options
+paginate Funpark with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto Funpark with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
