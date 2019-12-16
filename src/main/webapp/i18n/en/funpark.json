@@ -1,0 +1,22 @@
+{
+  "funparkApp": {
+    "funpark": {
+      "home": {
+        "title": "Funparks",
+        "createLabel": "Create a new Funpark",
+        "createOrEditLabel": "Create or edit a Funpark",
+        "notFound": "No Funparks found"
+      },
+      "created": "A new Funpark is created with identifier {{ param }}",
+      "updated": "A Funpark is updated with identifier {{ param }}",
+      "deleted": "A Funpark is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Funpark {{ id }}?"
+      },
+      "detail": {
+        "title": "Funpark"
+      },
+      "nome": "Nome"
+    }
+  }
+}
