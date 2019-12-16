@@ -1,0 +1,133 @@
+entity GrupoMaquina {
+	id Long,
+    nome String
+}
+
+entity Maquina {
+	id Long,
+    nome String,
+    idGrupoMaquina Long
+}
+
+entity Menu {
+	id Long,
+    descricao String
+}
+
+entity PerfilAcesso {
+	id Long,
+    descricao String
+}
+
+entity Receitas {
+	id Long,
+    descricao String
+}
+
+entity Despesas {
+	id Long,
+    descricao String
+}
+
+entity MenuPerfil {
+	id Long,
+    idMenu Long,
+    idPerfil Long
+}
+
+entity UsuarioPerfil {
+	id Long,
+    idUsuario Long,
+    idPerfil Long
+}
+
+entity Usuario {
+	id Long,
+    login String,
+    senha String,
+    nome String,
+    cpf Float,
+    email String,
+    telefone String,
+    endereco String
+}
+
+entity LojaMaquina {
+	id Long,
+    idLoja Long,
+    idMaquina Long
+}
+
+entity OperadorCaixa {
+	id Long,
+    nome String,
+    cpf Float,
+    idLoja Long
+}
+
+entity ContaCorrente {
+	id Long,
+    idReceita Long,
+    idDespesa Long,
+    idOperador Long,
+    idLoja Long,
+    valor Double,
+    data Instant,
+    metodoPagamento MetodoPagamento
+}
+
+entity Loja {
+	id Long,
+    nomeFantasia String,
+    razaoSocial String,
+    CNPJ String,
+    endereco String
+}
+
+enum MetodoPagamento {
+    DINHEIRO, CARTAO, CHEQUE
+}
+
+relationship OneToOne {
+	MenuPerfil{menu} to Menu,
+    MenuPerfil{perfil} to PerfilAcesso
+    
+}
+
+relationship OneToOne {
+	UsuarioPerfil{usuario} to Usuario,
+    UsuarioPerfil{perfil} to PerfilAcesso
+    
+}
+
+relationship OneToOne {
+	Maquina{grupoMaquina} to GrupoMaquina
+}
+
+relationship OneToOne {
+	LojaMaquina{maquina} to Maquina,
+    LojaMaquina{loja} to Loja
+}
+
+relationship OneToOne {
+	OperadorCaixa{loja} to Loja
+}
+
+relationship ManyToOne {
+	ContaCorrente{receita} to Receitas,
+    ContaCorrente{despesa} to Despesas,
+    ContaCorrente{operadorCaixa} to OperadorCaixa,
+    ContaCorrente{loja} to Loja
+}
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto all with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
