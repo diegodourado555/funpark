@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lojaMaquina">
+            <h2><span jhiTranslate="funparkApp.lojaMaquina.detail.title">Loja Maquina</span> {{lojaMaquina.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="funparkApp.lojaMaquina.idLoja">Id Loja</span></dt>
+                <dd>
+                    <span>{{lojaMaquina.idLoja}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.lojaMaquina.idMaquina">Id Maquina</span></dt>
+                <dd>
+                    <span>{{lojaMaquina.idMaquina}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.lojaMaquina.maquina">Maquina</span></dt>
+                <dd>
+                    <div *ngIf="lojaMaquina.maquinaId">
+                        <a [routerLink]="['/maquina', lojaMaquina.maquinaId, 'view']">{{lojaMaquina.maquinaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.lojaMaquina.loja">Loja</span></dt>
+                <dd>
+                    <div *ngIf="lojaMaquina.lojaId">
+                        <a [routerLink]="['/loja', lojaMaquina.lojaId, 'view']">{{lojaMaquina.lojaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/loja-maquina', lojaMaquina.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

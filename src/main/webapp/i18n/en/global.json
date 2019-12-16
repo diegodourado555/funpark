@@ -8,6 +8,19 @@
       "entities": {
         "main": "Entities",
         "funpark": "Funpark",
+        "grupoMaquina": "Grupo Maquina",
+        "maquina": "Maquina",
+        "menu": "Menu",
+        "perfilAcesso": "Perfil Acesso",
+        "receitas": "Receitas",
+        "despesas": "Despesas",
+        "menuPerfil": "Menu Perfil",
+        "usuarioPerfil": "Usuario Perfil",
+        "usuario": "Usuario",
+        "lojaMaquina": "Loja Maquina",
+        "operadorCaixa": "Operador Caixa",
+        "contaCorrente": "Conta Corrente",
+        "loja": "Loja",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

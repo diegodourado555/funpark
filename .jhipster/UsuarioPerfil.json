@@ -1,0 +1,41 @@
+{
+    "name": "UsuarioPerfil",
+    "fields": [
+        {
+            "fieldName": "idUsuario",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idPerfil",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "usuario",
+            "otherEntityRelationshipName": "usuarioPerfil",
+            "relationshipName": "usuario",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "perfilAcesso",
+            "otherEntityRelationshipName": "usuarioPerfil",
+            "relationshipName": "perfil",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191216225057",
+    "entityTableName": "usuario_perfil",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

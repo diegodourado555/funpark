@@ -1,0 +1,22 @@
+{
+  "funparkApp": {
+    "receitas": {
+      "home": {
+        "title": "Receitas",
+        "createLabel": "Criar novo Receitas",
+        "createOrEditLabel": "Criar ou editar Receitas",
+        "notFound": "Nenhum Receitas encontrado"
+      },
+      "created": "Um novo Receitas foi criado com o identificador {{ param }}",
+      "updated": "Um Receitas foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Receitas foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Receitas {{ id }}?"
+      },
+      "detail": {
+        "title": "Receitas"
+      },
+      "descricao": "Descricao"
+    }
+  }
+}

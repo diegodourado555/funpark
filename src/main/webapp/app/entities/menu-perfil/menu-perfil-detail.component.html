@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="menuPerfil">
+            <h2><span jhiTranslate="funparkApp.menuPerfil.detail.title">Menu Perfil</span> {{menuPerfil.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="funparkApp.menuPerfil.idMenu">Id Menu</span></dt>
+                <dd>
+                    <span>{{menuPerfil.idMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.menuPerfil.idPerfil">Id Perfil</span></dt>
+                <dd>
+                    <span>{{menuPerfil.idPerfil}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.menuPerfil.menu">Menu</span></dt>
+                <dd>
+                    <div *ngIf="menuPerfil.menuId">
+                        <a [routerLink]="['/menu', menuPerfil.menuId, 'view']">{{menuPerfil.menuId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.menuPerfil.perfil">Perfil</span></dt>
+                <dd>
+                    <div *ngIf="menuPerfil.perfilId">
+                        <a [routerLink]="['/perfil-acesso', menuPerfil.perfilId, 'view']">{{menuPerfil.perfilId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/menu-perfil', menuPerfil.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

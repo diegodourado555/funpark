@@ -1,0 +1,25 @@
+{
+  "funparkApp": {
+    "menuPerfil": {
+      "home": {
+        "title": "Menu Perfils",
+        "createLabel": "Criar novo Menu Perfil",
+        "createOrEditLabel": "Criar ou editar Menu Perfil",
+        "notFound": "Nenhum Menu Perfil encontrado"
+      },
+      "created": "Um novo Menu Perfil foi criado com o identificador {{ param }}",
+      "updated": "Um Menu Perfil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Menu Perfil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Menu Perfil {{ id }}?"
+      },
+      "detail": {
+        "title": "Menu Perfil"
+      },
+      "idMenu": "Id Menu",
+      "idPerfil": "Id Perfil",
+      "menu": "Menu",
+      "perfil": "Perfil"
+    }
+  }
+}

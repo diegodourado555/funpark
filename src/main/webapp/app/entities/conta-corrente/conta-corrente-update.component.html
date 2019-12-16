@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-conta-corrente-heading" jhiTranslate="funparkApp.contaCorrente.home.createOrEditLabel">Create or edit a Conta Corrente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.idReceita" for="field_idReceita">Id Receita</label>
+                    <input type="number" class="form-control" name="idReceita" id="field_idReceita"
+                           formControlName="idReceita"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.idDespesa" for="field_idDespesa">Id Despesa</label>
+                    <input type="number" class="form-control" name="idDespesa" id="field_idDespesa"
+                           formControlName="idDespesa"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.idOperador" for="field_idOperador">Id Operador</label>
+                    <input type="number" class="form-control" name="idOperador" id="field_idOperador"
+                           formControlName="idOperador"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.idLoja" for="field_idLoja">Id Loja</label>
+                    <input type="number" class="form-control" name="idLoja" id="field_idLoja"
+                           formControlName="idLoja"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.data" for="field_data">Data</label>
+                    <div class="d-flex">
+                        <input id="field_data" type="datetime-local" class="form-control" name="data" formControlName="data" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.metodoPagamento" for="field_metodoPagamento">Metodo Pagamento</label>
+                    <select class="form-control" name="metodoPagamento" formControlName="metodoPagamento" id="field_metodoPagamento">
+                        <option value="DINHEIRO">{{'funparkApp.MetodoPagamento.DINHEIRO' | translate}}</option>
+                        <option value="CARTAO">{{'funparkApp.MetodoPagamento.CARTAO' | translate}}</option>
+                        <option value="CHEQUE">{{'funparkApp.MetodoPagamento.CHEQUE' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.receita" for="field_receita">Receita</label>
+                    <select class="form-control" id="field_receita" name="receita" formControlName="receitaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="receitasOption.id" *ngFor="let receitasOption of receitas; trackBy: trackReceitasById">{{receitasOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.despesa" for="field_despesa">Despesa</label>
+                    <select class="form-control" id="field_despesa" name="despesa" formControlName="despesaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="despesasOption.id" *ngFor="let despesasOption of despesas; trackBy: trackDespesasById">{{despesasOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.operadorCaixa" for="field_operadorCaixa">Operador Caixa</label>
+                    <select class="form-control" id="field_operadorCaixa" name="operadorCaixa" formControlName="operadorCaixaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="operadorCaixaOption.id" *ngFor="let operadorCaixaOption of operadorcaixas; trackBy: trackOperadorCaixaById">{{operadorCaixaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.loja" for="field_loja">Loja</label>
+                    <select class="form-control" id="field_loja" name="loja" formControlName="lojaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackLojaById">{{lojaOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
