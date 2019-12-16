@@ -1,0 +1,41 @@
+{
+    "name": "LojaMaquina",
+    "fields": [
+        {
+            "fieldName": "idLoja",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idMaquina",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "maquina",
+            "otherEntityRelationshipName": "lojaMaquina",
+            "relationshipName": "maquina",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "loja",
+            "otherEntityRelationshipName": "lojaMaquina",
+            "relationshipName": "loja",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191216225059",
+    "entityTableName": "loja_maquina",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

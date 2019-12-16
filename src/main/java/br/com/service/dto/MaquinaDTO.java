@@ -1,0 +1,81 @@
+package br.com.service.dto;
+import java.io.Serializable;
+import java.util.Objects;
+
+/**
+ * A DTO for the {@link br.com.domain.Maquina} entity.
+ */
+public class MaquinaDTO implements Serializable {
+
+    private Long id;
+
+    private String nome;
+
+    private Long idGrupoMaquina;
+
+
+    private Long grupoMaquinaId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getIdGrupoMaquina() {
+        return idGrupoMaquina;
+    }
+
+    public void setIdGrupoMaquina(Long idGrupoMaquina) {
+        this.idGrupoMaquina = idGrupoMaquina;
+    }
+
+    public Long getGrupoMaquinaId() {
+        return grupoMaquinaId;
+    }
+
+    public void setGrupoMaquinaId(Long grupoMaquinaId) {
+        this.grupoMaquinaId = grupoMaquinaId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        MaquinaDTO maquinaDTO = (MaquinaDTO) o;
+        if (maquinaDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), maquinaDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "MaquinaDTO{" +
+            "id=" + getId() +
+            ", nome='" + getNome() + "'" +
+            ", idGrupoMaquina=" + getIdGrupoMaquina() +
+            ", grupoMaquina=" + getGrupoMaquinaId() +
+            "}";
+    }
+}

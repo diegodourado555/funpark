@@ -1,0 +1,99 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="funparkApp.contaCorrente.home.title">Conta Correntes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-conta-corrente" [routerLink]="['/conta-corrente/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="funparkApp.contaCorrente.home.createLabel">
+            Create a new Conta Corrente
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="contaCorrentes?.length === 0">
+        <span jhiTranslate="funparkApp.contaCorrente.home.notFound">No contaCorrentes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="contaCorrentes?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idReceita"><span jhiTranslate="funparkApp.contaCorrente.idReceita">Id Receita</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idDespesa"><span jhiTranslate="funparkApp.contaCorrente.idDespesa">Id Despesa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idOperador"><span jhiTranslate="funparkApp.contaCorrente.idOperador">Id Operador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idLoja"><span jhiTranslate="funparkApp.contaCorrente.idLoja">Id Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="valor"><span jhiTranslate="funparkApp.contaCorrente.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="data"><span jhiTranslate="funparkApp.contaCorrente.data">Data</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="metodoPagamento"><span jhiTranslate="funparkApp.contaCorrente.metodoPagamento">Metodo Pagamento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="receitaId"><span jhiTranslate="funparkApp.contaCorrente.receita">Receita</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="despesaId"><span jhiTranslate="funparkApp.contaCorrente.despesa">Despesa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="operadorCaixaId"><span jhiTranslate="funparkApp.contaCorrente.operadorCaixa">Operador Caixa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="lojaId"><span jhiTranslate="funparkApp.contaCorrente.loja">Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contaCorrente of contaCorrentes ;trackBy: trackId">
+                <td><a [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]">{{contaCorrente.id}}</a></td>
+                <td>{{contaCorrente.idReceita}}</td>
+                <td>{{contaCorrente.idDespesa}}</td>
+                <td>{{contaCorrente.idOperador}}</td>
+                <td>{{contaCorrente.idLoja}}</td>
+                <td>{{contaCorrente.valor}}</td>
+                <td>{{contaCorrente.data | date:'medium'}}</td>
+                <td jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</td>
+                <td>
+                    <div *ngIf="contaCorrente.receitaId">
+                        <a [routerLink]="['/receitas', contaCorrente.receitaId , 'view' ]" >{{contaCorrente.receitaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contaCorrente.despesaId">
+                        <a [routerLink]="['/despesas', contaCorrente.despesaId , 'view' ]" >{{contaCorrente.despesaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contaCorrente.operadorCaixaId">
+                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId , 'view' ]" >{{contaCorrente.operadorCaixaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contaCorrente.lojaId">
+                        <a [routerLink]="['/loja', contaCorrente.lojaId , 'view' ]" >{{contaCorrente.lojaId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/conta-corrente', contaCorrente.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(contaCorrente)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="contaCorrentes?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

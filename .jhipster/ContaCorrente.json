@@ -1,0 +1,74 @@
+{
+    "name": "ContaCorrente",
+    "fields": [
+        {
+            "fieldName": "idReceita",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idDespesa",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idOperador",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idLoja",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "metodoPagamento",
+            "fieldType": "MetodoPagamento",
+            "fieldValues": "DINHEIRO,CARTAO,CHEQUE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "receitas",
+            "otherEntityRelationshipName": "contaCorrente",
+            "relationshipName": "receita",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "despesas",
+            "otherEntityRelationshipName": "contaCorrente",
+            "relationshipName": "despesa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "operadorCaixa",
+            "otherEntityRelationshipName": "contaCorrente",
+            "relationshipName": "operadorCaixa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "loja",
+            "otherEntityRelationshipName": "contaCorrente",
+            "relationshipName": "loja",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191216225101",
+    "entityTableName": "conta_corrente",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

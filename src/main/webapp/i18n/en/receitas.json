@@ -1,0 +1,22 @@
+{
+  "funparkApp": {
+    "receitas": {
+      "home": {
+        "title": "Receitas",
+        "createLabel": "Create a new Receitas",
+        "createOrEditLabel": "Create or edit a Receitas",
+        "notFound": "No Receitas found"
+      },
+      "created": "A new Receitas is created with identifier {{ param }}",
+      "updated": "A Receitas is updated with identifier {{ param }}",
+      "deleted": "A Receitas is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Receitas {{ id }}?"
+      },
+      "detail": {
+        "title": "Receitas"
+      },
+      "descricao": "Descricao"
+    }
+  }
+}

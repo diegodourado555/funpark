@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-loja-maquina-heading" jhiTranslate="funparkApp.lojaMaquina.home.createOrEditLabel">Create or edit a Loja Maquina</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.idLoja" for="field_idLoja">Id Loja</label>
+                    <input type="number" class="form-control" name="idLoja" id="field_idLoja"
+                           formControlName="idLoja"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.idMaquina" for="field_idMaquina">Id Maquina</label>
+                    <input type="number" class="form-control" name="idMaquina" id="field_idMaquina"
+                           formControlName="idMaquina"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.maquina" for="field_maquina">Maquina</label>
+                    <select class="form-control" id="field_maquina" name="maquina" formControlName="maquinaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="maquinaOption.id" *ngFor="let maquinaOption of maquinas; trackBy: trackMaquinaById">{{maquinaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.loja" for="field_loja">Loja</label>
+                    <select class="form-control" id="field_loja" name="loja" formControlName="lojaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackLojaById">{{lojaOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

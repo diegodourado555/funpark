@@ -1,0 +1,25 @@
+{
+  "funparkApp": {
+    "lojaMaquina": {
+      "home": {
+        "title": "Loja Maquinas",
+        "createLabel": "Criar novo Loja Maquina",
+        "createOrEditLabel": "Criar ou editar Loja Maquina",
+        "notFound": "Nenhum Loja Maquina encontrado"
+      },
+      "created": "Um novo Loja Maquina foi criado com o identificador {{ param }}",
+      "updated": "Um Loja Maquina foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Loja Maquina foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Loja Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Loja Maquina"
+      },
+      "idLoja": "Id Loja",
+      "idMaquina": "Id Maquina",
+      "maquina": "Maquina",
+      "loja": "Loja"
+    }
+  }
+}

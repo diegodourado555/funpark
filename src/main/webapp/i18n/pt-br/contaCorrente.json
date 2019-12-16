@@ -1,0 +1,32 @@
+{
+  "funparkApp": {
+    "contaCorrente": {
+      "home": {
+        "title": "Conta Correntes",
+        "createLabel": "Criar novo Conta Corrente",
+        "createOrEditLabel": "Criar ou editar Conta Corrente",
+        "notFound": "Nenhum Conta Corrente encontrado"
+      },
+      "created": "Um novo Conta Corrente foi criado com o identificador {{ param }}",
+      "updated": "Um Conta Corrente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Conta Corrente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Conta Corrente {{ id }}?"
+      },
+      "detail": {
+        "title": "Conta Corrente"
+      },
+      "idReceita": "Id Receita",
+      "idDespesa": "Id Despesa",
+      "idOperador": "Id Operador",
+      "idLoja": "Id Loja",
+      "valor": "Valor",
+      "data": "Data",
+      "metodoPagamento": "Metodo Pagamento",
+      "receita": "Receita",
+      "despesa": "Despesa",
+      "operadorCaixa": "Operador Caixa",
+      "loja": "Loja"
+    }
+  }
+}

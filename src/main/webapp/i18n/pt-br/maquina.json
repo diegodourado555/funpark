@@ -1,0 +1,24 @@
+{
+  "funparkApp": {
+    "maquina": {
+      "home": {
+        "title": "Maquinas",
+        "createLabel": "Criar novo Maquina",
+        "createOrEditLabel": "Criar ou editar Maquina",
+        "notFound": "Nenhum Maquina encontrado"
+      },
+      "created": "Um novo Maquina foi criado com o identificador {{ param }}",
+      "updated": "Um Maquina foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Maquina foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Maquina"
+      },
+      "nome": "Nome",
+      "idGrupoMaquina": "Id Grupo Maquina",
+      "grupoMaquina": "Grupo Maquina"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+    "name": "MenuPerfil",
+    "fields": [
+        {
+            "fieldName": "idMenu",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idPerfil",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "menu",
+            "otherEntityRelationshipName": "menuPerfil",
+            "relationshipName": "menu",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "perfilAcesso",
+            "otherEntityRelationshipName": "menuPerfil",
+            "relationshipName": "perfil",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191216225056",
+    "entityTableName": "menu_perfil",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

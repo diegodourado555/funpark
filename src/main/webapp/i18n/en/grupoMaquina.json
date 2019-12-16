@@ -1,0 +1,22 @@
+{
+  "funparkApp": {
+    "grupoMaquina": {
+      "home": {
+        "title": "Grupo Maquinas",
+        "createLabel": "Create a new Grupo Maquina",
+        "createOrEditLabel": "Create or edit a Grupo Maquina",
+        "notFound": "No Grupo Maquinas found"
+      },
+      "created": "A new Grupo Maquina is created with identifier {{ param }}",
+      "updated": "A Grupo Maquina is updated with identifier {{ param }}",
+      "deleted": "A Grupo Maquina is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupo Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Maquina"
+      },
+      "nome": "Nome"
+    }
+  }
+}

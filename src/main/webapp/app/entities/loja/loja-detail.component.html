@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="loja">
+            <h2><span jhiTranslate="funparkApp.loja.detail.title">Loja</span> {{loja.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="funparkApp.loja.nomeFantasia">Nome Fantasia</span></dt>
+                <dd>
+                    <span>{{loja.nomeFantasia}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.loja.razaoSocial">Razao Social</span></dt>
+                <dd>
+                    <span>{{loja.razaoSocial}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.loja.cNPJ">C NPJ</span></dt>
+                <dd>
+                    <span>{{loja.cNPJ}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.loja.endereco">Endereco</span></dt>
+                <dd>
+                    <span>{{loja.endereco}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/loja', loja.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

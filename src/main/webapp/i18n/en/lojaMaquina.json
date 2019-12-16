@@ -1,0 +1,25 @@
+{
+  "funparkApp": {
+    "lojaMaquina": {
+      "home": {
+        "title": "Loja Maquinas",
+        "createLabel": "Create a new Loja Maquina",
+        "createOrEditLabel": "Create or edit a Loja Maquina",
+        "notFound": "No Loja Maquinas found"
+      },
+      "created": "A new Loja Maquina is created with identifier {{ param }}",
+      "updated": "A Loja Maquina is updated with identifier {{ param }}",
+      "deleted": "A Loja Maquina is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loja Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Loja Maquina"
+      },
+      "idLoja": "Id Loja",
+      "idMaquina": "Id Maquina",
+      "maquina": "Maquina",
+      "loja": "Loja"
+    }
+  }
+}

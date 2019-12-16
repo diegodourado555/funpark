@@ -15,6 +15,25 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216164418_added_entity_Funpark.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225050_added_entity_GrupoMaquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225051_added_entity_Maquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225052_added_entity_Menu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225053_added_entity_PerfilAcesso.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225054_added_entity_Receitas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225055_added_entity_Despesas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225056_added_entity_MenuPerfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225057_added_entity_UsuarioPerfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225058_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225059_added_entity_LojaMaquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225100_added_entity_OperadorCaixa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225101_added_entity_ContaCorrente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225102_added_entity_Loja.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20191216225051_added_entity_constraints_Maquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225056_added_entity_constraints_MenuPerfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225057_added_entity_constraints_UsuarioPerfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225059_added_entity_constraints_LojaMaquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225100_added_entity_constraints_OperadorCaixa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225101_added_entity_constraints_ContaCorrente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

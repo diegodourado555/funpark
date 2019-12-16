@@ -1,0 +1,25 @@
+{
+  "funparkApp": {
+    "operadorCaixa": {
+      "home": {
+        "title": "Operador Caixas",
+        "createLabel": "Criar novo Operador Caixa",
+        "createOrEditLabel": "Criar ou editar Operador Caixa",
+        "notFound": "Nenhum Operador Caixa encontrado"
+      },
+      "created": "Um novo Operador Caixa foi criado com o identificador {{ param }}",
+      "updated": "Um Operador Caixa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Operador Caixa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Operador Caixa {{ id }}?"
+      },
+      "detail": {
+        "title": "Operador Caixa"
+      },
+      "nome": "Nome",
+      "cpf": "Cpf",
+      "idLoja": "Id Loja",
+      "loja": "Loja"
+    }
+  }
+}

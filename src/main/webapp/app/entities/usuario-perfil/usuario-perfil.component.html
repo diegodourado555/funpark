@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="funparkApp.usuarioPerfil.home.title">Usuario Perfils</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-usuario-perfil" [routerLink]="['/usuario-perfil/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="funparkApp.usuarioPerfil.home.createLabel">
+            Create a new Usuario Perfil
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="usuarioPerfils?.length === 0">
+        <span jhiTranslate="funparkApp.usuarioPerfil.home.notFound">No usuarioPerfils found</span>
+    </div>
+    <div class="table-responsive" *ngIf="usuarioPerfils?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idUsuario"><span jhiTranslate="funparkApp.usuarioPerfil.idUsuario">Id Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idPerfil"><span jhiTranslate="funparkApp.usuarioPerfil.idPerfil">Id Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="usuarioId"><span jhiTranslate="funparkApp.usuarioPerfil.usuario">Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="perfilId"><span jhiTranslate="funparkApp.usuarioPerfil.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let usuarioPerfil of usuarioPerfils ;trackBy: trackId">
+                <td><a [routerLink]="['/usuario-perfil', usuarioPerfil.id, 'view' ]">{{usuarioPerfil.id}}</a></td>
+                <td>{{usuarioPerfil.idUsuario}}</td>
+                <td>{{usuarioPerfil.idPerfil}}</td>
+                <td>
+                    <div *ngIf="usuarioPerfil.usuarioId">
+                        <a [routerLink]="['/usuario', usuarioPerfil.usuarioId , 'view' ]" >{{usuarioPerfil.usuarioId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="usuarioPerfil.perfilId">
+                        <a [routerLink]="['/perfil-acesso', usuarioPerfil.perfilId , 'view' ]" >{{usuarioPerfil.perfilId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/usuario-perfil', usuarioPerfil.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/usuario-perfil', usuarioPerfil.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(usuarioPerfil)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="usuarioPerfils?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

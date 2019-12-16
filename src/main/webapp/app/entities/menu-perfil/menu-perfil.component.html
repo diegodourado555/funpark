@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="funparkApp.menuPerfil.home.title">Menu Perfils</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-menu-perfil" [routerLink]="['/menu-perfil/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="funparkApp.menuPerfil.home.createLabel">
+            Create a new Menu Perfil
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="menuPerfils?.length === 0">
+        <span jhiTranslate="funparkApp.menuPerfil.home.notFound">No menuPerfils found</span>
+    </div>
+    <div class="table-responsive" *ngIf="menuPerfils?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idMenu"><span jhiTranslate="funparkApp.menuPerfil.idMenu">Id Menu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idPerfil"><span jhiTranslate="funparkApp.menuPerfil.idPerfil">Id Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="menuId"><span jhiTranslate="funparkApp.menuPerfil.menu">Menu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="perfilId"><span jhiTranslate="funparkApp.menuPerfil.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let menuPerfil of menuPerfils ;trackBy: trackId">
+                <td><a [routerLink]="['/menu-perfil', menuPerfil.id, 'view' ]">{{menuPerfil.id}}</a></td>
+                <td>{{menuPerfil.idMenu}}</td>
+                <td>{{menuPerfil.idPerfil}}</td>
+                <td>
+                    <div *ngIf="menuPerfil.menuId">
+                        <a [routerLink]="['/menu', menuPerfil.menuId , 'view' ]" >{{menuPerfil.menuId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="menuPerfil.perfilId">
+                        <a [routerLink]="['/perfil-acesso', menuPerfil.perfilId , 'view' ]" >{{menuPerfil.perfilId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/menu-perfil', menuPerfil.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/menu-perfil', menuPerfil.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(menuPerfil)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="menuPerfils?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "funparkApp": {
+    "grupoMaquina": {
+      "home": {
+        "title": "Grupo Maquinas",
+        "createLabel": "Criar novo Grupo Maquina",
+        "createOrEditLabel": "Criar ou editar Grupo Maquina",
+        "notFound": "Nenhum Grupo Maquina encontrado"
+      },
+      "created": "Um novo Grupo Maquina foi criado com o identificador {{ param }}",
+      "updated": "Um Grupo Maquina foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Grupo Maquina foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Grupo Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Maquina"
+      },
+      "nome": "Nome"
+    }
+  }
+}

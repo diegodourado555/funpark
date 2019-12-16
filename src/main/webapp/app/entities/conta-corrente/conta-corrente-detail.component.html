@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contaCorrente">
+            <h2><span jhiTranslate="funparkApp.contaCorrente.detail.title">Conta Corrente</span> {{contaCorrente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="funparkApp.contaCorrente.idReceita">Id Receita</span></dt>
+                <dd>
+                    <span>{{contaCorrente.idReceita}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.idDespesa">Id Despesa</span></dt>
+                <dd>
+                    <span>{{contaCorrente.idDespesa}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.idOperador">Id Operador</span></dt>
+                <dd>
+                    <span>{{contaCorrente.idOperador}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.idLoja">Id Loja</span></dt>
+                <dd>
+                    <span>{{contaCorrente.idLoja}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.valor">Valor</span></dt>
+                <dd>
+                    <span>{{contaCorrente.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.data">Data</span></dt>
+                <dd>
+                    <span>{{contaCorrente.data}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.metodoPagamento">Metodo Pagamento</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.receita">Receita</span></dt>
+                <dd>
+                    <div *ngIf="contaCorrente.receitaId">
+                        <a [routerLink]="['/receitas', contaCorrente.receitaId, 'view']">{{contaCorrente.receitaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.despesa">Despesa</span></dt>
+                <dd>
+                    <div *ngIf="contaCorrente.despesaId">
+                        <a [routerLink]="['/despesas', contaCorrente.despesaId, 'view']">{{contaCorrente.despesaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.operadorCaixa">Operador Caixa</span></dt>
+                <dd>
+                    <div *ngIf="contaCorrente.operadorCaixaId">
+                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId, 'view']">{{contaCorrente.operadorCaixaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.contaCorrente.loja">Loja</span></dt>
+                <dd>
+                    <div *ngIf="contaCorrente.lojaId">
+                        <a [routerLink]="['/loja', contaCorrente.lojaId, 'view']">{{contaCorrente.lojaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/conta-corrente', contaCorrente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
