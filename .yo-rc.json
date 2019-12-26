@@ -21,15 +21,10 @@
     "buildTool": "maven",
     "useSass": true,
     "clientPackageManager": "npm",
-    "testFrameworks": [
-      "cucumber"
-    ],
+    "testFrameworks": ["cucumber"],
     "enableTranslation": true,
     "nativeLanguage": "pt-br",
-    "languages": [
-      "en",
-      "pt-br"
-    ],
+    "languages": ["en", "pt-br"],
     "clientFramework": "angularX",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "6.5.1",
@@ -39,7 +34,9 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "funpark",
+    "herokuDeployType": "git"
   },
   "git-provider": "GitHub",
   "git-company": "diegodourado555",
