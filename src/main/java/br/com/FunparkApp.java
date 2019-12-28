@@ -33,7 +33,7 @@ public class FunparkApp implements InitializingBean {
     }
 
     /**
-     * Initializes funpark. 
+     * Initializes funpark.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
