@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
+
 import { IContaCorrente, ContaCorrente } from 'app/shared/model/conta-corrente.model';
 import { ContaCorrenteService } from './conta-corrente.service';
 import { IReceitas } from 'app/shared/model/receitas.model';
@@ -19,27 +19,25 @@ import { OperadorCaixaService } from 'app/entities/operador-caixa/operador-caixa
 import { ILoja } from 'app/shared/model/loja.model';
 import { LojaService } from 'app/entities/loja/loja.service';
 
+type SelectableEntity = IReceitas | IDespesas | IOperadorCaixa | ILoja;
+
 @Component({
   selector: 'jhi-conta-corrente-update',
   templateUrl: './conta-corrente-update.component.html'
 })
 export class ContaCorrenteUpdateComponent implements OnInit {
-  isSaving: boolean;
+  isSaving = false;
 
-  receitas: IReceitas[];
+  receitas: IReceitas[] = [];
 
-  despesas: IDespesas[];
+  despesas: IDespesas[] = [];
 
-  operadorcaixas: IOperadorCaixa[];
+  operadorcaixas: IOperadorCaixa[] = [];
 
-  lojas: ILoja[];
+  lojas: ILoja[] = [];
 
   editForm = this.fb.group({
     id: [],
-    idReceita: [],
-    idDespesa: [],
-    idOperador: [],
-    idLoja: [],
     valor: [],
     data: [],
     metodoPagamento: [],
@@ -50,7 +48,6 @@ export class ContaCorrenteUpdateComponent implements OnInit {
   });
 
   constructor(
-    protected jhiAlertService: JhiAlertService,
     protected contaCorrenteService: ContaCorrenteService,
     protected receitasService: ReceitasService,
     protected despesasService: DespesasService,
@@ -60,35 +57,51 @@ export class ContaCorrenteUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
-    this.isSaving = false;
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ contaCorrente }) => {
       this.updateForm(contaCorrente);
+
+      this.receitasService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IReceitas[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IReceitas[]) => (this.receitas = resBody));
+
+      this.despesasService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IDespesas[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IDespesas[]) => (this.despesas = resBody));
+
+      this.operadorCaixaService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IOperadorCaixa[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IOperadorCaixa[]) => (this.operadorcaixas = resBody));
+
+      this.lojaService
+        .query()
+        .pipe(
+          map((res: HttpResponse<ILoja[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: ILoja[]) => (this.lojas = resBody));
     });
-    this.receitasService
-      .query()
-      .subscribe((res: HttpResponse<IReceitas[]>) => (this.receitas = res.body), (res: HttpErrorResponse) => this.onError(res.message));
-    this.despesasService
-      .query()
-      .subscribe((res: HttpResponse<IDespesas[]>) => (this.despesas = res.body), (res: HttpErrorResponse) => this.onError(res.message));
-    this.operadorCaixaService
-      .query()
-      .subscribe(
-        (res: HttpResponse<IOperadorCaixa[]>) => (this.operadorcaixas = res.body),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-    this.lojaService
-      .query()
-      .subscribe((res: HttpResponse<ILoja[]>) => (this.lojas = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
-  updateForm(contaCorrente: IContaCorrente) {
+  updateForm(contaCorrente: IContaCorrente): void {
     this.editForm.patchValue({
       id: contaCorrente.id,
-      idReceita: contaCorrente.idReceita,
-      idDespesa: contaCorrente.idDespesa,
-      idOperador: contaCorrente.idOperador,
-      idLoja: contaCorrente.idLoja,
       valor: contaCorrente.valor,
       data: contaCorrente.data != null ? contaCorrente.data.format(DATE_TIME_FORMAT) : null,
       metodoPagamento: contaCorrente.metodoPagamento,
@@ -99,11 +112,11 @@ export class ContaCorrenteUpdateComponent implements OnInit {
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 
-  save() {
+  save(): void {
     this.isSaving = true;
     const contaCorrente = this.createFromForm();
     if (contaCorrente.id !== undefined) {
@@ -116,50 +129,34 @@ export class ContaCorrenteUpdateComponent implements OnInit {
   private createFromForm(): IContaCorrente {
     return {
       ...new ContaCorrente(),
-      id: this.editForm.get(['id']).value,
-      idReceita: this.editForm.get(['idReceita']).value,
-      idDespesa: this.editForm.get(['idDespesa']).value,
-      idOperador: this.editForm.get(['idOperador']).value,
-      idLoja: this.editForm.get(['idLoja']).value,
-      valor: this.editForm.get(['valor']).value,
-      data: this.editForm.get(['data']).value != null ? moment(this.editForm.get(['data']).value, DATE_TIME_FORMAT) : undefined,
-      metodoPagamento: this.editForm.get(['metodoPagamento']).value,
-      receitaId: this.editForm.get(['receitaId']).value,
-      despesaId: this.editForm.get(['despesaId']).value,
-      operadorCaixaId: this.editForm.get(['operadorCaixaId']).value,
-      lojaId: this.editForm.get(['lojaId']).value
+      id: this.editForm.get(['id'])!.value,
+      valor: this.editForm.get(['valor'])!.value,
+      data: this.editForm.get(['data'])!.value != null ? moment(this.editForm.get(['data'])!.value, DATE_TIME_FORMAT) : undefined,
+      metodoPagamento: this.editForm.get(['metodoPagamento'])!.value,
+      receitaId: this.editForm.get(['receitaId'])!.value,
+      despesaId: this.editForm.get(['despesaId'])!.value,
+      operadorCaixaId: this.editForm.get(['operadorCaixaId'])!.value,
+      lojaId: this.editForm.get(['lojaId'])!.value
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IContaCorrente>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IContaCorrente>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
   }
 
-  protected onSaveError() {
+  protected onSaveError(): void {
     this.isSaving = false;
   }
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
 
-  trackReceitasById(index: number, item: IReceitas) {
-    return item.id;
-  }
-
-  trackDespesasById(index: number, item: IDespesas) {
-    return item.id;
-  }
-
-  trackOperadorCaixaById(index: number, item: IOperadorCaixa) {
-    return item.id;
-  }
-
-  trackLojaById(index: number, item: ILoja) {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

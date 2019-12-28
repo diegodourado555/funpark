@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Despesas } from 'app/shared/model/despesas.model';
+import { IDespesas, Despesas } from 'app/shared/model/despesas.model';
 import { DespesasService } from './despesas.service';
 import { DespesasComponent } from './despesas.component';
 import { DespesasDetailComponent } from './despesas-detail.component';
 import { DespesasUpdateComponent } from './despesas-update.component';
-import { IDespesas } from 'app/shared/model/despesas.model';
 
 @Injectable({ providedIn: 'root' })
 export class DespesasResolve implements Resolve<IDespesas> {
-  constructor(private service: DespesasService) {}
+  constructor(private service: DespesasService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IDespesas> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IDespesas> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((despesas: HttpResponse<Despesas>) => despesas.body));
+      return this.service.find(id).pipe(
+        flatMap((despesas: HttpResponse<Despesas>) => {
+          if (despesas.body) {
+            return of(despesas.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new Despesas());
   }

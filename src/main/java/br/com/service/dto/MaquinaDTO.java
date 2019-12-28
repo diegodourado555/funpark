@@ -11,8 +11,6 @@ public class MaquinaDTO implements Serializable {
 
     private String nome;
 
-    private Long idGrupoMaquina;
-
 
     private Long grupoMaquinaId;
 
@@ -30,14 +28,6 @@ public class MaquinaDTO implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Long getIdGrupoMaquina() {
-        return idGrupoMaquina;
-    }
-
-    public void setIdGrupoMaquina(Long idGrupoMaquina) {
-        this.idGrupoMaquina = idGrupoMaquina;
     }
 
     public Long getGrupoMaquinaId() {
@@ -74,8 +64,7 @@ public class MaquinaDTO implements Serializable {
         return "MaquinaDTO{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", idGrupoMaquina=" + getIdGrupoMaquina() +
-            ", grupoMaquina=" + getGrupoMaquinaId() +
+            ", grupoMaquinaId=" + getGrupoMaquinaId() +
             "}";
     }
 }

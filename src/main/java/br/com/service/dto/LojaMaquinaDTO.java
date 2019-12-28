@@ -9,10 +9,6 @@ public class LojaMaquinaDTO implements Serializable {
 
     private Long id;
 
-    private Long idLoja;
-
-    private Long idMaquina;
-
 
     private Long maquinaId;
 
@@ -24,22 +20,6 @@ public class LojaMaquinaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
-    }
-
-    public Long getIdMaquina() {
-        return idMaquina;
-    }
-
-    public void setIdMaquina(Long idMaquina) {
-        this.idMaquina = idMaquina;
     }
 
     public Long getMaquinaId() {
@@ -83,10 +63,8 @@ public class LojaMaquinaDTO implements Serializable {
     public String toString() {
         return "LojaMaquinaDTO{" +
             "id=" + getId() +
-            ", idLoja=" + getIdLoja() +
-            ", idMaquina=" + getIdMaquina() +
-            ", maquina=" + getMaquinaId() +
-            ", loja=" + getLojaId() +
+            ", maquinaId=" + getMaquinaId() +
+            ", lojaId=" + getLojaId() +
             "}";
     }
 }

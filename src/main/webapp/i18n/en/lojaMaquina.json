@@ -16,8 +16,6 @@
       "detail": {
         "title": "Loja Maquina"
       },
-      "idLoja": "Id Loja",
-      "idMaquina": "Id Maquina",
       "maquina": "Maquina",
       "loja": "Loja"
     }

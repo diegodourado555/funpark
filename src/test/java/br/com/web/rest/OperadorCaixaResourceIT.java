@@ -42,9 +42,6 @@ public class OperadorCaixaResourceIT {
     private static final Float DEFAULT_CPF = 1F;
     private static final Float UPDATED_CPF = 2F;
 
-    private static final Long DEFAULT_ID_LOJA = 1L;
-    private static final Long UPDATED_ID_LOJA = 2L;
-
     @Autowired
     private OperadorCaixaRepository operadorCaixaRepository;
 
@@ -94,8 +91,7 @@ public class OperadorCaixaResourceIT {
     public static OperadorCaixa createEntity(EntityManager em) {
         OperadorCaixa operadorCaixa = new OperadorCaixa()
             .nome(DEFAULT_NOME)
-            .cpf(DEFAULT_CPF)
-            .idLoja(DEFAULT_ID_LOJA);
+            .cpf(DEFAULT_CPF);
         return operadorCaixa;
     }
     /**
@@ -107,8 +103,7 @@ public class OperadorCaixaResourceIT {
     public static OperadorCaixa createUpdatedEntity(EntityManager em) {
         OperadorCaixa operadorCaixa = new OperadorCaixa()
             .nome(UPDATED_NOME)
-            .cpf(UPDATED_CPF)
-            .idLoja(UPDATED_ID_LOJA);
+            .cpf(UPDATED_CPF);
         return operadorCaixa;
     }
 
@@ -135,7 +130,6 @@ public class OperadorCaixaResourceIT {
         OperadorCaixa testOperadorCaixa = operadorCaixaList.get(operadorCaixaList.size() - 1);
         assertThat(testOperadorCaixa.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testOperadorCaixa.getCpf()).isEqualTo(DEFAULT_CPF);
-        assertThat(testOperadorCaixa.getIdLoja()).isEqualTo(DEFAULT_ID_LOJA);
     }
 
     @Test
@@ -171,8 +165,7 @@ public class OperadorCaixaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(operadorCaixa.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.doubleValue())))
-            .andExpect(jsonPath("$.[*].idLoja").value(hasItem(DEFAULT_ID_LOJA.intValue())));
+            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.doubleValue())));
     }
     
     @Test
@@ -187,8 +180,7 @@ public class OperadorCaixaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(operadorCaixa.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF.doubleValue()))
-            .andExpect(jsonPath("$.idLoja").value(DEFAULT_ID_LOJA.intValue()));
+            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF.doubleValue()));
     }
 
     @Test
@@ -213,8 +205,7 @@ public class OperadorCaixaResourceIT {
         em.detach(updatedOperadorCaixa);
         updatedOperadorCaixa
             .nome(UPDATED_NOME)
-            .cpf(UPDATED_CPF)
-            .idLoja(UPDATED_ID_LOJA);
+            .cpf(UPDATED_CPF);
         OperadorCaixaDTO operadorCaixaDTO = operadorCaixaMapper.toDto(updatedOperadorCaixa);
 
         restOperadorCaixaMockMvc.perform(put("/api/operador-caixas")
@@ -228,7 +219,6 @@ public class OperadorCaixaResourceIT {
         OperadorCaixa testOperadorCaixa = operadorCaixaList.get(operadorCaixaList.size() - 1);
         assertThat(testOperadorCaixa.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testOperadorCaixa.getCpf()).isEqualTo(UPDATED_CPF);
-        assertThat(testOperadorCaixa.getIdLoja()).isEqualTo(UPDATED_ID_LOJA);
     }
 
     @Test

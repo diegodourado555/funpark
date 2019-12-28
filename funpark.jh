@@ -5,18 +5,7 @@ entity GrupoMaquina {
 
 entity Maquina {
 	id Long,
-    nome String,
-    idGrupoMaquina Long
-}
-
-entity Menu {
-	id Long,
-    descricao String
-}
-
-entity PerfilAcesso {
-	id Long,
-    descricao String
+    nome String
 }
 
 entity Receitas {
@@ -27,18 +16,6 @@ entity Receitas {
 entity Despesas {
 	id Long,
     descricao String
-}
-
-entity MenuPerfil {
-	id Long,
-    idMenu Long,
-    idPerfil Long
-}
-
-entity UsuarioPerfil {
-	id Long,
-    idUsuario Long,
-    idPerfil Long
 }
 
 entity Usuario {
@@ -53,24 +30,17 @@ entity Usuario {
 }
 
 entity LojaMaquina {
-	id Long,
-    idLoja Long,
-    idMaquina Long
+	id Long
 }
 
 entity OperadorCaixa {
 	id Long,
     nome String,
-    cpf Float,
-    idLoja Long
+    cpf Float
 }
 
 entity ContaCorrente {
 	id Long,
-    idReceita Long,
-    idDespesa Long,
-    idOperador Long,
-    idLoja Long,
     valor Double,
     data Instant,
     metodoPagamento MetodoPagamento
@@ -86,18 +56,6 @@ entity Loja {
 
 enum MetodoPagamento {
     DINHEIRO, CARTAO, CHEQUE
-}
-
-relationship OneToOne {
-	MenuPerfil{menu} to Menu,
-    MenuPerfil{perfil} to PerfilAcesso
-    
-}
-
-relationship OneToOne {
-	UsuarioPerfil{usuario} to Usuario,
-    UsuarioPerfil{perfil} to PerfilAcesso
-    
 }
 
 relationship OneToOne {

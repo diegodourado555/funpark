@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { OperadorCaixa } from 'app/shared/model/operador-caixa.model';
+import { IOperadorCaixa, OperadorCaixa } from 'app/shared/model/operador-caixa.model';
 import { OperadorCaixaService } from './operador-caixa.service';
 import { OperadorCaixaComponent } from './operador-caixa.component';
 import { OperadorCaixaDetailComponent } from './operador-caixa-detail.component';
 import { OperadorCaixaUpdateComponent } from './operador-caixa-update.component';
-import { IOperadorCaixa } from 'app/shared/model/operador-caixa.model';
 
 @Injectable({ providedIn: 'root' })
 export class OperadorCaixaResolve implements Resolve<IOperadorCaixa> {
-  constructor(private service: OperadorCaixaService) {}
+  constructor(private service: OperadorCaixaService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IOperadorCaixa> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IOperadorCaixa> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((operadorCaixa: HttpResponse<OperadorCaixa>) => operadorCaixa.body));
+      return this.service.find(id).pipe(
+        flatMap((operadorCaixa: HttpResponse<OperadorCaixa>) => {
+          if (operadorCaixa.body) {
+            return of(operadorCaixa.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new OperadorCaixa());
   }

@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Loja } from 'app/shared/model/loja.model';
+import { ILoja, Loja } from 'app/shared/model/loja.model';
 import { LojaService } from './loja.service';
 import { LojaComponent } from './loja.component';
 import { LojaDetailComponent } from './loja-detail.component';
 import { LojaUpdateComponent } from './loja-update.component';
-import { ILoja } from 'app/shared/model/loja.model';
 
 @Injectable({ providedIn: 'root' })
 export class LojaResolve implements Resolve<ILoja> {
-  constructor(private service: LojaService) {}
+  constructor(private service: LojaService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<ILoja> {
+  resolve(route: ActivatedRouteSnapshot): Observable<ILoja> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((loja: HttpResponse<Loja>) => loja.body));
+      return this.service.find(id).pipe(
+        flatMap((loja: HttpResponse<Loja>) => {
+          if (loja.body) {
+            return of(loja.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new Loja());
   }

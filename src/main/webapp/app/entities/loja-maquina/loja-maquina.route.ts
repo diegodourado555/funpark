@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { LojaMaquina } from 'app/shared/model/loja-maquina.model';
+import { ILojaMaquina, LojaMaquina } from 'app/shared/model/loja-maquina.model';
 import { LojaMaquinaService } from './loja-maquina.service';
 import { LojaMaquinaComponent } from './loja-maquina.component';
 import { LojaMaquinaDetailComponent } from './loja-maquina-detail.component';
 import { LojaMaquinaUpdateComponent } from './loja-maquina-update.component';
-import { ILojaMaquina } from 'app/shared/model/loja-maquina.model';
 
 @Injectable({ providedIn: 'root' })
 export class LojaMaquinaResolve implements Resolve<ILojaMaquina> {
-  constructor(private service: LojaMaquinaService) {}
+  constructor(private service: LojaMaquinaService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<ILojaMaquina> {
+  resolve(route: ActivatedRouteSnapshot): Observable<ILojaMaquina> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((lojaMaquina: HttpResponse<LojaMaquina>) => lojaMaquina.body));
+      return this.service.find(id).pipe(
+        flatMap((lojaMaquina: HttpResponse<LojaMaquina>) => {
+          if (lojaMaquina.body) {
+            return of(lojaMaquina.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new LojaMaquina());
   }

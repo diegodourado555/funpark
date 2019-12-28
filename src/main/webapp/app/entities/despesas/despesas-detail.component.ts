@@ -8,17 +8,17 @@ import { IDespesas } from 'app/shared/model/despesas.model';
   templateUrl: './despesas-detail.component.html'
 })
 export class DespesasDetailComponent implements OnInit {
-  despesas: IDespesas;
+  despesas: IDespesas | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ despesas }) => {
       this.despesas = despesas;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

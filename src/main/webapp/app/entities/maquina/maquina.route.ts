@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Maquina } from 'app/shared/model/maquina.model';
+import { IMaquina, Maquina } from 'app/shared/model/maquina.model';
 import { MaquinaService } from './maquina.service';
 import { MaquinaComponent } from './maquina.component';
 import { MaquinaDetailComponent } from './maquina-detail.component';
 import { MaquinaUpdateComponent } from './maquina-update.component';
-import { IMaquina } from 'app/shared/model/maquina.model';
 
 @Injectable({ providedIn: 'root' })
 export class MaquinaResolve implements Resolve<IMaquina> {
-  constructor(private service: MaquinaService) {}
+  constructor(private service: MaquinaService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IMaquina> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IMaquina> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((maquina: HttpResponse<Maquina>) => maquina.body));
+      return this.service.find(id).pipe(
+        flatMap((maquina: HttpResponse<Maquina>) => {
+          if (maquina.body) {
+            return of(maquina.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new Maquina());
   }

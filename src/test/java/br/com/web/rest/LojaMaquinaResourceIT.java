@@ -36,12 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FunparkApp.class)
 public class LojaMaquinaResourceIT {
 
-    private static final Long DEFAULT_ID_LOJA = 1L;
-    private static final Long UPDATED_ID_LOJA = 2L;
-
-    private static final Long DEFAULT_ID_MAQUINA = 1L;
-    private static final Long UPDATED_ID_MAQUINA = 2L;
-
     @Autowired
     private LojaMaquinaRepository lojaMaquinaRepository;
 
@@ -89,9 +83,7 @@ public class LojaMaquinaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static LojaMaquina createEntity(EntityManager em) {
-        LojaMaquina lojaMaquina = new LojaMaquina()
-            .idLoja(DEFAULT_ID_LOJA)
-            .idMaquina(DEFAULT_ID_MAQUINA);
+        LojaMaquina lojaMaquina = new LojaMaquina();
         return lojaMaquina;
     }
     /**
@@ -101,9 +93,7 @@ public class LojaMaquinaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static LojaMaquina createUpdatedEntity(EntityManager em) {
-        LojaMaquina lojaMaquina = new LojaMaquina()
-            .idLoja(UPDATED_ID_LOJA)
-            .idMaquina(UPDATED_ID_MAQUINA);
+        LojaMaquina lojaMaquina = new LojaMaquina();
         return lojaMaquina;
     }
 
@@ -128,8 +118,6 @@ public class LojaMaquinaResourceIT {
         List<LojaMaquina> lojaMaquinaList = lojaMaquinaRepository.findAll();
         assertThat(lojaMaquinaList).hasSize(databaseSizeBeforeCreate + 1);
         LojaMaquina testLojaMaquina = lojaMaquinaList.get(lojaMaquinaList.size() - 1);
-        assertThat(testLojaMaquina.getIdLoja()).isEqualTo(DEFAULT_ID_LOJA);
-        assertThat(testLojaMaquina.getIdMaquina()).isEqualTo(DEFAULT_ID_MAQUINA);
     }
 
     @Test
@@ -163,9 +151,7 @@ public class LojaMaquinaResourceIT {
         restLojaMaquinaMockMvc.perform(get("/api/loja-maquinas?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(lojaMaquina.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idLoja").value(hasItem(DEFAULT_ID_LOJA.intValue())))
-            .andExpect(jsonPath("$.[*].idMaquina").value(hasItem(DEFAULT_ID_MAQUINA.intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(lojaMaquina.getId().intValue())));
     }
     
     @Test
@@ -178,9 +164,7 @@ public class LojaMaquinaResourceIT {
         restLojaMaquinaMockMvc.perform(get("/api/loja-maquinas/{id}", lojaMaquina.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(lojaMaquina.getId().intValue()))
-            .andExpect(jsonPath("$.idLoja").value(DEFAULT_ID_LOJA.intValue()))
-            .andExpect(jsonPath("$.idMaquina").value(DEFAULT_ID_MAQUINA.intValue()));
+            .andExpect(jsonPath("$.id").value(lojaMaquina.getId().intValue()));
     }
 
     @Test
@@ -203,9 +187,6 @@ public class LojaMaquinaResourceIT {
         LojaMaquina updatedLojaMaquina = lojaMaquinaRepository.findById(lojaMaquina.getId()).get();
         // Disconnect from session so that the updates on updatedLojaMaquina are not directly saved in db
         em.detach(updatedLojaMaquina);
-        updatedLojaMaquina
-            .idLoja(UPDATED_ID_LOJA)
-            .idMaquina(UPDATED_ID_MAQUINA);
         LojaMaquinaDTO lojaMaquinaDTO = lojaMaquinaMapper.toDto(updatedLojaMaquina);
 
         restLojaMaquinaMockMvc.perform(put("/api/loja-maquinas")
@@ -217,8 +198,6 @@ public class LojaMaquinaResourceIT {
         List<LojaMaquina> lojaMaquinaList = lojaMaquinaRepository.findAll();
         assertThat(lojaMaquinaList).hasSize(databaseSizeBeforeUpdate);
         LojaMaquina testLojaMaquina = lojaMaquinaList.get(lojaMaquinaList.size() - 1);
-        assertThat(testLojaMaquina.getIdLoja()).isEqualTo(UPDATED_ID_LOJA);
-        assertThat(testLojaMaquina.getIdMaquina()).isEqualTo(UPDATED_ID_MAQUINA);
     }
 
     @Test

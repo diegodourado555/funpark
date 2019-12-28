@@ -17,10 +17,8 @@
     <div class="table-responsive" *ngIf="lojaMaquinas?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idLoja"><span jhiTranslate="funparkApp.lojaMaquina.idLoja">Id Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idMaquina"><span jhiTranslate="funparkApp.lojaMaquina.idMaquina">Id Maquina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="maquinaId"><span jhiTranslate="funparkApp.lojaMaquina.maquina">Maquina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="lojaId"><span jhiTranslate="funparkApp.lojaMaquina.loja">Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
@@ -29,8 +27,6 @@
             <tbody>
             <tr *ngFor="let lojaMaquina of lojaMaquinas ;trackBy: trackId">
                 <td><a [routerLink]="['/loja-maquina', lojaMaquina.id, 'view' ]">{{lojaMaquina.id}}</a></td>
-                <td>{{lojaMaquina.idLoja}}</td>
-                <td>{{lojaMaquina.idMaquina}}</td>
                 <td>
                     <div *ngIf="lojaMaquina.maquinaId">
                         <a [routerLink]="['/maquina', lojaMaquina.maquinaId , 'view' ]" >{{lojaMaquina.maquinaId}}</a>
@@ -66,12 +62,12 @@
             </tbody>
         </table>
     </div>
-    <div [hidden]="lojaMaquinas?.length === 0">
+    <div *ngIf="lojaMaquinas?.length > 0">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
     </div>
 </div>

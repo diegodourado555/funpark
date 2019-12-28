@@ -13,8 +13,6 @@ public class OperadorCaixaDTO implements Serializable {
 
     private Float cpf;
 
-    private Long idLoja;
-
 
     private Long lojaId;
 
@@ -40,14 +38,6 @@ public class OperadorCaixaDTO implements Serializable {
 
     public void setCpf(Float cpf) {
         this.cpf = cpf;
-    }
-
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
     }
 
     public Long getLojaId() {
@@ -85,8 +75,7 @@ public class OperadorCaixaDTO implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", cpf=" + getCpf() +
-            ", idLoja=" + getIdLoja() +
-            ", loja=" + getLojaId() +
+            ", lojaId=" + getLojaId() +
             "}";
     }
 }

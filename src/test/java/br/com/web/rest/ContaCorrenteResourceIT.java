@@ -39,18 +39,6 @@ import br.com.domain.enumeration.MetodoPagamento;
 @SpringBootTest(classes = FunparkApp.class)
 public class ContaCorrenteResourceIT {
 
-    private static final Long DEFAULT_ID_RECEITA = 1L;
-    private static final Long UPDATED_ID_RECEITA = 2L;
-
-    private static final Long DEFAULT_ID_DESPESA = 1L;
-    private static final Long UPDATED_ID_DESPESA = 2L;
-
-    private static final Long DEFAULT_ID_OPERADOR = 1L;
-    private static final Long UPDATED_ID_OPERADOR = 2L;
-
-    private static final Long DEFAULT_ID_LOJA = 1L;
-    private static final Long UPDATED_ID_LOJA = 2L;
-
     private static final Double DEFAULT_VALOR = 1D;
     private static final Double UPDATED_VALOR = 2D;
 
@@ -108,10 +96,6 @@ public class ContaCorrenteResourceIT {
      */
     public static ContaCorrente createEntity(EntityManager em) {
         ContaCorrente contaCorrente = new ContaCorrente()
-            .idReceita(DEFAULT_ID_RECEITA)
-            .idDespesa(DEFAULT_ID_DESPESA)
-            .idOperador(DEFAULT_ID_OPERADOR)
-            .idLoja(DEFAULT_ID_LOJA)
             .valor(DEFAULT_VALOR)
             .data(DEFAULT_DATA)
             .metodoPagamento(DEFAULT_METODO_PAGAMENTO);
@@ -125,10 +109,6 @@ public class ContaCorrenteResourceIT {
      */
     public static ContaCorrente createUpdatedEntity(EntityManager em) {
         ContaCorrente contaCorrente = new ContaCorrente()
-            .idReceita(UPDATED_ID_RECEITA)
-            .idDespesa(UPDATED_ID_DESPESA)
-            .idOperador(UPDATED_ID_OPERADOR)
-            .idLoja(UPDATED_ID_LOJA)
             .valor(UPDATED_VALOR)
             .data(UPDATED_DATA)
             .metodoPagamento(UPDATED_METODO_PAGAMENTO);
@@ -156,10 +136,6 @@ public class ContaCorrenteResourceIT {
         List<ContaCorrente> contaCorrenteList = contaCorrenteRepository.findAll();
         assertThat(contaCorrenteList).hasSize(databaseSizeBeforeCreate + 1);
         ContaCorrente testContaCorrente = contaCorrenteList.get(contaCorrenteList.size() - 1);
-        assertThat(testContaCorrente.getIdReceita()).isEqualTo(DEFAULT_ID_RECEITA);
-        assertThat(testContaCorrente.getIdDespesa()).isEqualTo(DEFAULT_ID_DESPESA);
-        assertThat(testContaCorrente.getIdOperador()).isEqualTo(DEFAULT_ID_OPERADOR);
-        assertThat(testContaCorrente.getIdLoja()).isEqualTo(DEFAULT_ID_LOJA);
         assertThat(testContaCorrente.getValor()).isEqualTo(DEFAULT_VALOR);
         assertThat(testContaCorrente.getData()).isEqualTo(DEFAULT_DATA);
         assertThat(testContaCorrente.getMetodoPagamento()).isEqualTo(DEFAULT_METODO_PAGAMENTO);
@@ -197,10 +173,6 @@ public class ContaCorrenteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contaCorrente.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idReceita").value(hasItem(DEFAULT_ID_RECEITA.intValue())))
-            .andExpect(jsonPath("$.[*].idDespesa").value(hasItem(DEFAULT_ID_DESPESA.intValue())))
-            .andExpect(jsonPath("$.[*].idOperador").value(hasItem(DEFAULT_ID_OPERADOR.intValue())))
-            .andExpect(jsonPath("$.[*].idLoja").value(hasItem(DEFAULT_ID_LOJA.intValue())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.doubleValue())))
             .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())))
             .andExpect(jsonPath("$.[*].metodoPagamento").value(hasItem(DEFAULT_METODO_PAGAMENTO.toString())));
@@ -217,10 +189,6 @@ public class ContaCorrenteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(contaCorrente.getId().intValue()))
-            .andExpect(jsonPath("$.idReceita").value(DEFAULT_ID_RECEITA.intValue()))
-            .andExpect(jsonPath("$.idDespesa").value(DEFAULT_ID_DESPESA.intValue()))
-            .andExpect(jsonPath("$.idOperador").value(DEFAULT_ID_OPERADOR.intValue()))
-            .andExpect(jsonPath("$.idLoja").value(DEFAULT_ID_LOJA.intValue()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.doubleValue()))
             .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()))
             .andExpect(jsonPath("$.metodoPagamento").value(DEFAULT_METODO_PAGAMENTO.toString()));
@@ -247,10 +215,6 @@ public class ContaCorrenteResourceIT {
         // Disconnect from session so that the updates on updatedContaCorrente are not directly saved in db
         em.detach(updatedContaCorrente);
         updatedContaCorrente
-            .idReceita(UPDATED_ID_RECEITA)
-            .idDespesa(UPDATED_ID_DESPESA)
-            .idOperador(UPDATED_ID_OPERADOR)
-            .idLoja(UPDATED_ID_LOJA)
             .valor(UPDATED_VALOR)
             .data(UPDATED_DATA)
             .metodoPagamento(UPDATED_METODO_PAGAMENTO);
@@ -265,10 +229,6 @@ public class ContaCorrenteResourceIT {
         List<ContaCorrente> contaCorrenteList = contaCorrenteRepository.findAll();
         assertThat(contaCorrenteList).hasSize(databaseSizeBeforeUpdate);
         ContaCorrente testContaCorrente = contaCorrenteList.get(contaCorrenteList.size() - 1);
-        assertThat(testContaCorrente.getIdReceita()).isEqualTo(UPDATED_ID_RECEITA);
-        assertThat(testContaCorrente.getIdDespesa()).isEqualTo(UPDATED_ID_DESPESA);
-        assertThat(testContaCorrente.getIdOperador()).isEqualTo(UPDATED_ID_OPERADOR);
-        assertThat(testContaCorrente.getIdLoja()).isEqualTo(UPDATED_ID_LOJA);
         assertThat(testContaCorrente.getValor()).isEqualTo(UPDATED_VALOR);
         assertThat(testContaCorrente.getData()).isEqualTo(UPDATED_DATA);
         assertThat(testContaCorrente.getMetodoPagamento()).isEqualTo(UPDATED_METODO_PAGAMENTO);

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import { map } from 'rxjs/operators';
+
 import { ILojaMaquina, LojaMaquina } from 'app/shared/model/loja-maquina.model';
 import { LojaMaquinaService } from './loja-maquina.service';
 import { IMaquina } from 'app/shared/model/maquina.model';
@@ -13,27 +13,26 @@ import { MaquinaService } from 'app/entities/maquina/maquina.service';
 import { ILoja } from 'app/shared/model/loja.model';
 import { LojaService } from 'app/entities/loja/loja.service';
 
+type SelectableEntity = IMaquina | ILoja;
+
 @Component({
   selector: 'jhi-loja-maquina-update',
   templateUrl: './loja-maquina-update.component.html'
 })
 export class LojaMaquinaUpdateComponent implements OnInit {
-  isSaving: boolean;
+  isSaving = false;
 
-  maquinas: IMaquina[];
+  maquinas: IMaquina[] = [];
 
-  lojas: ILoja[];
+  lojas: ILoja[] = [];
 
   editForm = this.fb.group({
     id: [],
-    idLoja: [],
-    idMaquina: [],
     maquinaId: [],
     lojaId: []
   });
 
   constructor(
-    protected jhiAlertService: JhiAlertService,
     protected lojaMaquinaService: LojaMaquinaService,
     protected maquinaService: MaquinaService,
     protected lojaService: LojaService,
@@ -41,58 +40,73 @@ export class LojaMaquinaUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
-    this.isSaving = false;
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ lojaMaquina }) => {
       this.updateForm(lojaMaquina);
+
+      this.maquinaService
+        .query({ filter: 'lojamaquina-is-null' })
+        .pipe(
+          map((res: HttpResponse<IMaquina[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IMaquina[]) => {
+          if (!lojaMaquina.maquinaId) {
+            this.maquinas = resBody;
+          } else {
+            this.maquinaService
+              .find(lojaMaquina.maquinaId)
+              .pipe(
+                map((subRes: HttpResponse<IMaquina>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IMaquina[]) => {
+                this.maquinas = concatRes;
+              });
+          }
+        });
+
+      this.lojaService
+        .query({ filter: 'lojamaquina-is-null' })
+        .pipe(
+          map((res: HttpResponse<ILoja[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: ILoja[]) => {
+          if (!lojaMaquina.lojaId) {
+            this.lojas = resBody;
+          } else {
+            this.lojaService
+              .find(lojaMaquina.lojaId)
+              .pipe(
+                map((subRes: HttpResponse<ILoja>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: ILoja[]) => {
+                this.lojas = concatRes;
+              });
+          }
+        });
     });
-    this.maquinaService.query({ filter: 'lojamaquina-is-null' }).subscribe(
-      (res: HttpResponse<IMaquina[]>) => {
-        if (!this.editForm.get('maquinaId').value) {
-          this.maquinas = res.body;
-        } else {
-          this.maquinaService
-            .find(this.editForm.get('maquinaId').value)
-            .subscribe(
-              (subRes: HttpResponse<IMaquina>) => (this.maquinas = [subRes.body].concat(res.body)),
-              (subRes: HttpErrorResponse) => this.onError(subRes.message)
-            );
-        }
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
-    this.lojaService.query({ filter: 'lojamaquina-is-null' }).subscribe(
-      (res: HttpResponse<ILoja[]>) => {
-        if (!this.editForm.get('lojaId').value) {
-          this.lojas = res.body;
-        } else {
-          this.lojaService
-            .find(this.editForm.get('lojaId').value)
-            .subscribe(
-              (subRes: HttpResponse<ILoja>) => (this.lojas = [subRes.body].concat(res.body)),
-              (subRes: HttpErrorResponse) => this.onError(subRes.message)
-            );
-        }
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
   }
 
-  updateForm(lojaMaquina: ILojaMaquina) {
+  updateForm(lojaMaquina: ILojaMaquina): void {
     this.editForm.patchValue({
       id: lojaMaquina.id,
-      idLoja: lojaMaquina.idLoja,
-      idMaquina: lojaMaquina.idMaquina,
       maquinaId: lojaMaquina.maquinaId,
       lojaId: lojaMaquina.lojaId
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 
-  save() {
+  save(): void {
     this.isSaving = true;
     const lojaMaquina = this.createFromForm();
     if (lojaMaquina.id !== undefined) {
@@ -105,35 +119,29 @@ export class LojaMaquinaUpdateComponent implements OnInit {
   private createFromForm(): ILojaMaquina {
     return {
       ...new LojaMaquina(),
-      id: this.editForm.get(['id']).value,
-      idLoja: this.editForm.get(['idLoja']).value,
-      idMaquina: this.editForm.get(['idMaquina']).value,
-      maquinaId: this.editForm.get(['maquinaId']).value,
-      lojaId: this.editForm.get(['lojaId']).value
+      id: this.editForm.get(['id'])!.value,
+      maquinaId: this.editForm.get(['maquinaId'])!.value,
+      lojaId: this.editForm.get(['lojaId'])!.value
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<ILojaMaquina>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<ILojaMaquina>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
   }
 
-  protected onSaveError() {
+  protected onSaveError(): void {
     this.isSaving = false;
   }
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
 
-  trackMaquinaById(index: number, item: IMaquina) {
-    return item.id;
-  }
-
-  trackLojaById(index: number, item: ILoja) {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

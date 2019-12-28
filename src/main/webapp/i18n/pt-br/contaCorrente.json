@@ -16,10 +16,6 @@
       "detail": {
         "title": "Conta Corrente"
       },
-      "idReceita": "Id Receita",
-      "idDespesa": "Id Despesa",
-      "idOperador": "Id Operador",
-      "idLoja": "Id Loja",
       "valor": "Valor",
       "data": "Data",
       "metodoPagamento": "Metodo Pagamento",

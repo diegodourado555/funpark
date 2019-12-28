@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IDespesas } from 'app/shared/model/despesas.model';
@@ -16,109 +16,90 @@ import { DespesasDeleteDialogComponent } from './despesas-delete-dialog.componen
   templateUrl: './despesas.component.html'
 })
 export class DespesasComponent implements OnInit, OnDestroy {
-  despesas: IDespesas[];
-  error: any;
-  success: any;
-  eventSubscriber: Subscription;
-  routeData: any;
-  links: any;
-  totalItems: any;
-  itemsPerPage: any;
-  page: any;
-  predicate: any;
-  previousPage: any;
-  reverse: any;
+  despesas?: IDespesas[];
+  eventSubscriber?: Subscription;
+  totalItems = 0;
+  itemsPerPage = ITEMS_PER_PAGE;
+  page!: number;
+  predicate!: string;
+  ascending!: boolean;
+  ngbPaginationPage = 1;
 
   constructor(
     protected despesasService: DespesasService,
-    protected parseLinks: JhiParseLinks,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {
-    this.itemsPerPage = ITEMS_PER_PAGE;
-    this.routeData = this.activatedRoute.data.subscribe(data => {
-      this.page = data.pagingParams.page;
-      this.previousPage = data.pagingParams.page;
-      this.reverse = data.pagingParams.ascending;
-      this.predicate = data.pagingParams.predicate;
-    });
-  }
+  ) {}
 
-  loadAll() {
+  loadPage(page?: number): void {
+    const pageToLoad: number = page ? page : this.page;
     this.despesasService
       .query({
-        page: this.page - 1,
+        page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe((res: HttpResponse<IDespesas[]>) => this.paginateDespesas(res.body, res.headers));
+      .subscribe(
+        (res: HttpResponse<IDespesas[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
+        () => this.onError()
+      );
   }
 
-  loadPage(page: number) {
-    if (page !== this.previousPage) {
-      this.previousPage = page;
-      this.transition();
-    }
-  }
-
-  transition() {
-    this.router.navigate(['/despesas'], {
-      queryParams: {
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-      }
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(data => {
+      this.page = data.pagingParams.page;
+      this.ascending = data.pagingParams.ascending;
+      this.predicate = data.pagingParams.predicate;
+      this.ngbPaginationPage = data.pagingParams.page;
+      this.loadPage();
     });
-    this.loadAll();
-  }
-
-  clear() {
-    this.page = 0;
-    this.router.navigate([
-      '/despesas',
-      {
-        page: this.page,
-        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-      }
-    ]);
-    this.loadAll();
-  }
-
-  ngOnInit() {
-    this.loadAll();
     this.registerChangeInDespesas();
   }
 
-  ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
+  ngOnDestroy(): void {
+    if (this.eventSubscriber) {
+      this.eventManager.destroy(this.eventSubscriber);
+    }
   }
 
-  trackId(index: number, item: IDespesas) {
-    return item.id;
+  trackId(index: number, item: IDespesas): number {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    return item.id!;
   }
 
-  registerChangeInDespesas() {
-    this.eventSubscriber = this.eventManager.subscribe('despesasListModification', () => this.loadAll());
+  registerChangeInDespesas(): void {
+    this.eventSubscriber = this.eventManager.subscribe('despesasListModification', () => this.loadPage());
   }
 
-  delete(despesas: IDespesas) {
+  delete(despesas: IDespesas): void {
     const modalRef = this.modalService.open(DespesasDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.despesas = despesas;
   }
 
-  sort() {
-    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+  sort(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
     }
     return result;
   }
 
-  protected paginateDespesas(data: IDespesas[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.despesas = data;
+  protected onSuccess(data: IDespesas[] | null, headers: HttpHeaders, page: number): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.page = page;
+    this.router.navigate(['/despesas'], {
+      queryParams: {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+      }
+    });
+    this.despesas = data ? data : [];
+  }
+
+  protected onError(): void {
+    this.ngbPaginationPage = this.page;
   }
 }

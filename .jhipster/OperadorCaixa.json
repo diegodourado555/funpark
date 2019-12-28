@@ -8,10 +8,6 @@
         {
             "fieldName": "cpf",
             "fieldType": "Float"
-        },
-        {
-            "fieldName": "idLoja",
-            "fieldType": "Long"
         }
     ],
     "relationships": [

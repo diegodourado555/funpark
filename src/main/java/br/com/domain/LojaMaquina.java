@@ -18,12 +18,6 @@ public class LojaMaquina implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "id_loja")
-    private Long idLoja;
-
-    @Column(name = "id_maquina")
-    private Long idMaquina;
-
     @OneToOne
     @JoinColumn(unique = true)
     private Maquina maquina;
@@ -39,32 +33,6 @@ public class LojaMaquina implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public LojaMaquina idLoja(Long idLoja) {
-        this.idLoja = idLoja;
-        return this;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
-    }
-
-    public Long getIdMaquina() {
-        return idMaquina;
-    }
-
-    public LojaMaquina idMaquina(Long idMaquina) {
-        this.idMaquina = idMaquina;
-        return this;
-    }
-
-    public void setIdMaquina(Long idMaquina) {
-        this.idMaquina = idMaquina;
     }
 
     public Maquina getMaquina() {
@@ -114,8 +82,6 @@ public class LojaMaquina implements Serializable {
     public String toString() {
         return "LojaMaquina{" +
             "id=" + getId() +
-            ", idLoja=" + getIdLoja() +
-            ", idMaquina=" + getIdMaquina() +
             "}";
     }
 }

@@ -12,20 +12,8 @@
     -->
     <changeSet id="20191216225101-1" author="jhipster">
         <createTable tableName="conta_corrente">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="id_receita" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="id_despesa" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="id_operador" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="id_loja" type="bigint">
-                <constraints nullable="true" />
             </column>
             <column name="valor" type="double">
                 <constraints nullable="true" />
@@ -72,10 +60,6 @@
                   separator=";"
                   tableName="conta_corrente">
             <column name="id" type="numeric"/>
-            <column name="id_receita" type="numeric"/>
-            <column name="id_despesa" type="numeric"/>
-            <column name="id_operador" type="numeric"/>
-            <column name="id_loja" type="numeric"/>
             <column name="valor" type="numeric"/>
             <column name="data" type="datetime"/>
             <column name="metodo_pagamento" type="string"/>

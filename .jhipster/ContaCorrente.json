@@ -2,22 +2,6 @@
     "name": "ContaCorrente",
     "fields": [
         {
-            "fieldName": "idReceita",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "idDespesa",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "idOperador",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "idLoja",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "valor",
             "fieldType": "Double"
         },

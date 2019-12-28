@@ -10,17 +10,17 @@ describe('Service Tests', () => {
     let service: LojaMaquinaService;
     let httpMock: HttpTestingController;
     let elemDefault: ILojaMaquina;
-    let expectedResult;
+    let expectedResult: ILojaMaquina | ILojaMaquina[] | boolean | null;
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule]
       });
-      expectedResult = {};
+      expectedResult = null;
       injector = getTestBed();
       service = injector.get(LojaMaquinaService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new LojaMaquina(0, 0, 0);
+      elemDefault = new LojaMaquina(0);
     });
 
     describe('Service methods', () => {
@@ -29,11 +29,11 @@ describe('Service Tests', () => {
         service
           .find(123)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
 
         const req = httpMock.expectOne({ method: 'GET' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: elemDefault });
+        expect(expectedResult).toMatchObject(elemDefault);
       });
 
       it('should create a LojaMaquina', () => {
@@ -45,44 +45,32 @@ describe('Service Tests', () => {
         );
         const expected = Object.assign({}, returnedFromService);
         service
-          .create(new LojaMaquina(null))
+          .create(new LojaMaquina())
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'POST' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should update a LojaMaquina', () => {
-        const returnedFromService = Object.assign(
-          {
-            idLoja: 1,
-            idMaquina: 1
-          },
-          elemDefault
-        );
+        const returnedFromService = Object.assign({}, elemDefault);
 
         const expected = Object.assign({}, returnedFromService);
         service
           .update(expected)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'PUT' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should return a list of LojaMaquina', () => {
-        const returnedFromService = Object.assign(
-          {
-            idLoja: 1,
-            idMaquina: 1
-          },
-          elemDefault
-        );
+        const returnedFromService = Object.assign({}, elemDefault);
         const expected = Object.assign({}, returnedFromService);
         service
-          .query(expected)
+          .query()
           .pipe(
             take(1),
             map(resp => resp.body)
