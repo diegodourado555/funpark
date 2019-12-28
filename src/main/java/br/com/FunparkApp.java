@@ -1,9 +1,9 @@
 package br.com;
 
-import br.com.config.ApplicationProperties;
-import br.com.config.DefaultProfileUtil;
-
-import io.github.jhipster.config.JHipsterConstants;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.Collection;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,11 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collection;
+import br.com.config.ApplicationProperties;
+import br.com.config.DefaultProfileUtil;
+import io.github.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
@@ -63,7 +63,16 @@ public class FunparkApp implements InitializingBean {
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);
     }
-
+    
+//    // Encriptar passawords
+//    public static void main(String[] args) {
+//    	String password = "123456";
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String hashedPassword = passwordEncoder.encode(password);
+//
+//		System.out.println(hashedPassword);
+//	}
+    
     private static void logApplicationStartup(Environment env) {
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
