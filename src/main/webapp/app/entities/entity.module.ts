@@ -5,10 +5,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'funpark',
-        loadChildren: () => import('./funpark/funpark.module').then(m => m.FunparkFunparkModule)
-      },
-      {
         path: 'grupo-maquina',
         loadChildren: () => import('./grupo-maquina/grupo-maquina.module').then(m => m.FunparkGrupoMaquinaModule)
       },
