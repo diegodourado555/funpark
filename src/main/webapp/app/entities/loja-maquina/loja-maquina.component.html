@@ -29,12 +29,12 @@
                 <td><a [routerLink]="['/loja-maquina', lojaMaquina.id, 'view' ]">{{lojaMaquina.id}}</a></td>
                 <td>
                     <div *ngIf="lojaMaquina.maquinaId">
-                        <a [routerLink]="['/maquina', lojaMaquina.maquinaId , 'view' ]" >{{lojaMaquina.maquinaId}}</a>
+                        <a [routerLink]="['/maquina', lojaMaquina.maquinaId , 'view' ]" >{{lojaMaquina.maquinaNome}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="lojaMaquina.lojaId">
-                        <a [routerLink]="['/loja', lojaMaquina.lojaId , 'view' ]" >{{lojaMaquina.lojaId}}</a>
+                        <a [routerLink]="['/loja', lojaMaquina.lojaId , 'view' ]" >{{lojaMaquina.lojaNomeFantasia}}</a>
                     </div>
                 </td>
                 <td class="text-right">

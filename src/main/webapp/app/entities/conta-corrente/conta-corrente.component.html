@@ -37,22 +37,22 @@
                 <td jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</td>
                 <td>
                     <div *ngIf="contaCorrente.receitaId">
-                        <a [routerLink]="['/receitas', contaCorrente.receitaId , 'view' ]" >{{contaCorrente.receitaId}}</a>
+                        <a [routerLink]="['/receitas', contaCorrente.receitaId , 'view' ]" >{{contaCorrente.receitaDescricao}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.despesaId">
-                        <a [routerLink]="['/despesas', contaCorrente.despesaId , 'view' ]" >{{contaCorrente.despesaId}}</a>
+                        <a [routerLink]="['/despesas', contaCorrente.despesaId , 'view' ]" >{{contaCorrente.despesaDescricao}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.operadorCaixaId">
-                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId , 'view' ]" >{{contaCorrente.operadorCaixaId}}</a>
+                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId , 'view' ]" >{{contaCorrente.operadorCaixaNome}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.lojaId">
-                        <a [routerLink]="['/loja', contaCorrente.lojaId , 'view' ]" >{{contaCorrente.lojaId}}</a>
+                        <a [routerLink]="['/loja', contaCorrente.lojaId , 'view' ]" >{{contaCorrente.lojaNomeFantasia}}</a>
                     </div>
                 </td>
                 <td class="text-right">

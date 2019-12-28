@@ -9,12 +9,28 @@ public class LojaMaquinaDTO implements Serializable {
 
     private Long id;
 
-
     private Long maquinaId;
+    
+    private String maquinaNome;
 
     private Long lojaId;
+    
+    private String lojaNomeFantasia;
+    
+    public LojaMaquinaDTO() {
+		super();
+	}
+    
+	public LojaMaquinaDTO(Long id, Long maquinaId, String maquinaNome, Long lojaId, String lojaNomeFantasia) {
+		super();
+		this.id = id;
+		this.maquinaId = maquinaId;
+		this.maquinaNome = maquinaNome;
+		this.lojaId = lojaId;
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -37,8 +53,24 @@ public class LojaMaquinaDTO implements Serializable {
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
+    
+    public String getMaquinaNome() {
+		return maquinaNome;
+	}
 
-    @Override
+	public void setMaquinaNome(String maquinaNome) {
+		this.maquinaNome = maquinaNome;
+	}
+
+	public String getLojaNomeFantasia() {
+		return lojaNomeFantasia;
+	}
+
+	public void setLojaNomeFantasia(String lojaNomeFantasia) {
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -65,6 +97,8 @@ public class LojaMaquinaDTO implements Serializable {
             "id=" + getId() +
             ", maquinaId=" + getMaquinaId() +
             ", lojaId=" + getLojaId() +
+            ", maquinaNome=" + getMaquinaNome() +
+            ", lojaNomeFantasia=" + getLojaNomeFantasia() +
             "}";
     }
 }

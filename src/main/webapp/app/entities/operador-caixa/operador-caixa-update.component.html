@@ -24,7 +24,7 @@
                     <label class="form-control-label" jhiTranslate="funparkApp.operadorCaixa.loja" for="field_loja">Loja</label>
                     <select class="form-control" id="field_loja" name="loja" formControlName="lojaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackById">{{lojaOption.id}}</option>
+                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackById">{{lojaOption.nomeFantasia}}</option>
                     </select>
                 </div>
             </div>
