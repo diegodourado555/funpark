@@ -10,17 +10,17 @@ describe('Service Tests', () => {
     let service: OperadorCaixaService;
     let httpMock: HttpTestingController;
     let elemDefault: IOperadorCaixa;
-    let expectedResult;
+    let expectedResult: IOperadorCaixa | IOperadorCaixa[] | boolean | null;
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule]
       });
-      expectedResult = {};
+      expectedResult = null;
       injector = getTestBed();
       service = injector.get(OperadorCaixaService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new OperadorCaixa(0, 'AAAAAAA', 0, 0);
+      elemDefault = new OperadorCaixa(0, 'AAAAAAA', 0);
     });
 
     describe('Service methods', () => {
@@ -29,11 +29,11 @@ describe('Service Tests', () => {
         service
           .find(123)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
 
         const req = httpMock.expectOne({ method: 'GET' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: elemDefault });
+        expect(expectedResult).toMatchObject(elemDefault);
       });
 
       it('should create a OperadorCaixa', () => {
@@ -45,20 +45,19 @@ describe('Service Tests', () => {
         );
         const expected = Object.assign({}, returnedFromService);
         service
-          .create(new OperadorCaixa(null))
+          .create(new OperadorCaixa())
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'POST' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should update a OperadorCaixa', () => {
         const returnedFromService = Object.assign(
           {
             nome: 'BBBBBB',
-            cpf: 1,
-            idLoja: 1
+            cpf: 1
           },
           elemDefault
         );
@@ -67,24 +66,23 @@ describe('Service Tests', () => {
         service
           .update(expected)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'PUT' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should return a list of OperadorCaixa', () => {
         const returnedFromService = Object.assign(
           {
             nome: 'BBBBBB',
-            cpf: 1,
-            idLoja: 1
+            cpf: 1
           },
           elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         service
-          .query(expected)
+          .query()
           .pipe(
             take(1),
             map(resp => resp.body)

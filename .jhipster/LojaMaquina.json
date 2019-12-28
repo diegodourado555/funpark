@@ -1,15 +1,6 @@
 {
     "name": "LojaMaquina",
-    "fields": [
-        {
-            "fieldName": "idLoja",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "idMaquina",
-            "fieldType": "Long"
-        }
-    ],
+    "fields": [],
     "relationships": [
         {
             "relationshipType": "one-to-one",

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -10,21 +9,18 @@ import { LojaService } from './loja.service';
   templateUrl: './loja-delete-dialog.component.html'
 })
 export class LojaDeleteDialogComponent {
-  loja: ILoja;
+  loja?: ILoja;
 
   constructor(protected lojaService: LojaService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear() {
-    this.activeModal.dismiss('cancel');
+  clear(): void {
+    this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number) {
+  confirmDelete(id: number): void {
     this.lojaService.delete(id).subscribe(() => {
-      this.eventManager.broadcast({
-        name: 'lojaListModification',
-        content: 'Deleted an loja'
-      });
-      this.activeModal.dismiss(true);
+      this.eventManager.broadcast('lojaListModification');
+      this.activeModal.close();
     });
   }
 }

@@ -8,17 +8,17 @@ import { IContaCorrente } from 'app/shared/model/conta-corrente.model';
   templateUrl: './conta-corrente-detail.component.html'
 })
 export class ContaCorrenteDetailComponent implements OnInit {
-  contaCorrente: IContaCorrente;
+  contaCorrente: IContaCorrente | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ contaCorrente }) => {
       this.contaCorrente = contaCorrente;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

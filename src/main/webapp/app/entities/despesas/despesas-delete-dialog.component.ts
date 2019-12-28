@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -10,21 +9,18 @@ import { DespesasService } from './despesas.service';
   templateUrl: './despesas-delete-dialog.component.html'
 })
 export class DespesasDeleteDialogComponent {
-  despesas: IDespesas;
+  despesas?: IDespesas;
 
   constructor(protected despesasService: DespesasService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear() {
-    this.activeModal.dismiss('cancel');
+  clear(): void {
+    this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number) {
+  confirmDelete(id: number): void {
     this.despesasService.delete(id).subscribe(() => {
-      this.eventManager.broadcast({
-        name: 'despesasListModification',
-        content: 'Deleted an despesas'
-      });
-      this.activeModal.dismiss(true);
+      this.eventManager.broadcast('despesasListModification');
+      this.activeModal.close();
     });
   }
 }

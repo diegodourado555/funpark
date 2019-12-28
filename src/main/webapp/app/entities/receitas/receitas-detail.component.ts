@@ -8,17 +8,17 @@ import { IReceitas } from 'app/shared/model/receitas.model';
   templateUrl: './receitas-detail.component.html'
 })
 export class ReceitasDetailComponent implements OnInit {
-  receitas: IReceitas;
+  receitas: IReceitas | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ receitas }) => {
       this.receitas = receitas;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

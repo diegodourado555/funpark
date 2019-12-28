@@ -22,18 +22,6 @@ public class ContaCorrente implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "id_receita")
-    private Long idReceita;
-
-    @Column(name = "id_despesa")
-    private Long idDespesa;
-
-    @Column(name = "id_operador")
-    private Long idOperador;
-
-    @Column(name = "id_loja")
-    private Long idLoja;
-
     @Column(name = "valor")
     private Double valor;
 
@@ -67,58 +55,6 @@ public class ContaCorrente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdReceita() {
-        return idReceita;
-    }
-
-    public ContaCorrente idReceita(Long idReceita) {
-        this.idReceita = idReceita;
-        return this;
-    }
-
-    public void setIdReceita(Long idReceita) {
-        this.idReceita = idReceita;
-    }
-
-    public Long getIdDespesa() {
-        return idDespesa;
-    }
-
-    public ContaCorrente idDespesa(Long idDespesa) {
-        this.idDespesa = idDespesa;
-        return this;
-    }
-
-    public void setIdDespesa(Long idDespesa) {
-        this.idDespesa = idDespesa;
-    }
-
-    public Long getIdOperador() {
-        return idOperador;
-    }
-
-    public ContaCorrente idOperador(Long idOperador) {
-        this.idOperador = idOperador;
-        return this;
-    }
-
-    public void setIdOperador(Long idOperador) {
-        this.idOperador = idOperador;
-    }
-
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public ContaCorrente idLoja(Long idLoja) {
-        this.idLoja = idLoja;
-        return this;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
     }
 
     public Double getValor() {
@@ -233,10 +169,6 @@ public class ContaCorrente implements Serializable {
     public String toString() {
         return "ContaCorrente{" +
             "id=" + getId() +
-            ", idReceita=" + getIdReceita() +
-            ", idDespesa=" + getIdDespesa() +
-            ", idOperador=" + getIdOperador() +
-            ", idLoja=" + getIdLoja() +
             ", valor=" + getValor() +
             ", data='" + getData() + "'" +
             ", metodoPagamento='" + getMetodoPagamento() + "'" +

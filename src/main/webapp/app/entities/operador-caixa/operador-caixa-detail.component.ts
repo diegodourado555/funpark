@@ -8,17 +8,17 @@ import { IOperadorCaixa } from 'app/shared/model/operador-caixa.model';
   templateUrl: './operador-caixa-detail.component.html'
 })
 export class OperadorCaixaDetailComponent implements OnInit {
-  operadorCaixa: IOperadorCaixa;
+  operadorCaixa: IOperadorCaixa | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ operadorCaixa }) => {
       this.operadorCaixa = operadorCaixa;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

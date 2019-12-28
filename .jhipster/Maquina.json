@@ -4,10 +4,6 @@
         {
             "fieldName": "nome",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "idGrupoMaquina",
-            "fieldType": "Long"
         }
     ],
     "relationships": [

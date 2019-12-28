@@ -3,10 +3,6 @@ import { MetodoPagamento } from 'app/shared/model/enumerations/metodo-pagamento.
 
 export interface IContaCorrente {
   id?: number;
-  idReceita?: number;
-  idDespesa?: number;
-  idOperador?: number;
-  idLoja?: number;
   valor?: number;
   data?: Moment;
   metodoPagamento?: MetodoPagamento;
@@ -19,10 +15,6 @@ export interface IContaCorrente {
 export class ContaCorrente implements IContaCorrente {
   constructor(
     public id?: number,
-    public idReceita?: number,
-    public idDespesa?: number,
-    public idOperador?: number,
-    public idLoja?: number,
     public valor?: number,
     public data?: Moment,
     public metodoPagamento?: MetodoPagamento,

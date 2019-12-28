@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -10,7 +9,7 @@ import { ContaCorrenteService } from './conta-corrente.service';
   templateUrl: './conta-corrente-delete-dialog.component.html'
 })
 export class ContaCorrenteDeleteDialogComponent {
-  contaCorrente: IContaCorrente;
+  contaCorrente?: IContaCorrente;
 
   constructor(
     protected contaCorrenteService: ContaCorrenteService,
@@ -18,17 +17,14 @@ export class ContaCorrenteDeleteDialogComponent {
     protected eventManager: JhiEventManager
   ) {}
 
-  clear() {
-    this.activeModal.dismiss('cancel');
+  clear(): void {
+    this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number) {
+  confirmDelete(id: number): void {
     this.contaCorrenteService.delete(id).subscribe(() => {
-      this.eventManager.broadcast({
-        name: 'contaCorrenteListModification',
-        content: 'Deleted an contaCorrente'
-      });
-      this.activeModal.dismiss(true);
+      this.eventManager.broadcast('contaCorrenteListModification');
+      this.activeModal.close();
     });
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { IGrupoMaquina, GrupoMaquina } from 'app/shared/model/grupo-maquina.model';
 import { GrupoMaquinaService } from './grupo-maquina.service';
 
@@ -13,7 +13,7 @@ import { GrupoMaquinaService } from './grupo-maquina.service';
   templateUrl: './grupo-maquina-update.component.html'
 })
 export class GrupoMaquinaUpdateComponent implements OnInit {
-  isSaving: boolean;
+  isSaving = false;
 
   editForm = this.fb.group({
     id: [],
@@ -22,25 +22,24 @@ export class GrupoMaquinaUpdateComponent implements OnInit {
 
   constructor(protected grupoMaquinaService: GrupoMaquinaService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.isSaving = false;
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ grupoMaquina }) => {
       this.updateForm(grupoMaquina);
     });
   }
 
-  updateForm(grupoMaquina: IGrupoMaquina) {
+  updateForm(grupoMaquina: IGrupoMaquina): void {
     this.editForm.patchValue({
       id: grupoMaquina.id,
       nome: grupoMaquina.nome
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 
-  save() {
+  save(): void {
     this.isSaving = true;
     const grupoMaquina = this.createFromForm();
     if (grupoMaquina.id !== undefined) {
@@ -53,21 +52,24 @@ export class GrupoMaquinaUpdateComponent implements OnInit {
   private createFromForm(): IGrupoMaquina {
     return {
       ...new GrupoMaquina(),
-      id: this.editForm.get(['id']).value,
-      nome: this.editForm.get(['nome']).value
+      id: this.editForm.get(['id'])!.value,
+      nome: this.editForm.get(['nome'])!.value
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IGrupoMaquina>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IGrupoMaquina>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
   }
 
-  protected onSaveError() {
+  protected onSaveError(): void {
     this.isSaving = false;
   }
 }

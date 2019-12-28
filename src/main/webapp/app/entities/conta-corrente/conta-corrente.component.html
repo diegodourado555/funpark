@@ -17,12 +17,8 @@
     <div class="table-responsive" *ngIf="contaCorrentes?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idReceita"><span jhiTranslate="funparkApp.contaCorrente.idReceita">Id Receita</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idDespesa"><span jhiTranslate="funparkApp.contaCorrente.idDespesa">Id Despesa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idOperador"><span jhiTranslate="funparkApp.contaCorrente.idOperador">Id Operador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idLoja"><span jhiTranslate="funparkApp.contaCorrente.idLoja">Id Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="valor"><span jhiTranslate="funparkApp.contaCorrente.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="data"><span jhiTranslate="funparkApp.contaCorrente.data">Data</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="metodoPagamento"><span jhiTranslate="funparkApp.contaCorrente.metodoPagamento">Metodo Pagamento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -36,10 +32,6 @@
             <tbody>
             <tr *ngFor="let contaCorrente of contaCorrentes ;trackBy: trackId">
                 <td><a [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]">{{contaCorrente.id}}</a></td>
-                <td>{{contaCorrente.idReceita}}</td>
-                <td>{{contaCorrente.idDespesa}}</td>
-                <td>{{contaCorrente.idOperador}}</td>
-                <td>{{contaCorrente.idLoja}}</td>
                 <td>{{contaCorrente.valor}}</td>
                 <td>{{contaCorrente.data | date:'medium'}}</td>
                 <td jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</td>
@@ -88,12 +80,12 @@
             </tbody>
         </table>
     </div>
-    <div [hidden]="contaCorrentes?.length === 0">
+    <div *ngIf="contaCorrentes?.length > 0">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
     </div>
 </div>

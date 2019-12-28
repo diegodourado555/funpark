@@ -24,9 +24,6 @@ public class OperadorCaixa implements Serializable {
     @Column(name = "cpf")
     private Float cpf;
 
-    @Column(name = "id_loja")
-    private Long idLoja;
-
     @OneToOne
     @JoinColumn(unique = true)
     private Loja loja;
@@ -66,19 +63,6 @@ public class OperadorCaixa implements Serializable {
         this.cpf = cpf;
     }
 
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public OperadorCaixa idLoja(Long idLoja) {
-        this.idLoja = idLoja;
-        return this;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
-    }
-
     public Loja getLoja() {
         return loja;
     }
@@ -115,7 +99,6 @@ public class OperadorCaixa implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", cpf=" + getCpf() +
-            ", idLoja=" + getIdLoja() +
             "}";
     }
 }

@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContaCorrente } from 'app/shared/model/conta-corrente.model';
+import { IContaCorrente, ContaCorrente } from 'app/shared/model/conta-corrente.model';
 import { ContaCorrenteService } from './conta-corrente.service';
 import { ContaCorrenteComponent } from './conta-corrente.component';
 import { ContaCorrenteDetailComponent } from './conta-corrente-detail.component';
 import { ContaCorrenteUpdateComponent } from './conta-corrente-update.component';
-import { IContaCorrente } from 'app/shared/model/conta-corrente.model';
 
 @Injectable({ providedIn: 'root' })
 export class ContaCorrenteResolve implements Resolve<IContaCorrente> {
-  constructor(private service: ContaCorrenteService) {}
+  constructor(private service: ContaCorrenteService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IContaCorrente> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IContaCorrente> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((contaCorrente: HttpResponse<ContaCorrente>) => contaCorrente.body));
+      return this.service.find(id).pipe(
+        flatMap((contaCorrente: HttpResponse<ContaCorrente>) => {
+          if (contaCorrente.body) {
+            return of(contaCorrente.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new ContaCorrente());
   }

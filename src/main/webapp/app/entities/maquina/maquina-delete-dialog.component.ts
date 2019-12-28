@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -10,21 +9,18 @@ import { MaquinaService } from './maquina.service';
   templateUrl: './maquina-delete-dialog.component.html'
 })
 export class MaquinaDeleteDialogComponent {
-  maquina: IMaquina;
+  maquina?: IMaquina;
 
   constructor(protected maquinaService: MaquinaService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear() {
-    this.activeModal.dismiss('cancel');
+  clear(): void {
+    this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number) {
+  confirmDelete(id: number): void {
     this.maquinaService.delete(id).subscribe(() => {
-      this.eventManager.broadcast({
-        name: 'maquinaListModification',
-        content: 'Deleted an maquina'
-      });
-      this.activeModal.dismiss(true);
+      this.eventManager.broadcast('maquinaListModification');
+      this.activeModal.close();
     });
   }
 }

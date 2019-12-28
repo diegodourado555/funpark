@@ -8,17 +8,17 @@ import { ILojaMaquina } from 'app/shared/model/loja-maquina.model';
   templateUrl: './loja-maquina-detail.component.html'
 })
 export class LojaMaquinaDetailComponent implements OnInit {
-  lojaMaquina: ILojaMaquina;
+  lojaMaquina: ILojaMaquina | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ lojaMaquina }) => {
       this.lojaMaquina = lojaMaquina;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

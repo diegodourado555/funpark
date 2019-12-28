@@ -21,9 +21,6 @@ public class Maquina implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "id_grupo_maquina")
-    private Long idGrupoMaquina;
-
     @OneToOne
     @JoinColumn(unique = true)
     private GrupoMaquina grupoMaquina;
@@ -48,19 +45,6 @@ public class Maquina implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Long getIdGrupoMaquina() {
-        return idGrupoMaquina;
-    }
-
-    public Maquina idGrupoMaquina(Long idGrupoMaquina) {
-        this.idGrupoMaquina = idGrupoMaquina;
-        return this;
-    }
-
-    public void setIdGrupoMaquina(Long idGrupoMaquina) {
-        this.idGrupoMaquina = idGrupoMaquina;
     }
 
     public GrupoMaquina getGrupoMaquina() {
@@ -98,7 +82,6 @@ public class Maquina implements Serializable {
         return "Maquina{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", idGrupoMaquina=" + getIdGrupoMaquina() +
             "}";
     }
 }

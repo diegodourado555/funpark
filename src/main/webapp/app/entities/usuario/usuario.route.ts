@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
+import { Observable, of, EMPTY } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Usuario } from 'app/shared/model/usuario.model';
+import { IUsuario, Usuario } from 'app/shared/model/usuario.model';
 import { UsuarioService } from './usuario.service';
 import { UsuarioComponent } from './usuario.component';
 import { UsuarioDetailComponent } from './usuario-detail.component';
 import { UsuarioUpdateComponent } from './usuario-update.component';
-import { IUsuario } from 'app/shared/model/usuario.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioResolve implements Resolve<IUsuario> {
-  constructor(private service: UsuarioService) {}
+  constructor(private service: UsuarioService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IUsuario> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IUsuario> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(map((usuario: HttpResponse<Usuario>) => usuario.body));
+      return this.service.find(id).pipe(
+        flatMap((usuario: HttpResponse<Usuario>) => {
+          if (usuario.body) {
+            return of(usuario.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
     }
     return of(new Usuario());
   }

@@ -11,14 +11,6 @@ public class ContaCorrenteDTO implements Serializable {
 
     private Long id;
 
-    private Long idReceita;
-
-    private Long idDespesa;
-
-    private Long idOperador;
-
-    private Long idLoja;
-
     private Double valor;
 
     private Instant data;
@@ -40,38 +32,6 @@ public class ContaCorrenteDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdReceita() {
-        return idReceita;
-    }
-
-    public void setIdReceita(Long idReceita) {
-        this.idReceita = idReceita;
-    }
-
-    public Long getIdDespesa() {
-        return idDespesa;
-    }
-
-    public void setIdDespesa(Long idDespesa) {
-        this.idDespesa = idDespesa;
-    }
-
-    public Long getIdOperador() {
-        return idOperador;
-    }
-
-    public void setIdOperador(Long idOperador) {
-        this.idOperador = idOperador;
-    }
-
-    public Long getIdLoja() {
-        return idLoja;
-    }
-
-    public void setIdLoja(Long idLoja) {
-        this.idLoja = idLoja;
     }
 
     public Double getValor() {
@@ -155,17 +115,13 @@ public class ContaCorrenteDTO implements Serializable {
     public String toString() {
         return "ContaCorrenteDTO{" +
             "id=" + getId() +
-            ", idReceita=" + getIdReceita() +
-            ", idDespesa=" + getIdDespesa() +
-            ", idOperador=" + getIdOperador() +
-            ", idLoja=" + getIdLoja() +
             ", valor=" + getValor() +
             ", data='" + getData() + "'" +
             ", metodoPagamento='" + getMetodoPagamento() + "'" +
-            ", receita=" + getReceitaId() +
-            ", despesa=" + getDespesaId() +
-            ", operadorCaixa=" + getOperadorCaixaId() +
-            ", loja=" + getLojaId() +
+            ", receitaId=" + getReceitaId() +
+            ", despesaId=" + getDespesaId() +
+            ", operadorCaixaId=" + getOperadorCaixaId() +
+            ", lojaId=" + getLojaId() +
             "}";
     }
 }

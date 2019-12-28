@@ -8,17 +8,17 @@ import { IGrupoMaquina } from 'app/shared/model/grupo-maquina.model';
   templateUrl: './grupo-maquina-detail.component.html'
 })
 export class GrupoMaquinaDetailComponent implements OnInit {
-  grupoMaquina: IGrupoMaquina;
+  grupoMaquina: IGrupoMaquina | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ grupoMaquina }) => {
       this.grupoMaquina = grupoMaquina;
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 }

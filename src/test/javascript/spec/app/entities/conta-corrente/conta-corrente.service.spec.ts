@@ -13,19 +13,19 @@ describe('Service Tests', () => {
     let service: ContaCorrenteService;
     let httpMock: HttpTestingController;
     let elemDefault: IContaCorrente;
-    let expectedResult;
+    let expectedResult: IContaCorrente | IContaCorrente[] | boolean | null;
     let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule]
       });
-      expectedResult = {};
+      expectedResult = null;
       injector = getTestBed();
       service = injector.get(ContaCorrenteService);
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new ContaCorrente(0, 0, 0, 0, 0, 0, currentDate, MetodoPagamento.DINHEIRO);
+      elemDefault = new ContaCorrente(0, 0, currentDate, MetodoPagamento.DINHEIRO);
     });
 
     describe('Service methods', () => {
@@ -39,11 +39,11 @@ describe('Service Tests', () => {
         service
           .find(123)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
 
         const req = httpMock.expectOne({ method: 'GET' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: elemDefault });
+        expect(expectedResult).toMatchObject(elemDefault);
       });
 
       it('should create a ContaCorrente', () => {
@@ -61,21 +61,17 @@ describe('Service Tests', () => {
           returnedFromService
         );
         service
-          .create(new ContaCorrente(null))
+          .create(new ContaCorrente())
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'POST' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should update a ContaCorrente', () => {
         const returnedFromService = Object.assign(
           {
-            idReceita: 1,
-            idDespesa: 1,
-            idOperador: 1,
-            idLoja: 1,
             valor: 1,
             data: currentDate.format(DATE_TIME_FORMAT),
             metodoPagamento: 'BBBBBB'
@@ -92,19 +88,15 @@ describe('Service Tests', () => {
         service
           .update(expected)
           .pipe(take(1))
-          .subscribe(resp => (expectedResult = resp));
+          .subscribe(resp => (expectedResult = resp.body));
         const req = httpMock.expectOne({ method: 'PUT' });
         req.flush(returnedFromService);
-        expect(expectedResult).toMatchObject({ body: expected });
+        expect(expectedResult).toMatchObject(expected);
       });
 
       it('should return a list of ContaCorrente', () => {
         const returnedFromService = Object.assign(
           {
-            idReceita: 1,
-            idDespesa: 1,
-            idOperador: 1,
-            idLoja: 1,
             valor: 1,
             data: currentDate.format(DATE_TIME_FORMAT),
             metodoPagamento: 'BBBBBB'
@@ -118,7 +110,7 @@ describe('Service Tests', () => {
           returnedFromService
         );
         service
-          .query(expected)
+          .query()
           .pipe(
             take(1),
             map(resp => resp.body)

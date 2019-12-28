@@ -4,7 +4,7 @@
             <h2 id="jhi-maquina-heading" jhiTranslate="funparkApp.maquina.home.createOrEditLabel">Create or edit a Maquina</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!editForm.get('id').value">
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
@@ -14,17 +14,12 @@
                     <input type="text" class="form-control" name="nome" id="field_nome"
                            formControlName="nome"/>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="funparkApp.maquina.idGrupoMaquina" for="field_idGrupoMaquina">Id Grupo Maquina</label>
-                    <input type="number" class="form-control" name="idGrupoMaquina" id="field_idGrupoMaquina"
-                           formControlName="idGrupoMaquina"/>
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="funparkApp.maquina.grupoMaquina" for="field_grupoMaquina">Grupo Maquina</label>
                     <select class="form-control" id="field_grupoMaquina" name="grupoMaquina" formControlName="grupoMaquinaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="grupoMaquinaOption.id" *ngFor="let grupoMaquinaOption of grupomaquinas; trackBy: trackGrupoMaquinaById">{{grupoMaquinaOption.nome}}</option>
+                        <option [ngValue]="grupoMaquinaOption.id" *ngFor="let grupoMaquinaOption of grupomaquinas; trackBy: trackById">{{grupoMaquinaOption.id}}</option>
                     </select>
                 </div>
             </div>

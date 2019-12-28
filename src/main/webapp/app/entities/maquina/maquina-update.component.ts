@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import { map } from 'rxjs/operators';
+
 import { IMaquina, Maquina } from 'app/shared/model/maquina.model';
 import { MaquinaService } from './maquina.service';
 import { IGrupoMaquina } from 'app/shared/model/grupo-maquina.model';
@@ -16,61 +16,66 @@ import { GrupoMaquinaService } from 'app/entities/grupo-maquina/grupo-maquina.se
   templateUrl: './maquina-update.component.html'
 })
 export class MaquinaUpdateComponent implements OnInit {
-  isSaving: boolean;
+  isSaving = false;
 
-  grupomaquinas: IGrupoMaquina[];
+  grupomaquinas: IGrupoMaquina[] = [];
 
   editForm = this.fb.group({
     id: [],
     nome: [],
-    idGrupoMaquina: [],
     grupoMaquinaId: []
   });
 
   constructor(
-    protected jhiAlertService: JhiAlertService,
     protected maquinaService: MaquinaService,
     protected grupoMaquinaService: GrupoMaquinaService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
-    this.isSaving = false;
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ maquina }) => {
       this.updateForm(maquina);
+
+      this.grupoMaquinaService
+        .query({ filter: 'maquina-is-null' })
+        .pipe(
+          map((res: HttpResponse<IGrupoMaquina[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IGrupoMaquina[]) => {
+          if (!maquina.grupoMaquinaId) {
+            this.grupomaquinas = resBody;
+          } else {
+            this.grupoMaquinaService
+              .find(maquina.grupoMaquinaId)
+              .pipe(
+                map((subRes: HttpResponse<IGrupoMaquina>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IGrupoMaquina[]) => {
+                this.grupomaquinas = concatRes;
+              });
+          }
+        });
     });
-    this.grupoMaquinaService.query({ filter: 'maquina-is-null' }).subscribe(
-      (res: HttpResponse<IGrupoMaquina[]>) => {
-        if (!this.editForm.get('grupoMaquinaId').value) {
-          this.grupomaquinas = res.body;
-        } else {
-          this.grupoMaquinaService
-            .find(this.editForm.get('grupoMaquinaId').value)
-            .subscribe(
-              (subRes: HttpResponse<IGrupoMaquina>) => (this.grupomaquinas = [subRes.body].concat(res.body)),
-              (subRes: HttpErrorResponse) => this.onError(subRes.message)
-            );
-        }
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
   }
 
-  updateForm(maquina: IMaquina) {
+  updateForm(maquina: IMaquina): void {
     this.editForm.patchValue({
       id: maquina.id,
       nome: maquina.nome,
-      idGrupoMaquina: maquina.idGrupoMaquina,
       grupoMaquinaId: maquina.grupoMaquinaId
     });
   }
 
-  previousState() {
+  previousState(): void {
     window.history.back();
   }
 
-  save() {
+  save(): void {
     this.isSaving = true;
     const maquina = this.createFromForm();
     if (maquina.id !== undefined) {
@@ -83,30 +88,29 @@ export class MaquinaUpdateComponent implements OnInit {
   private createFromForm(): IMaquina {
     return {
       ...new Maquina(),
-      id: this.editForm.get(['id']).value,
-      nome: this.editForm.get(['nome']).value,
-      idGrupoMaquina: this.editForm.get(['idGrupoMaquina']).value,
-      grupoMaquinaId: this.editForm.get(['grupoMaquinaId']).value
+      id: this.editForm.get(['id'])!.value,
+      nome: this.editForm.get(['nome'])!.value,
+      grupoMaquinaId: this.editForm.get(['grupoMaquinaId'])!.value
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IMaquina>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IMaquina>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
   }
 
-  protected onSaveError() {
+  protected onSaveError(): void {
     this.isSaving = false;
   }
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
 
-  trackGrupoMaquinaById(index: number, item: IGrupoMaquina) {
+  trackById(index: number, item: IGrupoMaquina): any {
     return item.id;
   }
 }

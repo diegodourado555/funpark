@@ -39,9 +39,6 @@ public class MaquinaResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_ID_GRUPO_MAQUINA = 1L;
-    private static final Long UPDATED_ID_GRUPO_MAQUINA = 2L;
-
     @Autowired
     private MaquinaRepository maquinaRepository;
 
@@ -90,8 +87,7 @@ public class MaquinaResourceIT {
      */
     public static Maquina createEntity(EntityManager em) {
         Maquina maquina = new Maquina()
-            .nome(DEFAULT_NOME)
-            .idGrupoMaquina(DEFAULT_ID_GRUPO_MAQUINA);
+            .nome(DEFAULT_NOME);
         return maquina;
     }
     /**
@@ -102,8 +98,7 @@ public class MaquinaResourceIT {
      */
     public static Maquina createUpdatedEntity(EntityManager em) {
         Maquina maquina = new Maquina()
-            .nome(UPDATED_NOME)
-            .idGrupoMaquina(UPDATED_ID_GRUPO_MAQUINA);
+            .nome(UPDATED_NOME);
         return maquina;
     }
 
@@ -129,7 +124,6 @@ public class MaquinaResourceIT {
         assertThat(maquinaList).hasSize(databaseSizeBeforeCreate + 1);
         Maquina testMaquina = maquinaList.get(maquinaList.size() - 1);
         assertThat(testMaquina.getNome()).isEqualTo(DEFAULT_NOME);
-        assertThat(testMaquina.getIdGrupoMaquina()).isEqualTo(DEFAULT_ID_GRUPO_MAQUINA);
     }
 
     @Test
@@ -164,8 +158,7 @@ public class MaquinaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(maquina.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-            .andExpect(jsonPath("$.[*].idGrupoMaquina").value(hasItem(DEFAULT_ID_GRUPO_MAQUINA.intValue())));
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)));
     }
     
     @Test
@@ -179,8 +172,7 @@ public class MaquinaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(maquina.getId().intValue()))
-            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-            .andExpect(jsonPath("$.idGrupoMaquina").value(DEFAULT_ID_GRUPO_MAQUINA.intValue()));
+            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME));
     }
 
     @Test
@@ -204,8 +196,7 @@ public class MaquinaResourceIT {
         // Disconnect from session so that the updates on updatedMaquina are not directly saved in db
         em.detach(updatedMaquina);
         updatedMaquina
-            .nome(UPDATED_NOME)
-            .idGrupoMaquina(UPDATED_ID_GRUPO_MAQUINA);
+            .nome(UPDATED_NOME);
         MaquinaDTO maquinaDTO = maquinaMapper.toDto(updatedMaquina);
 
         restMaquinaMockMvc.perform(put("/api/maquinas")
@@ -218,7 +209,6 @@ public class MaquinaResourceIT {
         assertThat(maquinaList).hasSize(databaseSizeBeforeUpdate);
         Maquina testMaquina = maquinaList.get(maquinaList.size() - 1);
         assertThat(testMaquina.getNome()).isEqualTo(UPDATED_NOME);
-        assertThat(testMaquina.getIdGrupoMaquina()).isEqualTo(UPDATED_ID_GRUPO_MAQUINA);
     }
 
     @Test
