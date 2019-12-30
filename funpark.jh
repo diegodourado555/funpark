@@ -59,7 +59,7 @@ enum MetodoPagamento {
 }
 
 relationship ManyToOne {
-	Maquina{grupoMaquina} to GrupoMaquina
+	GrupoMaquina{maquina} to Maquina
 }
 
 relationship OneToOne {
