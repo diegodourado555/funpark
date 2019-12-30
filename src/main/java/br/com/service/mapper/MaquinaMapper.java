@@ -8,14 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Maquina} and its DTO {@link MaquinaDTO}.
  */
-@Mapper(componentModel = "spring", uses = {GrupoMaquinaMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface MaquinaMapper extends EntityMapper<MaquinaDTO, Maquina> {
 
-    @Mapping(source = "grupoMaquina.id", target = "grupoMaquinaId")
-    MaquinaDTO toDto(Maquina maquina);
 
-    @Mapping(source = "grupoMaquinaId", target = "grupoMaquina")
-    Maquina toEntity(MaquinaDTO maquinaDTO);
 
     default Maquina fromId(Long id) {
         if (id == null) {
