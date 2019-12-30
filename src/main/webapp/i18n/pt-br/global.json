@@ -6,7 +6,11 @@
       "home": "Início",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entidades",
+        "main": "Cadastros",
+        "financeiro": "Financeiro",
+        "eventos": "Eventos",
+        "manutencao": "Manutenção",
+        "estoque": "Estoque",
         "funpark": "Funpark",
         "grupoMaquina": "Grupo Maquina",
         "maquina": "Maquina",
@@ -20,6 +24,9 @@
         "lojaMaquina": "Loja Maquina",
         "operadorCaixa": "Operador Caixa",
         "contaCorrente": "Conta Corrente",
+        "cartoes": "Cartoes",
+        "tickets": "Tickets",
+        "brindes": "Brindes",
         "loja": "Loja",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
