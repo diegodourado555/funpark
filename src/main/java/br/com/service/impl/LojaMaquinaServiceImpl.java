@@ -1,21 +1,19 @@
 package br.com.service.impl;
 
-import java.util.List;
-import java.util.Optional;
-
+import br.com.service.LojaMaquinaService;
+import br.com.domain.LojaMaquina;
+import br.com.repository.LojaMaquinaRepository;
+import br.com.service.dto.LojaMaquinaDTO;
+import br.com.service.mapper.LojaMaquinaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.domain.LojaMaquina;
-import br.com.repository.LojaMaquinaRepository;
-import br.com.service.LojaMaquinaService;
-import br.com.service.dto.LojaMaquinaDTO;
-import br.com.service.mapper.LojaMaquinaMapper;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing {@link LojaMaquina}.
@@ -59,8 +57,8 @@ public class LojaMaquinaServiceImpl implements LojaMaquinaService {
     @Transactional(readOnly = true)
     public Page<LojaMaquinaDTO> findAll(Pageable pageable) {
         log.debug("Request to get all LojaMaquinas");
-        List<LojaMaquinaDTO> lojaMaquinas = lojaMaquinaRepository.findAllWithMachineAndStoreDescription();
-        return new PageImpl<LojaMaquinaDTO>(lojaMaquinas);
+        return lojaMaquinaRepository.findAll(pageable)
+            .map(lojaMaquinaMapper::toDto);
     }
 
 

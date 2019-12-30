@@ -32,7 +32,7 @@
                 <td>{{operadorCaixa.cpf}}</td>
                 <td>
                     <div *ngIf="operadorCaixa.lojaId">
-                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaNome}}</a>
+                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

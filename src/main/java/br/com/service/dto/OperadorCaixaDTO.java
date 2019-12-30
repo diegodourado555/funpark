@@ -15,25 +15,8 @@ public class OperadorCaixaDTO implements Serializable {
 
 
     private Long lojaId;
-    
-    private String lojaNome;
-    
-    
-    
-    public OperadorCaixaDTO() {
-		super();
-	}
-    
-	public OperadorCaixaDTO(Long id, String nome, Float cpf, Long lojaId, String lojaNome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.lojaId = lojaId;
-		this.lojaNome = lojaNome;
-	}
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -64,18 +47,8 @@ public class OperadorCaixaDTO implements Serializable {
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
-    
-    
-    
-    public String getLojaNome() {
-		return lojaNome;
-	}
 
-	public void setLojaNome(String lojaNome) {
-		this.lojaNome = lojaNome;
-	}
-
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -103,7 +76,6 @@ public class OperadorCaixaDTO implements Serializable {
             ", nome='" + getNome() + "'" +
             ", cpf=" + getCpf() +
             ", lojaId=" + getLojaId() +
-            ", lojaNome=" + getLojaNome() +
             "}";
     }
 }

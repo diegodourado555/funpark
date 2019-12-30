@@ -1,21 +1,19 @@
 package br.com.service.impl;
 
-import java.util.List;
-import java.util.Optional;
-
+import br.com.service.MaquinaService;
+import br.com.domain.Maquina;
+import br.com.repository.MaquinaRepository;
+import br.com.service.dto.MaquinaDTO;
+import br.com.service.mapper.MaquinaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.domain.Maquina;
-import br.com.repository.MaquinaRepository;
-import br.com.service.MaquinaService;
-import br.com.service.dto.MaquinaDTO;
-import br.com.service.mapper.MaquinaMapper;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing {@link Maquina}.
@@ -58,9 +56,9 @@ public class MaquinaServiceImpl implements MaquinaService {
     @Override
     @Transactional(readOnly = true)
     public Page<MaquinaDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Maquinas with group description");
-        List<MaquinaDTO> maquinas = maquinaRepository.findAllWithGroupDescription();
-        return new PageImpl<MaquinaDTO>(maquinas);
+        log.debug("Request to get all Maquinas");
+        return maquinaRepository.findAll(pageable)
+            .map(maquinaMapper::toDto);
     }
 
 
