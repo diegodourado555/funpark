@@ -58,7 +58,7 @@ enum MetodoPagamento {
     DINHEIRO, CARTAO, CHEQUE
 }
 
-relationship OneToOne {
+relationship ManyToOne {
 	Maquina{grupoMaquina} to GrupoMaquina
 }
 
