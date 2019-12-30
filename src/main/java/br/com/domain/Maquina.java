@@ -1,4 +1,5 @@
 package br.com.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -21,8 +22,8 @@ public class Maquina implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("maquinas")
     private GrupoMaquina grupoMaquina;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

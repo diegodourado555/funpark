@@ -38,28 +38,13 @@ export class MaquinaUpdateComponent implements OnInit {
       this.updateForm(maquina);
 
       this.grupoMaquinaService
-        .query({ filter: 'maquina-is-null' })
+        .query()
         .pipe(
           map((res: HttpResponse<IGrupoMaquina[]>) => {
             return res.body ? res.body : [];
           })
         )
-        .subscribe((resBody: IGrupoMaquina[]) => {
-          if (!maquina.grupoMaquinaId) {
-            this.grupomaquinas = resBody;
-          } else {
-            this.grupoMaquinaService
-              .find(maquina.grupoMaquinaId)
-              .pipe(
-                map((subRes: HttpResponse<IGrupoMaquina>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IGrupoMaquina[]) => {
-                this.grupomaquinas = concatRes;
-              });
-          }
-        });
+        .subscribe((resBody: IGrupoMaquina[]) => (this.grupomaquinas = resBody));
     });
   }
 
