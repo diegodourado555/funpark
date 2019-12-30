@@ -6,15 +6,7 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "grupoMaquina",
-            "otherEntityRelationshipName": "maquina",
-            "relationshipName": "grupoMaquina",
-            "otherEntityField": "id"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20191216225051",
     "entityTableName": "maquina",
     "dto": "mapstruct",

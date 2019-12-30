@@ -34,5 +34,6 @@
     <include file="config/liquibase/changelog/20191216225059_added_entity_constraints_LojaMaquina.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216225100_added_entity_constraints_OperadorCaixa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216225101_added_entity_constraints_ContaCorrente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191216225050_added_entity_constraints_GrupoMaquina.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
