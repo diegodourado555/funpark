@@ -17,16 +17,45 @@ public class ContaCorrenteDTO implements Serializable {
 
     private MetodoPagamento metodoPagamento;
 
-
     private Long receitaId;
+    
+    private String receitaDescricao;
 
     private Long despesaId;
-
+    
+    private String despesaDescricao;
+    
     private Long operadorCaixaId;
+    
+    private String operadorCaixaNome;
 
     private Long lojaId;
+    
+    private String lojaNomeFantasia;
+    
+    public ContaCorrenteDTO() {
+		super();
+	}
+    
+	public ContaCorrenteDTO(Long id, Double valor, Instant data, MetodoPagamento metodoPagamento, Long receitaId,
+			String receitaDescricao, Long despesaId, String despesaDescricao, Long operadorCaixaId,
+			String operadorCaixaNome, Long lojaId, String lojaNomeFantasia) {
+		super();
+		this.id = id;
+		this.valor = valor;
+		this.data = data;
+		this.metodoPagamento = metodoPagamento;
+		this.receitaId = receitaId;
+		this.receitaDescricao = receitaDescricao;
+		this.despesaId = despesaId;
+		this.despesaDescricao = despesaDescricao;
+		this.operadorCaixaId = operadorCaixaId;
+		this.operadorCaixaNome = operadorCaixaNome;
+		this.lojaId = lojaId;
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -81,16 +110,48 @@ public class ContaCorrenteDTO implements Serializable {
     public void setOperadorCaixaId(Long operadorCaixaId) {
         this.operadorCaixaId = operadorCaixaId;
     }
+    
+    public String getOperadorCaixaNome() {
+		return operadorCaixaNome;
+	}
 
-    public Long getLojaId() {
+	public void setOperadorCaixaNome(String operadorCaixaNome) {
+		this.operadorCaixaNome = operadorCaixaNome;
+	}
+
+	public Long getLojaId() {
         return lojaId;
     }
 
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
+    
+    public String getReceitaDescricao() {
+		return receitaDescricao;
+	}
 
-    @Override
+	public void setReceitaDescricao(String receitaDescricao) {
+		this.receitaDescricao = receitaDescricao;
+	}
+
+	public String getDespesaDescricao() {
+		return despesaDescricao;
+	}
+
+	public void setDespesaDescricao(String despesaDescricao) {
+		this.despesaDescricao = despesaDescricao;
+	}
+
+	public String getLojaNomeFantasia() {
+		return lojaNomeFantasia;
+	}
+
+	public void setLojaNomeFantasia(String lojaNomeFantasia) {
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -119,9 +180,13 @@ public class ContaCorrenteDTO implements Serializable {
             ", data='" + getData() + "'" +
             ", metodoPagamento='" + getMetodoPagamento() + "'" +
             ", receitaId=" + getReceitaId() +
+            ", receitaDescricao=" + getReceitaDescricao() +
             ", despesaId=" + getDespesaId() +
+            ", despesaDescricao=" + getDespesaDescricao() +
             ", operadorCaixaId=" + getOperadorCaixaId() +
+            ", operadorCaixaNome=" + getOperadorCaixaNome() +
             ", lojaId=" + getLojaId() +
+            ", lojaNomeFantasia=" + getLojaNomeFantasia() +
             "}";
     }
 }

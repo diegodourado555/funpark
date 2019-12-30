@@ -30,7 +30,7 @@
                 <td>{{maquina.nome}}</td>
                 <td>
                     <div *ngIf="maquina.grupoMaquinaId">
-                        <a [routerLink]="['/grupo-maquina', maquina.grupoMaquinaId , 'view' ]" >{{maquina.grupoMaquinaId}}</a>
+                        <a [routerLink]="['/grupo-maquina', maquina.grupoMaquinaId , 'view' ]" >{{maquina.grupoMaquinaNome}}</a>
                     </div>
                 </td>
                 <td class="text-right">

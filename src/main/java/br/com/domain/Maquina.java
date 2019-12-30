@@ -22,7 +22,7 @@ public class Maquina implements Serializable {
     private String nome;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private GrupoMaquina grupoMaquina;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
