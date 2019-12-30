@@ -15,6 +15,13 @@
                            formControlName="nome"/>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="funparkApp.maquina.grupoMaquina" for="field_grupoMaquina">Grupo Maquina</label>
+                    <select class="form-control" id="field_grupoMaquina" name="grupoMaquina" formControlName="grupoMaquinaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="grupoMaquinaOption.id" *ngFor="let grupoMaquinaOption of grupomaquinas; trackBy: trackById">{{grupoMaquinaOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

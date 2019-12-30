@@ -21,6 +21,10 @@ public class Maquina implements Serializable {
     @Column(name = "nome")
     private String nome;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private GrupoMaquina grupoMaquina;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -41,6 +45,19 @@ public class Maquina implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public GrupoMaquina getGrupoMaquina() {
+        return grupoMaquina;
+    }
+
+    public Maquina grupoMaquina(GrupoMaquina grupoMaquina) {
+        this.grupoMaquina = grupoMaquina;
+        return this;
+    }
+
+    public void setGrupoMaquina(GrupoMaquina grupoMaquina) {
+        this.grupoMaquina = grupoMaquina;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

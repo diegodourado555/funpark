@@ -9,12 +9,6 @@
                 <dd>
                     <span>{{grupoMaquina.nome}}</span>
                 </dd>
-                <dt><span jhiTranslate="funparkApp.grupoMaquina.maquina">Maquina</span></dt>
-                <dd>
-                    <div *ngIf="grupoMaquina.maquinaId">
-                        <a [routerLink]="['/maquina', grupoMaquina.maquinaId, 'view']">{{grupoMaquina.maquinaId}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"
