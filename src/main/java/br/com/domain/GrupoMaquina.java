@@ -1,5 +1,4 @@
 package br.com.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -22,10 +21,6 @@ public class GrupoMaquina implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne
-    @JsonIgnoreProperties("grupoMaquinas")
-    private Maquina maquina;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -46,19 +41,6 @@ public class GrupoMaquina implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Maquina getMaquina() {
-        return maquina;
-    }
-
-    public GrupoMaquina maquina(Maquina maquina) {
-        this.maquina = maquina;
-        return this;
-    }
-
-    public void setMaquina(Maquina maquina) {
-        this.maquina = maquina;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

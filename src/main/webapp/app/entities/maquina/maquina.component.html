@@ -20,6 +20,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="nome"><span jhiTranslate="funparkApp.maquina.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="grupoMaquinaId"><span jhiTranslate="funparkApp.maquina.grupoMaquina">Grupo Maquina</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -27,6 +28,11 @@
             <tr *ngFor="let maquina of maquinas ;trackBy: trackId">
                 <td><a [routerLink]="['/maquina', maquina.id, 'view' ]">{{maquina.id}}</a></td>
                 <td>{{maquina.nome}}</td>
+                <td>
+                    <div *ngIf="maquina.grupoMaquinaId">
+                        <a [routerLink]="['/grupo-maquina', maquina.grupoMaquinaId , 'view' ]" >{{maquina.grupoMaquinaId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

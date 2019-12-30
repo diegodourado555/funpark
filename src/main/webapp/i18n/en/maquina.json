@@ -16,7 +16,8 @@
       "detail": {
         "title": "Maquina"
       },
-      "nome": "Nome"
+      "nome": "Nome",
+      "grupoMaquina": "Grupo Maquina"
     }
   }
 }
