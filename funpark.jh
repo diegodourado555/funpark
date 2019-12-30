@@ -18,17 +18,6 @@ entity Despesas {
     descricao String
 }
 
-entity Usuario {
-	id Long,
-    login String,
-    senha String,
-    nome String,
-    cpf Float,
-    email String,
-    telefone String,
-    endereco String
-}
-
 entity LojaMaquina {
 	id Long
 }
@@ -58,8 +47,8 @@ enum MetodoPagamento {
     DINHEIRO, CARTAO, CHEQUE
 }
 
-relationship ManyToOne {
-	GrupoMaquina{maquina} to Maquina
+relationship OneToOne {
+	Maquina{grupoMaquina} to GrupoMaquina
 }
 
 relationship OneToOne {
