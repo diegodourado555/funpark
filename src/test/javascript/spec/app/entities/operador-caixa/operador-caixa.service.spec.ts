@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { take, map } from 'rxjs/operators';
 import { OperadorCaixaService } from 'app/entities/operador-caixa/operador-caixa.service';
 import { IOperadorCaixa, OperadorCaixa } from 'app/shared/model/operador-caixa.model';
+import { SituacaoOperadorCaixa } from 'app/shared/model/enumerations/situacao-operador-caixa.model';
 
 describe('Service Tests', () => {
   describe('OperadorCaixa Service', () => {
@@ -20,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(OperadorCaixaService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new OperadorCaixa(0, 'AAAAAAA', 0);
+      elemDefault = new OperadorCaixa(0, 'AAAAAAA', 0, SituacaoOperadorCaixa.ATIVO);
     });
 
     describe('Service methods', () => {
@@ -57,7 +58,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             nome: 'BBBBBB',
-            cpf: 1
+            cpf: 1,
+            situacao: 'BBBBBB'
           },
           elemDefault
         );
@@ -76,7 +78,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             nome: 'BBBBBB',
-            cpf: 1
+            cpf: 1,
+            situacao: 'BBBBBB'
           },
           elemDefault
         );

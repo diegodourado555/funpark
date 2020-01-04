@@ -27,6 +27,8 @@
     <include file="config/liquibase/changelog/20191216225100_added_entity_OperadorCaixa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216225101_added_entity_ContaCorrente.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216225102_added_entity_Loja.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200104120427_added_entity_HistoricoMaquina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200104120432_added_entity_HistoricoOperadorCaixa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191216225051_added_entity_constraints_Maquina.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191216225056_added_entity_constraints_MenuPerfil.xml" relativeToChangelogFile="false"/>

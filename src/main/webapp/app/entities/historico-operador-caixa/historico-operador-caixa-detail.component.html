@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="historicoOperadorCaixa">
+            <h2><span jhiTranslate="funparkApp.historicoOperadorCaixa.detail.title">Historico Operador Caixa</span> {{historicoOperadorCaixa.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="funparkApp.historicoOperadorCaixa.nome">Nome</span></dt>
+                <dd>
+                    <span>{{historicoOperadorCaixa.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.historicoOperadorCaixa.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{historicoOperadorCaixa.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.historicoOperadorCaixa.data">Data</span></dt>
+                <dd>
+                    <span>{{historicoOperadorCaixa.data}}</span>
+                </dd>
+                <dt><span jhiTranslate="funparkApp.historicoOperadorCaixa.situacao">Situacao</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'funparkApp.SituacaoOperadorCaixa.' + historicoOperadorCaixa.situacao}}">{{historicoOperadorCaixa.situacao}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/historico-operador-caixa', historicoOperadorCaixa.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

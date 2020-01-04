@@ -23,6 +23,7 @@ export class MaquinaUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     nome: [],
+    situacao: [],
     grupoMaquinaId: []
   });
 
@@ -38,28 +39,13 @@ export class MaquinaUpdateComponent implements OnInit {
       this.updateForm(maquina);
 
       this.grupoMaquinaService
-        .query({ filter: 'maquina-is-null' })
+        .query()
         .pipe(
           map((res: HttpResponse<IGrupoMaquina[]>) => {
             return res.body ? res.body : [];
           })
         )
-        .subscribe((resBody: IGrupoMaquina[]) => {
-          if (!maquina.grupoMaquinaId) {
-            this.grupomaquinas = resBody;
-          } else {
-            this.grupoMaquinaService
-              .find(maquina.grupoMaquinaId)
-              .pipe(
-                map((subRes: HttpResponse<IGrupoMaquina>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IGrupoMaquina[]) => {
-                this.grupomaquinas = concatRes;
-              });
-          }
-        });
+        .subscribe((resBody: IGrupoMaquina[]) => (this.grupomaquinas = resBody));
     });
   }
 
@@ -67,6 +53,7 @@ export class MaquinaUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: maquina.id,
       nome: maquina.nome,
+      situacao: maquina.situacao,
       grupoMaquinaId: maquina.grupoMaquinaId
     });
   }
@@ -90,6 +77,7 @@ export class MaquinaUpdateComponent implements OnInit {
       ...new Maquina(),
       id: this.editForm.get(['id'])!.value,
       nome: this.editForm.get(['nome'])!.value,
+      situacao: this.editForm.get(['situacao'])!.value,
       grupoMaquinaId: this.editForm.get(['grupoMaquinaId'])!.value
     };
   }

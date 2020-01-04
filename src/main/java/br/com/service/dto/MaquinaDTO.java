@@ -1,6 +1,7 @@
 package br.com.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
+import br.com.domain.enumeration.SituacaoMaquina;
 
 /**
  * A DTO for the {@link br.com.domain.Maquina} entity.
@@ -11,24 +12,12 @@ public class MaquinaDTO implements Serializable {
 
     private String nome;
 
+    private SituacaoMaquina situacao;
+
 
     private Long grupoMaquinaId;
-    
-    private String grupoMaquinaNome;
-    
-    public MaquinaDTO() {
-		super();
-	}
 
-	public MaquinaDTO(Long id, String nome, Long grupoMaquinaId, String grupoMaquinaNome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.grupoMaquinaId = grupoMaquinaId;
-		this.grupoMaquinaNome = grupoMaquinaNome;
-	}
-
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -44,6 +33,14 @@ public class MaquinaDTO implements Serializable {
         this.nome = nome;
     }
 
+    public SituacaoMaquina getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(SituacaoMaquina situacao) {
+        this.situacao = situacao;
+    }
+
     public Long getGrupoMaquinaId() {
         return grupoMaquinaId;
     }
@@ -51,16 +48,8 @@ public class MaquinaDTO implements Serializable {
     public void setGrupoMaquinaId(Long grupoMaquinaId) {
         this.grupoMaquinaId = grupoMaquinaId;
     }
-    
-    public String getGrupoMaquinaNome() {
-		return grupoMaquinaNome;
-	}
 
-	public void setGrupoMaquinaNome(String grupoMaquinaNome) {
-		this.grupoMaquinaNome = grupoMaquinaNome;
-	}
-
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -86,8 +75,8 @@ public class MaquinaDTO implements Serializable {
         return "MaquinaDTO{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
+            ", situacao='" + getSituacao() + "'" +
             ", grupoMaquinaId=" + getGrupoMaquinaId() +
-            ", grupoMaquinaNome=" + getGrupoMaquinaNome() +
             "}";
     }
 }

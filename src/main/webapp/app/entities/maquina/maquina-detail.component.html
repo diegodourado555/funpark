@@ -9,6 +9,10 @@
                 <dd>
                     <span>{{maquina.nome}}</span>
                 </dd>
+                <dt><span jhiTranslate="funparkApp.maquina.situacao">Situacao</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'funparkApp.SituacaoMaquina.' + maquina.situacao}}">{{maquina.situacao}}</span>
+                </dd>
                 <dt><span jhiTranslate="funparkApp.maquina.grupoMaquina">Grupo Maquina</span></dt>
                 <dd>
                     <div *ngIf="maquina.grupoMaquinaId">

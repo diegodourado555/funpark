@@ -30,6 +30,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import br.com.domain.enumeration.SituacaoMaquina;
 /**
  * Integration tests for the {@link MaquinaResource} REST controller.
  */
@@ -38,6 +39,9 @@ public class MaquinaResourceIT {
 
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
+
+    private static final SituacaoMaquina DEFAULT_SITUACAO = SituacaoMaquina.ATIVO;
+    private static final SituacaoMaquina UPDATED_SITUACAO = SituacaoMaquina.INATIVO;
 
     @Autowired
     private MaquinaRepository maquinaRepository;
@@ -87,7 +91,8 @@ public class MaquinaResourceIT {
      */
     public static Maquina createEntity(EntityManager em) {
         Maquina maquina = new Maquina()
-            .nome(DEFAULT_NOME);
+            .nome(DEFAULT_NOME)
+            .situacao(DEFAULT_SITUACAO);
         return maquina;
     }
     /**
@@ -98,7 +103,8 @@ public class MaquinaResourceIT {
      */
     public static Maquina createUpdatedEntity(EntityManager em) {
         Maquina maquina = new Maquina()
-            .nome(UPDATED_NOME);
+            .nome(UPDATED_NOME)
+            .situacao(UPDATED_SITUACAO);
         return maquina;
     }
 
@@ -124,6 +130,7 @@ public class MaquinaResourceIT {
         assertThat(maquinaList).hasSize(databaseSizeBeforeCreate + 1);
         Maquina testMaquina = maquinaList.get(maquinaList.size() - 1);
         assertThat(testMaquina.getNome()).isEqualTo(DEFAULT_NOME);
+        assertThat(testMaquina.getSituacao()).isEqualTo(DEFAULT_SITUACAO);
     }
 
     @Test
@@ -158,7 +165,8 @@ public class MaquinaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(maquina.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)));
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())));
     }
     
     @Test
@@ -172,7 +180,8 @@ public class MaquinaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(maquina.getId().intValue()))
-            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME));
+            .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
+            .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.toString()));
     }
 
     @Test
@@ -196,7 +205,8 @@ public class MaquinaResourceIT {
         // Disconnect from session so that the updates on updatedMaquina are not directly saved in db
         em.detach(updatedMaquina);
         updatedMaquina
-            .nome(UPDATED_NOME);
+            .nome(UPDATED_NOME)
+            .situacao(UPDATED_SITUACAO);
         MaquinaDTO maquinaDTO = maquinaMapper.toDto(updatedMaquina);
 
         restMaquinaMockMvc.perform(put("/api/maquinas")
@@ -209,6 +219,7 @@ public class MaquinaResourceIT {
         assertThat(maquinaList).hasSize(databaseSizeBeforeUpdate);
         Maquina testMaquina = maquinaList.get(maquinaList.size() - 1);
         assertThat(testMaquina.getNome()).isEqualTo(UPDATED_NOME);
+        assertThat(testMaquina.getSituacao()).isEqualTo(UPDATED_SITUACAO);
     }
 
     @Test

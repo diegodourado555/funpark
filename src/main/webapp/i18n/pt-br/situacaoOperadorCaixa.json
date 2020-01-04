@@ -1,0 +1,9 @@
+{
+  "funparkApp": {
+    "SituacaoOperadorCaixa": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO"
+    }
+  }
+}

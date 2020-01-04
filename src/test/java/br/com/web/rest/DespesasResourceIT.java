@@ -36,6 +36,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FunparkApp.class)
 public class DespesasResourceIT {
 
+    private static final String DEFAULT_CODIGO = "AAAAAAAAAA";
+    private static final String UPDATED_CODIGO = "BBBBBBBBBB";
+
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
@@ -87,6 +90,7 @@ public class DespesasResourceIT {
      */
     public static Despesas createEntity(EntityManager em) {
         Despesas despesas = new Despesas()
+            .codigo(DEFAULT_CODIGO)
             .descricao(DEFAULT_DESCRICAO);
         return despesas;
     }
@@ -98,6 +102,7 @@ public class DespesasResourceIT {
      */
     public static Despesas createUpdatedEntity(EntityManager em) {
         Despesas despesas = new Despesas()
+            .codigo(UPDATED_CODIGO)
             .descricao(UPDATED_DESCRICAO);
         return despesas;
     }
@@ -123,6 +128,7 @@ public class DespesasResourceIT {
         List<Despesas> despesasList = despesasRepository.findAll();
         assertThat(despesasList).hasSize(databaseSizeBeforeCreate + 1);
         Despesas testDespesas = despesasList.get(despesasList.size() - 1);
+        assertThat(testDespesas.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testDespesas.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
     }
 
@@ -158,6 +164,7 @@ public class DespesasResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(despesas.getId().intValue())))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
     
@@ -172,6 +179,7 @@ public class DespesasResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(despesas.getId().intValue()))
+            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
@@ -196,6 +204,7 @@ public class DespesasResourceIT {
         // Disconnect from session so that the updates on updatedDespesas are not directly saved in db
         em.detach(updatedDespesas);
         updatedDespesas
+            .codigo(UPDATED_CODIGO)
             .descricao(UPDATED_DESCRICAO);
         DespesasDTO despesasDTO = despesasMapper.toDto(updatedDespesas);
 
@@ -208,6 +217,7 @@ public class DespesasResourceIT {
         List<Despesas> despesasList = despesasRepository.findAll();
         assertThat(despesasList).hasSize(databaseSizeBeforeUpdate);
         Despesas testDespesas = despesasList.get(despesasList.size() - 1);
+        assertThat(testDespesas.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testDespesas.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
     }
 

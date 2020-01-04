@@ -17,6 +17,7 @@ export class DespesasUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    codigo: [],
     descricao: []
   });
 
@@ -31,6 +32,7 @@ export class DespesasUpdateComponent implements OnInit {
   updateForm(despesas: IDespesas): void {
     this.editForm.patchValue({
       id: despesas.id,
+      codigo: despesas.codigo,
       descricao: despesas.descricao
     });
   }
@@ -53,6 +55,7 @@ export class DespesasUpdateComponent implements OnInit {
     return {
       ...new Despesas(),
       id: this.editForm.get(['id'])!.value,
+      codigo: this.editForm.get(['codigo'])!.value,
       descricao: this.editForm.get(['descricao'])!.value
     };
   }

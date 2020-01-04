@@ -1,11 +1,11 @@
-id;nome;cpf
-1;withdrawal unleash parse;55200
-2;HTTP;1266
-3;Administrator;88263
-4;cyan;3385
-5;Jewelery Executive Refined;45652
-6;Unbranded Plastic Tuna index;42144
-7;sticky Universal;30251
-8;withdrawal Burundi Franc;16296
-9;Public-key Division;86347
-10;incubate Texas schemas;61609
+id;nome;cpf;situacao
+1;withdrawal unleash parse;55200;ATIVO
+2;Administrator;88263;ATIVO
+3;Jewelery Executive Refined;45652;ATIVO
+4;sticky Universal;30251;ATIVO
+5;Public-key Division;86347;INATIVO
+6;AI;13439;INATIVO
+7;Coordinator;74943;INATIVO
+8;JSON;48448;INATIVO
+9;solid state Nepalese Rupee Toys;32976;INATIVO
+10;Wyoming cross-platform Architect;98002;INATIVO

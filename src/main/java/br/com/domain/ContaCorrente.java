@@ -8,6 +8,8 @@ import java.time.Instant;
 
 import br.com.domain.enumeration.MetodoPagamento;
 
+import br.com.domain.enumeration.SituacaoContaCorrente;
+
 /**
  * A ContaCorrente.
  */
@@ -28,9 +30,16 @@ public class ContaCorrente implements Serializable {
     @Column(name = "data")
     private Instant data;
 
+    @Column(name = "descricao")
+    private String descricao;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "metodo_pagamento")
     private MetodoPagamento metodoPagamento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao")
+    private SituacaoContaCorrente situacao;
 
     @ManyToOne
     @JsonIgnoreProperties("contaCorrentes")
@@ -83,6 +92,19 @@ public class ContaCorrente implements Serializable {
         this.data = data;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public ContaCorrente descricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public MetodoPagamento getMetodoPagamento() {
         return metodoPagamento;
     }
@@ -94,6 +116,19 @@ public class ContaCorrente implements Serializable {
 
     public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
+    }
+
+    public SituacaoContaCorrente getSituacao() {
+        return situacao;
+    }
+
+    public ContaCorrente situacao(SituacaoContaCorrente situacao) {
+        this.situacao = situacao;
+        return this;
+    }
+
+    public void setSituacao(SituacaoContaCorrente situacao) {
+        this.situacao = situacao;
     }
 
     public Receitas getReceita() {
@@ -171,7 +206,9 @@ public class ContaCorrente implements Serializable {
             "id=" + getId() +
             ", valor=" + getValor() +
             ", data='" + getData() + "'" +
+            ", descricao='" + getDescricao() + "'" +
             ", metodoPagamento='" + getMetodoPagamento() + "'" +
+            ", situacao='" + getSituacao() + "'" +
             "}";
     }
 }

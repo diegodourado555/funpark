@@ -24,6 +24,7 @@ export class OperadorCaixaUpdateComponent implements OnInit {
     id: [],
     nome: [],
     cpf: [],
+    situacao: [],
     lojaId: []
   });
 
@@ -39,28 +40,13 @@ export class OperadorCaixaUpdateComponent implements OnInit {
       this.updateForm(operadorCaixa);
 
       this.lojaService
-        .query({ filter: 'operadorcaixa-is-null' })
+        .query()
         .pipe(
           map((res: HttpResponse<ILoja[]>) => {
             return res.body ? res.body : [];
           })
         )
-        .subscribe((resBody: ILoja[]) => {
-          if (!operadorCaixa.lojaId) {
-            this.lojas = resBody;
-          } else {
-            this.lojaService
-              .find(operadorCaixa.lojaId)
-              .pipe(
-                map((subRes: HttpResponse<ILoja>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: ILoja[]) => {
-                this.lojas = concatRes;
-              });
-          }
-        });
+        .subscribe((resBody: ILoja[]) => (this.lojas = resBody));
     });
   }
 
@@ -69,6 +55,7 @@ export class OperadorCaixaUpdateComponent implements OnInit {
       id: operadorCaixa.id,
       nome: operadorCaixa.nome,
       cpf: operadorCaixa.cpf,
+      situacao: operadorCaixa.situacao,
       lojaId: operadorCaixa.lojaId
     });
   }
@@ -93,6 +80,7 @@ export class OperadorCaixaUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nome: this.editForm.get(['nome'])!.value,
       cpf: this.editForm.get(['cpf'])!.value,
+      situacao: this.editForm.get(['situacao'])!.value,
       lojaId: this.editForm.get(['lojaId'])!.value
     };
   }

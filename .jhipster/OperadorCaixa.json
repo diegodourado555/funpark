@@ -8,16 +8,20 @@
         {
             "fieldName": "cpf",
             "fieldType": "Float"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoOperadorCaixa",
+            "fieldValues": "ATIVO,INATIVO"
         }
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityName": "loja",
             "otherEntityRelationshipName": "operadorCaixa",
             "relationshipName": "loja",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20191216225100",

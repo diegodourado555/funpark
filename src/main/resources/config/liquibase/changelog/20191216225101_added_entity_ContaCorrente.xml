@@ -21,7 +21,13 @@
             <column name="data" type="datetime">
                 <constraints nullable="true" />
             </column>
+            <column name="descricao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="metodo_pagamento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="situacao" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="receita_id" type="bigint">
@@ -62,7 +68,9 @@
             <column name="id" type="numeric"/>
             <column name="valor" type="numeric"/>
             <column name="data" type="datetime"/>
+            <column name="descricao" type="string"/>
             <column name="metodo_pagamento" type="string"/>
+            <column name="situacao" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

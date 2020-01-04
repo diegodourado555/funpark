@@ -2,6 +2,10 @@
     "name": "Receitas",
     "fields": [
         {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "descricao",
             "fieldType": "String"
         }

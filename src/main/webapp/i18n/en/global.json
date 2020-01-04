@@ -21,6 +21,8 @@
         "operadorCaixa": "Operador Caixa",
         "contaCorrente": "Conta Corrente",
         "loja": "Loja",
+        "historicoMaquina": "Historico Maquina",
+        "historicoOperadorCaixa": "Historico Operador Caixa",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

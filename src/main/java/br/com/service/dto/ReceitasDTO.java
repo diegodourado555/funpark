@@ -9,6 +9,8 @@ public class ReceitasDTO implements Serializable {
 
     private Long id;
 
+    private String codigo;
+
     private String descricao;
 
 
@@ -18,6 +20,14 @@ public class ReceitasDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {
@@ -53,6 +63,7 @@ public class ReceitasDTO implements Serializable {
     public String toString() {
         return "ReceitasDTO{" +
             "id=" + getId() +
+            ", codigo='" + getCodigo() + "'" +
             ", descricao='" + getDescricao() + "'" +
             "}";
     }

@@ -1,0 +1,25 @@
+{
+  "funparkApp": {
+    "historicoOperadorCaixa": {
+      "home": {
+        "title": "Historico Operador Caixas",
+        "createLabel": "Create a new Historico Operador Caixa",
+        "createOrEditLabel": "Create or edit a Historico Operador Caixa",
+        "notFound": "No Historico Operador Caixas found"
+      },
+      "created": "A new Historico Operador Caixa is created with identifier {{ param }}",
+      "updated": "A Historico Operador Caixa is updated with identifier {{ param }}",
+      "deleted": "A Historico Operador Caixa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historico Operador Caixa {{ id }}?"
+      },
+      "detail": {
+        "title": "Historico Operador Caixa"
+      },
+      "nome": "Nome",
+      "cpf": "Cpf",
+      "data": "Data",
+      "situacao": "Situacao"
+    }
+  }
+}

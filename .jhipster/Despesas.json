@@ -2,6 +2,10 @@
     "name": "Despesas",
     "fields": [
         {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "descricao",
             "fieldType": "String"
         }

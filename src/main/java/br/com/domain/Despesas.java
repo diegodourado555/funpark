@@ -18,6 +18,9 @@ public class Despesas implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "codigo")
+    private String codigo;
+
     @Column(name = "descricao")
     private String descricao;
 
@@ -28,6 +31,19 @@ public class Despesas implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public Despesas codigo(String codigo) {
+        this.codigo = codigo;
+        return this;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {
@@ -64,6 +80,7 @@ public class Despesas implements Serializable {
     public String toString() {
         return "Despesas{" +
             "id=" + getId() +
+            ", codigo='" + getCodigo() + "'" +
             ", descricao='" + getDescricao() + "'" +
             "}";
     }
