@@ -12,11 +12,15 @@ import org.mapstruct.*;
 public interface LojaMaquinaMapper extends EntityMapper<LojaMaquinaDTO, LojaMaquina> {
 
     @Mapping(source = "maquina.id", target = "maquinaId")
+    @Mapping(source = "maquina.nome", target = "maquinaNome")
     @Mapping(source = "loja.id", target = "lojaId")
+    @Mapping(source = "loja.nomeFantasia", target = "lojaNomeFantasia")
     LojaMaquinaDTO toDto(LojaMaquina lojaMaquina);
 
-    @Mapping(source = "maquinaId", target = "maquina")
-    @Mapping(source = "lojaId", target = "loja")
+    @Mapping(source = "maquinaId", target = "maquina.id")
+    @Mapping(source = "maquinaNome", target = "maquina.nome")
+    @Mapping(source = "lojaId", target = "loja.id")
+    @Mapping(source = "lojaNomeFantasia", target = "loja.nomeFantasia")
     LojaMaquina toEntity(LojaMaquinaDTO lojaMaquinaDTO);
 
     default LojaMaquina fromId(Long id) {

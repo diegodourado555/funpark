@@ -12,9 +12,11 @@ import org.mapstruct.*;
 public interface MaquinaMapper extends EntityMapper<MaquinaDTO, Maquina> {
 
     @Mapping(source = "grupoMaquina.id", target = "grupoMaquinaId")
+    @Mapping(source = "grupoMaquina.nome", target = "grupoMaquinaNome")
     MaquinaDTO toDto(Maquina maquina);
 
-    @Mapping(source = "grupoMaquinaId", target = "grupoMaquina")
+    @Mapping(source = "grupoMaquinaId", target = "grupoMaquina.id")
+    @Mapping(source = "grupoMaquinaNome", target = "grupoMaquina.nome")
     Maquina toEntity(MaquinaDTO maquinaDTO);
 
     default Maquina fromId(Long id) {

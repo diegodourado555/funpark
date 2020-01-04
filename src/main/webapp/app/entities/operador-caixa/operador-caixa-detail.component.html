@@ -20,7 +20,7 @@
                 <dt><span jhiTranslate="funparkApp.operadorCaixa.loja">Loja</span></dt>
                 <dd>
                     <div *ngIf="operadorCaixa.lojaId">
-                        <a [routerLink]="['/loja', operadorCaixa.lojaId, 'view']">{{operadorCaixa.lojaId}}</a>
+                        <a [routerLink]="['/loja', operadorCaixa.lojaId, 'view']">{{operadorCaixa.lojaNomeFantasia}}</a>
                     </div>
                 </dd>
             </dl>

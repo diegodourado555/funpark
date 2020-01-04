@@ -24,12 +24,21 @@ public class ContaCorrenteDTO implements Serializable {
 
 
     private Long receitaId;
+    
+    private String receitaDescricao;
 
     private Long despesaId;
+    
+    private String despesaDescricao;
 
     private Long operadorCaixaId;
+    
+    private String operadorCaixaNome;
 
     private Long lojaId;
+
+    private String lojaNomeFantasia;
+    
 
     public Long getId() {
         return id;
@@ -110,8 +119,40 @@ public class ContaCorrenteDTO implements Serializable {
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
+    
+    public String getReceitaDescricao() {
+		return receitaDescricao;
+	}
 
-    @Override
+	public void setReceitaDescricao(String receitaDescricao) {
+		this.receitaDescricao = receitaDescricao;
+	}
+
+	public String getDespesaDescricao() {
+		return despesaDescricao;
+	}
+
+	public void setDespesaDescricao(String despesaDescricao) {
+		this.despesaDescricao = despesaDescricao;
+	}
+
+	public String getOperadorCaixaNome() {
+		return operadorCaixaNome;
+	}
+
+	public void setOperadorCaixaNome(String operadorCaixaNome) {
+		this.operadorCaixaNome = operadorCaixaNome;
+	}
+	
+	public String getLojaNomeFantasia() {
+		return lojaNomeFantasia;
+	}
+
+	public void setLojaNomeFantasia(String lojaNomeFantasia) {
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -142,9 +183,13 @@ public class ContaCorrenteDTO implements Serializable {
             ", metodoPagamento='" + getMetodoPagamento() + "'" +
             ", situacao='" + getSituacao() + "'" +
             ", receitaId=" + getReceitaId() +
+            ", receitaDescricao=" + getReceitaDescricao() +
             ", despesaId=" + getDespesaId() +
+            ", despesaDescricao=" + getDespesaDescricao() +
             ", operadorCaixaId=" + getOperadorCaixaId() +
+            ", operadorCaixaNome=" + getOperadorCaixaNome() +
             ", lojaId=" + getLojaId() +
+            ", lojaNomeFantasia=" + getLojaNomeFantasia() +
             "}";
     }
 }

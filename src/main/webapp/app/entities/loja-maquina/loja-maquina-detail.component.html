@@ -8,13 +8,13 @@
                 <dt><span jhiTranslate="funparkApp.lojaMaquina.maquina">Maquina</span></dt>
                 <dd>
                     <div *ngIf="lojaMaquina.maquinaId">
-                        <a [routerLink]="['/maquina', lojaMaquina.maquinaId, 'view']">{{lojaMaquina.maquinaId}}</a>
+                        <a [routerLink]="['/maquina', lojaMaquina.maquinaId, 'view']">{{lojaMaquina.maquinaNome}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="funparkApp.lojaMaquina.loja">Loja</span></dt>
                 <dd>
                     <div *ngIf="lojaMaquina.lojaId">
-                        <a [routerLink]="['/loja', lojaMaquina.lojaId, 'view']">{{lojaMaquina.lojaId}}</a>
+                        <a [routerLink]="['/loja', lojaMaquina.lojaId, 'view']">{{lojaMaquina.lojaNomeFantasia}}</a>
                     </div>
                 </dd>
             </dl>

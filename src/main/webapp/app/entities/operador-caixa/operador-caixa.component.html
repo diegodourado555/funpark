@@ -34,7 +34,7 @@
                 <td jhiTranslate="{{'funparkApp.SituacaoOperadorCaixa.' + operadorCaixa.situacao}}">{{operadorCaixa.situacao}}</td>
                 <td>
                     <div *ngIf="operadorCaixa.lojaId">
-                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaId}}</a>
+                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaNomeFantasia}}</a>
                     </div>
                 </td>
                 <td class="text-right">

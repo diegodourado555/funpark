@@ -12,9 +12,11 @@ import org.mapstruct.*;
 public interface OperadorCaixaMapper extends EntityMapper<OperadorCaixaDTO, OperadorCaixa> {
 
     @Mapping(source = "loja.id", target = "lojaId")
+    @Mapping(source = "loja.nomeFantasia", target = "lojaNomeFantasia")
     OperadorCaixaDTO toDto(OperadorCaixa operadorCaixa);
 
-    @Mapping(source = "lojaId", target = "loja")
+    @Mapping(source = "lojaId", target = "loja.id")
+    @Mapping(source = "lojaNomeFantasia", target = "loja.nomeFantasia")
     OperadorCaixa toEntity(OperadorCaixaDTO operadorCaixaDTO);
 
     default OperadorCaixa fromId(Long id) {

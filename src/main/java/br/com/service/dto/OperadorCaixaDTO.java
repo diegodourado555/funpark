@@ -16,8 +16,9 @@ public class OperadorCaixaDTO implements Serializable {
 
     private SituacaoOperadorCaixa situacao;
 
-
     private Long lojaId;
+    
+    private String lojaNomeFantasia;
 
     public Long getId() {
         return id;
@@ -58,8 +59,16 @@ public class OperadorCaixaDTO implements Serializable {
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
+    
+	public String getLojaNomeFantasia() {
+		return lojaNomeFantasia;
+	}
 
-    @Override
+	public void setLojaNomeFantasia(String lojaNomeFantasia) {
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -88,6 +97,7 @@ public class OperadorCaixaDTO implements Serializable {
             ", cpf=" + getCpf() +
             ", situacao='" + getSituacao() + "'" +
             ", lojaId=" + getLojaId() +
+            ", lojaNome=" + getLojaNomeFantasia() +
             "}";
     }
 }
