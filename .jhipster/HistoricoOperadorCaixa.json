@@ -1,0 +1,33 @@
+{
+    "name": "HistoricoOperadorCaixa",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoOperadorCaixa",
+            "fieldValues": "ATIVO,INATIVO"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200104120432",
+    "entityTableName": "historico_operador_caixa",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

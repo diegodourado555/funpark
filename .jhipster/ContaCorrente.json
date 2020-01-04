@@ -10,9 +10,18 @@
             "fieldType": "Instant"
         },
         {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "metodoPagamento",
             "fieldType": "MetodoPagamento",
             "fieldValues": "DINHEIRO,CARTAO,CHEQUE"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoContaCorrente",
+            "fieldValues": "PAGO,DISPONIVEL_BANCO"
         }
     ],
     "relationships": [

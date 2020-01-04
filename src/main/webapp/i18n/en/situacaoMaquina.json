@@ -1,0 +1,9 @@
+{
+  "funparkApp": {
+    "SituacaoMaquina": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO"
+    }
+  }
+}

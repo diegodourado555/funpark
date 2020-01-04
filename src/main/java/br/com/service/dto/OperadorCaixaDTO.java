@@ -1,6 +1,7 @@
 package br.com.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
+import br.com.domain.enumeration.SituacaoOperadorCaixa;
 
 /**
  * A DTO for the {@link br.com.domain.OperadorCaixa} entity.
@@ -13,27 +14,12 @@ public class OperadorCaixaDTO implements Serializable {
 
     private Float cpf;
 
+    private SituacaoOperadorCaixa situacao;
+
 
     private Long lojaId;
-    
-    private String lojaNome;
-    
-    
-    
-    public OperadorCaixaDTO() {
-		super();
-	}
-    
-	public OperadorCaixaDTO(Long id, String nome, Float cpf, Long lojaId, String lojaNome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.lojaId = lojaId;
-		this.lojaNome = lojaNome;
-	}
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,6 +43,14 @@ public class OperadorCaixaDTO implements Serializable {
         this.cpf = cpf;
     }
 
+    public SituacaoOperadorCaixa getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(SituacaoOperadorCaixa situacao) {
+        this.situacao = situacao;
+    }
+
     public Long getLojaId() {
         return lojaId;
     }
@@ -64,18 +58,8 @@ public class OperadorCaixaDTO implements Serializable {
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
     }
-    
-    
-    
-    public String getLojaNome() {
-		return lojaNome;
-	}
 
-	public void setLojaNome(String lojaNome) {
-		this.lojaNome = lojaNome;
-	}
-
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -102,8 +86,8 @@ public class OperadorCaixaDTO implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", cpf=" + getCpf() +
+            ", situacao='" + getSituacao() + "'" +
             ", lojaId=" + getLojaId() +
-            ", lojaNome=" + getLojaNome() +
             "}";
     }
 }

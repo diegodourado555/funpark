@@ -6,6 +6,7 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { ContaCorrenteService } from 'app/entities/conta-corrente/conta-corrente.service';
 import { IContaCorrente, ContaCorrente } from 'app/shared/model/conta-corrente.model';
 import { MetodoPagamento } from 'app/shared/model/enumerations/metodo-pagamento.model';
+import { SituacaoContaCorrente } from 'app/shared/model/enumerations/situacao-conta-corrente.model';
 
 describe('Service Tests', () => {
   describe('ContaCorrente Service', () => {
@@ -25,7 +26,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new ContaCorrente(0, 0, currentDate, MetodoPagamento.DINHEIRO);
+      elemDefault = new ContaCorrente(0, 0, currentDate, 'AAAAAAA', MetodoPagamento.DINHEIRO, SituacaoContaCorrente.PAGO);
     });
 
     describe('Service methods', () => {
@@ -74,7 +75,9 @@ describe('Service Tests', () => {
           {
             valor: 1,
             data: currentDate.format(DATE_TIME_FORMAT),
-            metodoPagamento: 'BBBBBB'
+            descricao: 'BBBBBB',
+            metodoPagamento: 'BBBBBB',
+            situacao: 'BBBBBB'
           },
           elemDefault
         );
@@ -99,7 +102,9 @@ describe('Service Tests', () => {
           {
             valor: 1,
             data: currentDate.format(DATE_TIME_FORMAT),
-            metodoPagamento: 'BBBBBB'
+            descricao: 'BBBBBB',
+            metodoPagamento: 'BBBBBB',
+            situacao: 'BBBBBB'
           },
           elemDefault
         );

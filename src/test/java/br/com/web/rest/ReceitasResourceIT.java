@@ -36,6 +36,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FunparkApp.class)
 public class ReceitasResourceIT {
 
+    private static final String DEFAULT_CODIGO = "AAAAAAAAAA";
+    private static final String UPDATED_CODIGO = "BBBBBBBBBB";
+
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
@@ -87,6 +90,7 @@ public class ReceitasResourceIT {
      */
     public static Receitas createEntity(EntityManager em) {
         Receitas receitas = new Receitas()
+            .codigo(DEFAULT_CODIGO)
             .descricao(DEFAULT_DESCRICAO);
         return receitas;
     }
@@ -98,6 +102,7 @@ public class ReceitasResourceIT {
      */
     public static Receitas createUpdatedEntity(EntityManager em) {
         Receitas receitas = new Receitas()
+            .codigo(UPDATED_CODIGO)
             .descricao(UPDATED_DESCRICAO);
         return receitas;
     }
@@ -123,6 +128,7 @@ public class ReceitasResourceIT {
         List<Receitas> receitasList = receitasRepository.findAll();
         assertThat(receitasList).hasSize(databaseSizeBeforeCreate + 1);
         Receitas testReceitas = receitasList.get(receitasList.size() - 1);
+        assertThat(testReceitas.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testReceitas.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
     }
 
@@ -158,6 +164,7 @@ public class ReceitasResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(receitas.getId().intValue())))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
     }
     
@@ -172,6 +179,7 @@ public class ReceitasResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(receitas.getId().intValue()))
+            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
     }
 
@@ -196,6 +204,7 @@ public class ReceitasResourceIT {
         // Disconnect from session so that the updates on updatedReceitas are not directly saved in db
         em.detach(updatedReceitas);
         updatedReceitas
+            .codigo(UPDATED_CODIGO)
             .descricao(UPDATED_DESCRICAO);
         ReceitasDTO receitasDTO = receitasMapper.toDto(updatedReceitas);
 
@@ -208,6 +217,7 @@ public class ReceitasResourceIT {
         List<Receitas> receitasList = receitasRepository.findAll();
         assertThat(receitasList).hasSize(databaseSizeBeforeUpdate);
         Receitas testReceitas = receitasList.get(receitasList.size() - 1);
+        assertThat(testReceitas.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testReceitas.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
     }
 

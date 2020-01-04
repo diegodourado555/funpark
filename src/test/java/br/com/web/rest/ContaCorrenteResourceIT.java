@@ -33,6 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import br.com.domain.enumeration.MetodoPagamento;
+import br.com.domain.enumeration.SituacaoContaCorrente;
 /**
  * Integration tests for the {@link ContaCorrenteResource} REST controller.
  */
@@ -45,8 +46,14 @@ public class ContaCorrenteResourceIT {
     private static final Instant DEFAULT_DATA = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
+
     private static final MetodoPagamento DEFAULT_METODO_PAGAMENTO = MetodoPagamento.DINHEIRO;
     private static final MetodoPagamento UPDATED_METODO_PAGAMENTO = MetodoPagamento.CARTAO;
+
+    private static final SituacaoContaCorrente DEFAULT_SITUACAO = SituacaoContaCorrente.PAGO;
+    private static final SituacaoContaCorrente UPDATED_SITUACAO = SituacaoContaCorrente.DISPONIVEL_BANCO;
 
     @Autowired
     private ContaCorrenteRepository contaCorrenteRepository;
@@ -98,7 +105,9 @@ public class ContaCorrenteResourceIT {
         ContaCorrente contaCorrente = new ContaCorrente()
             .valor(DEFAULT_VALOR)
             .data(DEFAULT_DATA)
-            .metodoPagamento(DEFAULT_METODO_PAGAMENTO);
+            .descricao(DEFAULT_DESCRICAO)
+            .metodoPagamento(DEFAULT_METODO_PAGAMENTO)
+            .situacao(DEFAULT_SITUACAO);
         return contaCorrente;
     }
     /**
@@ -111,7 +120,9 @@ public class ContaCorrenteResourceIT {
         ContaCorrente contaCorrente = new ContaCorrente()
             .valor(UPDATED_VALOR)
             .data(UPDATED_DATA)
-            .metodoPagamento(UPDATED_METODO_PAGAMENTO);
+            .descricao(UPDATED_DESCRICAO)
+            .metodoPagamento(UPDATED_METODO_PAGAMENTO)
+            .situacao(UPDATED_SITUACAO);
         return contaCorrente;
     }
 
@@ -138,7 +149,9 @@ public class ContaCorrenteResourceIT {
         ContaCorrente testContaCorrente = contaCorrenteList.get(contaCorrenteList.size() - 1);
         assertThat(testContaCorrente.getValor()).isEqualTo(DEFAULT_VALOR);
         assertThat(testContaCorrente.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testContaCorrente.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
         assertThat(testContaCorrente.getMetodoPagamento()).isEqualTo(DEFAULT_METODO_PAGAMENTO);
+        assertThat(testContaCorrente.getSituacao()).isEqualTo(DEFAULT_SITUACAO);
     }
 
     @Test
@@ -175,7 +188,9 @@ public class ContaCorrenteResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(contaCorrente.getId().intValue())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.doubleValue())))
             .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())))
-            .andExpect(jsonPath("$.[*].metodoPagamento").value(hasItem(DEFAULT_METODO_PAGAMENTO.toString())));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].metodoPagamento").value(hasItem(DEFAULT_METODO_PAGAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())));
     }
     
     @Test
@@ -191,7 +206,9 @@ public class ContaCorrenteResourceIT {
             .andExpect(jsonPath("$.id").value(contaCorrente.getId().intValue()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.doubleValue()))
             .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()))
-            .andExpect(jsonPath("$.metodoPagamento").value(DEFAULT_METODO_PAGAMENTO.toString()));
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
+            .andExpect(jsonPath("$.metodoPagamento").value(DEFAULT_METODO_PAGAMENTO.toString()))
+            .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.toString()));
     }
 
     @Test
@@ -217,7 +234,9 @@ public class ContaCorrenteResourceIT {
         updatedContaCorrente
             .valor(UPDATED_VALOR)
             .data(UPDATED_DATA)
-            .metodoPagamento(UPDATED_METODO_PAGAMENTO);
+            .descricao(UPDATED_DESCRICAO)
+            .metodoPagamento(UPDATED_METODO_PAGAMENTO)
+            .situacao(UPDATED_SITUACAO);
         ContaCorrenteDTO contaCorrenteDTO = contaCorrenteMapper.toDto(updatedContaCorrente);
 
         restContaCorrenteMockMvc.perform(put("/api/conta-correntes")
@@ -231,7 +250,9 @@ public class ContaCorrenteResourceIT {
         ContaCorrente testContaCorrente = contaCorrenteList.get(contaCorrenteList.size() - 1);
         assertThat(testContaCorrente.getValor()).isEqualTo(UPDATED_VALOR);
         assertThat(testContaCorrente.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testContaCorrente.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
         assertThat(testContaCorrente.getMetodoPagamento()).isEqualTo(UPDATED_METODO_PAGAMENTO);
+        assertThat(testContaCorrente.getSituacao()).isEqualTo(UPDATED_SITUACAO);
     }
 
     @Test

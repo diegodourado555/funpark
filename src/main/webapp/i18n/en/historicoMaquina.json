@@ -1,0 +1,24 @@
+{
+  "funparkApp": {
+    "historicoMaquina": {
+      "home": {
+        "title": "Historico Maquinas",
+        "createLabel": "Create a new Historico Maquina",
+        "createOrEditLabel": "Create or edit a Historico Maquina",
+        "notFound": "No Historico Maquinas found"
+      },
+      "created": "A new Historico Maquina is created with identifier {{ param }}",
+      "updated": "A Historico Maquina is updated with identifier {{ param }}",
+      "deleted": "A Historico Maquina is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historico Maquina {{ id }}?"
+      },
+      "detail": {
+        "title": "Historico Maquina"
+      },
+      "nome": "Nome",
+      "data": "Data",
+      "situacao": "Situacao"
+    }
+  }
+}

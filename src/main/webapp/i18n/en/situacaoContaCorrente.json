@@ -1,0 +1,9 @@
+{
+  "funparkApp": {
+    "SituacaoContaCorrente": {
+      "null": "",
+      "PAGO": "PAGO",
+      "DISPONIVEL_BANCO": "DISPONIVEL_BANCO"
+    }
+  }
+}

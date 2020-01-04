@@ -5,16 +5,25 @@ entity GrupoMaquina {
 
 entity Maquina {
 	id Long,
-    nome String
+    nome String,
+    situacao SituacaoMaquina
+}
+entity HistoricoMaquina {
+	id Long,
+    nome String,
+    data LocalDate,
+    situacao SituacaoMaquina
 }
 
 entity Receitas {
 	id Long,
+    codigo String,
     descricao String
 }
 
 entity Despesas {
 	id Long,
+    codigo String,
     descricao String
 }
 
@@ -25,14 +34,25 @@ entity LojaMaquina {
 entity OperadorCaixa {
 	id Long,
     nome String,
-    cpf Float
+    cpf Float,
+    situacao SituacaoOperadorCaixa
+}
+
+entity HistoricoOperadorCaixa {
+	id Long,
+    nome String,
+    cpf Float,
+    data LocalDate,
+    situacao SituacaoOperadorCaixa
 }
 
 entity ContaCorrente {
 	id Long,
     valor Double,
     data Instant,
-    metodoPagamento MetodoPagamento
+    descricao String,
+    metodoPagamento MetodoPagamento,
+    situacao SituacaoContaCorrente
 }
 
 entity Loja {
@@ -47,8 +67,15 @@ enum MetodoPagamento {
     DINHEIRO, CARTAO, CHEQUE
 }
 
-relationship OneToOne {
-	Maquina{grupoMaquina} to GrupoMaquina
+enum SituacaoOperadorCaixa {
+    ATIVO, INATIVO
+}
+
+enum SituacaoMaquina {
+    ATIVO, INATIVO
+}
+enum SituacaoContaCorrente {
+    PAGO, DISPONIVEL_BANCO
 }
 
 relationship OneToOne {
@@ -56,11 +83,9 @@ relationship OneToOne {
     LojaMaquina{loja} to Loja
 }
 
-relationship OneToOne {
-	OperadorCaixa{loja} to Loja
-}
-
 relationship ManyToOne {
+	Maquina{grupoMaquina} to GrupoMaquina,
+    OperadorCaixa{loja} to Loja,
 	ContaCorrente{receita} to Receitas,
     ContaCorrente{despesa} to Despesas,
     ContaCorrente{operadorCaixa} to OperadorCaixa,

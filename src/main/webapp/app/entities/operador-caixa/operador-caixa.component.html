@@ -21,6 +21,7 @@
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="nome"><span jhiTranslate="funparkApp.operadorCaixa.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="cpf"><span jhiTranslate="funparkApp.operadorCaixa.cpf">Cpf</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="situacao"><span jhiTranslate="funparkApp.operadorCaixa.situacao">Situacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="lojaId"><span jhiTranslate="funparkApp.operadorCaixa.loja">Loja</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
@@ -30,9 +31,10 @@
                 <td><a [routerLink]="['/operador-caixa', operadorCaixa.id, 'view' ]">{{operadorCaixa.id}}</a></td>
                 <td>{{operadorCaixa.nome}}</td>
                 <td>{{operadorCaixa.cpf}}</td>
+                <td jhiTranslate="{{'funparkApp.SituacaoOperadorCaixa.' + operadorCaixa.situacao}}">{{operadorCaixa.situacao}}</td>
                 <td>
                     <div *ngIf="operadorCaixa.lojaId">
-                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaNome}}</a>
+                        <a [routerLink]="['/loja', operadorCaixa.lojaId , 'view' ]" >{{operadorCaixa.lojaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

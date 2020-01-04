@@ -19,6 +19,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="codigo"><span jhiTranslate="funparkApp.despesas.codigo">Codigo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="descricao"><span jhiTranslate="funparkApp.despesas.descricao">Descricao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
@@ -26,6 +27,7 @@
             <tbody>
             <tr *ngFor="let despesas of despesas ;trackBy: trackId">
                 <td><a [routerLink]="['/despesas', despesas.id, 'view' ]">{{despesas.id}}</a></td>
+                <td>{{despesas.codigo}}</td>
                 <td>{{despesas.descricao}}</td>
                 <td class="text-right">
                     <div class="btn-group">

@@ -18,6 +18,7 @@
       },
       "nome": "Nome",
       "cpf": "Cpf",
+      "situacao": "Situacao",
       "loja": "Loja"
     }
   }

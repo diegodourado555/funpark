@@ -17,6 +17,7 @@
         "title": "Maquina"
       },
       "nome": "Nome",
+      "situacao": "Situacao",
       "grupoMaquina": "Grupo Maquina"
     }
   }

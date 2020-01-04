@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { take, map } from 'rxjs/operators';
 import { MaquinaService } from 'app/entities/maquina/maquina.service';
 import { IMaquina, Maquina } from 'app/shared/model/maquina.model';
+import { SituacaoMaquina } from 'app/shared/model/enumerations/situacao-maquina.model';
 
 describe('Service Tests', () => {
   describe('Maquina Service', () => {
@@ -20,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(MaquinaService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Maquina(0, 'AAAAAAA');
+      elemDefault = new Maquina(0, 'AAAAAAA', SituacaoMaquina.ATIVO);
     });
 
     describe('Service methods', () => {
@@ -56,7 +57,8 @@ describe('Service Tests', () => {
       it('should update a Maquina', () => {
         const returnedFromService = Object.assign(
           {
-            nome: 'BBBBBB'
+            nome: 'BBBBBB',
+            situacao: 'BBBBBB'
           },
           elemDefault
         );
@@ -74,7 +76,8 @@ describe('Service Tests', () => {
       it('should return a list of Maquina', () => {
         const returnedFromService = Object.assign(
           {
-            nome: 'BBBBBB'
+            nome: 'BBBBBB',
+            situacao: 'BBBBBB'
           },
           elemDefault
         );

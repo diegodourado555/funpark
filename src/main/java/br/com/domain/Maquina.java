@@ -1,8 +1,11 @@
 package br.com.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+
+import br.com.domain.enumeration.SituacaoMaquina;
 
 /**
  * A Maquina.
@@ -21,8 +24,12 @@ public class Maquina implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToOne
-    @JoinColumn
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao")
+    private SituacaoMaquina situacao;
+
+    @ManyToOne
+    @JsonIgnoreProperties("maquinas")
     private GrupoMaquina grupoMaquina;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -45,6 +52,19 @@ public class Maquina implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public SituacaoMaquina getSituacao() {
+        return situacao;
+    }
+
+    public Maquina situacao(SituacaoMaquina situacao) {
+        this.situacao = situacao;
+        return this;
+    }
+
+    public void setSituacao(SituacaoMaquina situacao) {
+        this.situacao = situacao;
     }
 
     public GrupoMaquina getGrupoMaquina() {
@@ -82,6 +102,7 @@ public class Maquina implements Serializable {
         return "Maquina{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
+            ", situacao='" + getSituacao() + "'" +
             "}";
     }
 }

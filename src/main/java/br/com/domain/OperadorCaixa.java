@@ -1,8 +1,11 @@
 package br.com.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+
+import br.com.domain.enumeration.SituacaoOperadorCaixa;
 
 /**
  * A OperadorCaixa.
@@ -24,8 +27,12 @@ public class OperadorCaixa implements Serializable {
     @Column(name = "cpf")
     private Float cpf;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao")
+    private SituacaoOperadorCaixa situacao;
+
+    @ManyToOne
+    @JsonIgnoreProperties("operadorCaixas")
     private Loja loja;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -61,6 +68,19 @@ public class OperadorCaixa implements Serializable {
 
     public void setCpf(Float cpf) {
         this.cpf = cpf;
+    }
+
+    public SituacaoOperadorCaixa getSituacao() {
+        return situacao;
+    }
+
+    public OperadorCaixa situacao(SituacaoOperadorCaixa situacao) {
+        this.situacao = situacao;
+        return this;
+    }
+
+    public void setSituacao(SituacaoOperadorCaixa situacao) {
+        this.situacao = situacao;
     }
 
     public Loja getLoja() {
@@ -99,6 +119,7 @@ public class OperadorCaixa implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", cpf=" + getCpf() +
+            ", situacao='" + getSituacao() + "'" +
             "}";
     }
 }

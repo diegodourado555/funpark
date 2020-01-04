@@ -21,7 +21,9 @@
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="valor"><span jhiTranslate="funparkApp.contaCorrente.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="data"><span jhiTranslate="funparkApp.contaCorrente.data">Data</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="descricao"><span jhiTranslate="funparkApp.contaCorrente.descricao">Descricao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="metodoPagamento"><span jhiTranslate="funparkApp.contaCorrente.metodoPagamento">Metodo Pagamento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="situacao"><span jhiTranslate="funparkApp.contaCorrente.situacao">Situacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="receitaId"><span jhiTranslate="funparkApp.contaCorrente.receita">Receita</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="despesaId"><span jhiTranslate="funparkApp.contaCorrente.despesa">Despesa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="operadorCaixaId"><span jhiTranslate="funparkApp.contaCorrente.operadorCaixa">Operador Caixa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -34,25 +36,27 @@
                 <td><a [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]">{{contaCorrente.id}}</a></td>
                 <td>{{contaCorrente.valor}}</td>
                 <td>{{contaCorrente.data | date:'medium'}}</td>
+                <td>{{contaCorrente.descricao}}</td>
                 <td jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</td>
+                <td jhiTranslate="{{'funparkApp.SituacaoContaCorrente.' + contaCorrente.situacao}}">{{contaCorrente.situacao}}</td>
                 <td>
                     <div *ngIf="contaCorrente.receitaId">
-                        <a [routerLink]="['/receitas', contaCorrente.receitaId , 'view' ]" >{{contaCorrente.receitaDescricao}}</a>
+                        <a [routerLink]="['/receitas', contaCorrente.receitaId , 'view' ]" >{{contaCorrente.receitaId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.despesaId">
-                        <a [routerLink]="['/despesas', contaCorrente.despesaId , 'view' ]" >{{contaCorrente.despesaDescricao}}</a>
+                        <a [routerLink]="['/despesas', contaCorrente.despesaId , 'view' ]" >{{contaCorrente.despesaId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.operadorCaixaId">
-                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId , 'view' ]" >{{contaCorrente.operadorCaixaNome}}</a>
+                        <a [routerLink]="['/operador-caixa', contaCorrente.operadorCaixaId , 'view' ]" >{{contaCorrente.operadorCaixaId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="contaCorrente.lojaId">
-                        <a [routerLink]="['/loja', contaCorrente.lojaId , 'view' ]" >{{contaCorrente.lojaNomeFantasia}}</a>
+                        <a [routerLink]="['/loja', contaCorrente.lojaId , 'view' ]" >{{contaCorrente.lojaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

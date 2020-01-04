@@ -18,6 +18,9 @@ public class Receitas implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "codigo")
+    private String codigo;
+
     @Column(name = "descricao")
     private String descricao;
 
@@ -28,6 +31,19 @@ public class Receitas implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public Receitas codigo(String codigo) {
+        this.codigo = codigo;
+        return this;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {
@@ -64,6 +80,7 @@ public class Receitas implements Serializable {
     public String toString() {
         return "Receitas{" +
             "id=" + getId() +
+            ", codigo='" + getCodigo() + "'" +
             ", descricao='" + getDescricao() + "'" +
             "}";
     }

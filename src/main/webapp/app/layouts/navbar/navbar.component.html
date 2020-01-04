@@ -169,6 +169,18 @@
                             <span jhiTranslate="global.menu.entities.contaCorrente">Conta Corrente</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="historico-maquina" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.historicoMaquina">Historico Maquina</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="historico-operador-caixa" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.historicoOperadorCaixa">Historico Operador Caixa</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

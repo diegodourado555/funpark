@@ -1,0 +1,29 @@
+{
+    "name": "HistoricoMaquina",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoMaquina",
+            "fieldValues": "ATIVO,INATIVO"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200104120427",
+    "entityTableName": "historico_maquina",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

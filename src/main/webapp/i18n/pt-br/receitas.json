@@ -16,6 +16,7 @@
       "detail": {
         "title": "Receitas"
       },
+      "codigo": "Codigo",
       "descricao": "Descricao"
     }
   }

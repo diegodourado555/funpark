@@ -1,10 +1,6 @@
 package br.com.repository;
 
 import br.com.domain.OperadorCaixa;
-import br.com.service.dto.OperadorCaixaDTO;
-
-import java.util.List;
-
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +11,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface OperadorCaixaRepository extends JpaRepository<OperadorCaixa, Long> {
-	
-	@Query(value = "SELECT new br.com.service.dto.OperadorCaixaDTO(o.id, o.nome, o.cpf, l.id, l.nomeFantasia) "
-			+ "FROM OperadorCaixa o "
-			+ "LEFT OUTER JOIN Loja l ON l.id = o.loja.id")
-	List<OperadorCaixaDTO> findAllWithStoreDescription();
+
 }

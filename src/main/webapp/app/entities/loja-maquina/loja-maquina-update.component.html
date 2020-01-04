@@ -14,14 +14,14 @@
                     <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.maquina" for="field_maquina">Maquina</label>
                     <select class="form-control" id="field_maquina" name="maquina" formControlName="maquinaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="maquinaOption.id" *ngFor="let maquinaOption of maquinas; trackBy: trackById">{{maquinaOption.nome}}</option>
+                        <option [ngValue]="maquinaOption.id" *ngFor="let maquinaOption of maquinas; trackBy: trackById">{{maquinaOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="funparkApp.lojaMaquina.loja" for="field_loja">Loja</label>
                     <select class="form-control" id="field_loja" name="loja" formControlName="lojaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackById">{{lojaOption.nomeFantasia}}</option>
+                        <option [ngValue]="lojaOption.id" *ngFor="let lojaOption of lojas; trackBy: trackById">{{lojaOption.id}}</option>
                     </select>
                 </div>
             </div>
