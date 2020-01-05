@@ -6,6 +6,7 @@ export interface IOperadorCaixa {
   cpf?: number;
   situacao?: SituacaoOperadorCaixa;
   lojaId?: number;
+  lojaNomeFantasia?: string;
 }
 
 export class OperadorCaixa implements IOperadorCaixa {

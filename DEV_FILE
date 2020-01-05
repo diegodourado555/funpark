@@ -11,6 +11,11 @@ fb9b5252c4399fd09cc60d9eba3e4aaf1953e369e9a84b4f8382cb9ea998443d
 
 https://www.jhipster.tech/heroku/
 
+-> PRIMEIRA VEZ
+
+jhipster heroku
+
+-> ATUALIZAÇÕES
 
 heroku login
 mvnw package -Pprod -DskipTests

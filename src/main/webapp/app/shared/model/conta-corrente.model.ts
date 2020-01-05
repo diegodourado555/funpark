@@ -10,9 +10,13 @@ export interface IContaCorrente {
   metodoPagamento?: MetodoPagamento;
   situacao?: SituacaoContaCorrente;
   receitaId?: number;
+  receitaDescricao?: string;
   despesaId?: number;
+  despesaDescricao?: string;
   operadorCaixaId?: number;
+  operadorCaixaNome?: string;
   lojaId?: number;
+  lojaNomeFantasia?: string;
 }
 
 export class ContaCorrente implements IContaCorrente {

@@ -5,6 +5,7 @@ export interface IMaquina {
   nome?: string;
   situacao?: SituacaoMaquina;
   grupoMaquinaId?: number;
+  grupoMaquinaNome?: string;
 }
 
 export class Maquina implements IMaquina {
