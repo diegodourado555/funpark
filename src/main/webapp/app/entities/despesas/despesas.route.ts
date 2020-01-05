@@ -42,7 +42,7 @@ export const despesasRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_DESPESAS'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.despesas.home.title'
     },
@@ -55,7 +55,7 @@ export const despesasRoute: Routes = [
       despesas: DespesasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_DESPESAS_VIEW'],
       pageTitle: 'funparkApp.despesas.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const despesasRoute: Routes = [
       despesas: DespesasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_DESPESAS_NEW'],
       pageTitle: 'funparkApp.despesas.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const despesasRoute: Routes = [
       despesas: DespesasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_DESPESAS_EDIT'],
       pageTitle: 'funparkApp.despesas.home.title'
     },
     canActivate: [UserRouteAccessService]

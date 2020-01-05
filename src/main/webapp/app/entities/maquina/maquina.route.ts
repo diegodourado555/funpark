@@ -42,7 +42,7 @@ export const maquinaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_MAQUINA'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.maquina.home.title'
     },
@@ -55,7 +55,7 @@ export const maquinaRoute: Routes = [
       maquina: MaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_MAQUINA_VIEW'],
       pageTitle: 'funparkApp.maquina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const maquinaRoute: Routes = [
       maquina: MaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_MAQUINA_NEW'],
       pageTitle: 'funparkApp.maquina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const maquinaRoute: Routes = [
       maquina: MaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_MAQUINA_EDIT'],
       pageTitle: 'funparkApp.maquina.home.title'
     },
     canActivate: [UserRouteAccessService]

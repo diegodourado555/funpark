@@ -42,7 +42,7 @@ export const grupoMaquinaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_GRUPO_MAQUINA'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.grupoMaquina.home.title'
     },
@@ -55,7 +55,7 @@ export const grupoMaquinaRoute: Routes = [
       grupoMaquina: GrupoMaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_GRUPO_MAQUINA_VIEW'],
       pageTitle: 'funparkApp.grupoMaquina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const grupoMaquinaRoute: Routes = [
       grupoMaquina: GrupoMaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_GRUPO_MAQUINA_NEW'],
       pageTitle: 'funparkApp.grupoMaquina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const grupoMaquinaRoute: Routes = [
       grupoMaquina: GrupoMaquinaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_GRUPO_MAQUINA_EDIT'],
       pageTitle: 'funparkApp.grupoMaquina.home.title'
     },
     canActivate: [UserRouteAccessService]

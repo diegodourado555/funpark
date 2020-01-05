@@ -42,7 +42,7 @@ export const lojaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_LOJA'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.loja.home.title'
     },
@@ -55,7 +55,7 @@ export const lojaRoute: Routes = [
       loja: LojaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_LOJA_VIEW'],
       pageTitle: 'funparkApp.loja.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const lojaRoute: Routes = [
       loja: LojaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_LOJA_NEW'],
       pageTitle: 'funparkApp.loja.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const lojaRoute: Routes = [
       loja: LojaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_LOJA_EDIT'],
       pageTitle: 'funparkApp.loja.home.title'
     },
     canActivate: [UserRouteAccessService]

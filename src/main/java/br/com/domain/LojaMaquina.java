@@ -19,11 +19,11 @@ public class LojaMaquina implements Serializable {
     private Long id;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private Maquina maquina;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private Loja loja;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

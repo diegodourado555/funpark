@@ -42,7 +42,7 @@ export const receitasRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_RECEITAS'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.receitas.home.title'
     },
@@ -55,7 +55,7 @@ export const receitasRoute: Routes = [
       receitas: ReceitasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_RECEITAS_VIEW'],
       pageTitle: 'funparkApp.receitas.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const receitasRoute: Routes = [
       receitas: ReceitasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_RECEITAS_NEW'],
       pageTitle: 'funparkApp.receitas.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const receitasRoute: Routes = [
       receitas: ReceitasResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_RECEITAS_EDIT'],
       pageTitle: 'funparkApp.receitas.home.title'
     },
     canActivate: [UserRouteAccessService]

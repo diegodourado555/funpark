@@ -42,7 +42,7 @@ export const operadorCaixaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_OPERADOR_CAIXA'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.operadorCaixa.home.title'
     },
@@ -55,7 +55,7 @@ export const operadorCaixaRoute: Routes = [
       operadorCaixa: OperadorCaixaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_OPERADOR_CAIXA_VIEW'],
       pageTitle: 'funparkApp.operadorCaixa.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const operadorCaixaRoute: Routes = [
       operadorCaixa: OperadorCaixaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_OPERADOR_CAIXA_NEW'],
       pageTitle: 'funparkApp.operadorCaixa.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const operadorCaixaRoute: Routes = [
       operadorCaixa: OperadorCaixaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_OPERADOR_CAIXA_EDIT'],
       pageTitle: 'funparkApp.operadorCaixa.home.title'
     },
     canActivate: [UserRouteAccessService]

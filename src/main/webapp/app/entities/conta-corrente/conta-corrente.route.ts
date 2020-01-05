@@ -42,7 +42,7 @@ export const contaCorrenteRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_CONTA_CORRENTE'],
       defaultSort: 'id,asc',
       pageTitle: 'funparkApp.contaCorrente.home.title'
     },
@@ -55,7 +55,7 @@ export const contaCorrenteRoute: Routes = [
       contaCorrente: ContaCorrenteResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_CONTA_CORRENTE_VIEW'],
       pageTitle: 'funparkApp.contaCorrente.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const contaCorrenteRoute: Routes = [
       contaCorrente: ContaCorrenteResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_CONTA_CORRENTE_NEW'],
       pageTitle: 'funparkApp.contaCorrente.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const contaCorrenteRoute: Routes = [
       contaCorrente: ContaCorrenteResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_CONTA_CORRENTE_EDIT'],
       pageTitle: 'funparkApp.contaCorrente.home.title'
     },
     canActivate: [UserRouteAccessService]
