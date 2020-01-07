@@ -61,13 +61,13 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_CONTA_CORRENTE_VIEW'" type="submit"
                                 [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_CONTA_CORRENTE_EDIT'" type="submit"
                                 [routerLink]="['/conta-corrente', contaCorrente.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>

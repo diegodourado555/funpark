@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="funparkApp.operadorCaixa.cpf" for="field_cpf">Cpf</label>
-                    <input type="number" class="form-control" name="cpf" id="field_cpf"
+                    <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text" class="form-control" name="cpf" id="field_cpf"
                            formControlName="cpf"/>
                 </div>
                 <div class="form-group">

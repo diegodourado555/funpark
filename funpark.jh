@@ -64,7 +64,7 @@ entity Loja {
 }
 
 enum MetodoPagamento {
-    DINHEIRO, CARTAO, CHEQUE
+    CREDITO, DEBITO, PARCELADO
 }
 
 enum SituacaoOperadorCaixa {

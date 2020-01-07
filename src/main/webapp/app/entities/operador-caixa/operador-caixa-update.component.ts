@@ -16,6 +16,8 @@ import { LojaService } from 'app/entities/loja/loja.service';
   templateUrl: './operador-caixa-update.component.html'
 })
 export class OperadorCaixaUpdateComponent implements OnInit {
+  public myModel = '';
+  public mask = [/[0-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   isSaving = false;
 
   lojas: ILoja[] = [];
@@ -36,6 +38,7 @@ export class OperadorCaixaUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.myModel = '';
     this.activatedRoute.data.subscribe(({ operadorCaixa }) => {
       this.updateForm(operadorCaixa);
 
@@ -86,10 +89,7 @@ export class OperadorCaixaUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOperadorCaixa>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {

@@ -2,9 +2,9 @@
   "funparkApp": {
     "MetodoPagamento": {
       "null": "",
-      "DINHEIRO": "DINHEIRO",
-      "CARTAO": "CARTAO",
-      "CHEQUE": "CHEQUE"
+      "CREDITO": "CREDITO",
+      "DEBITO": "DEBITO",
+      "PARCELADO": "PARCELADO"
     }
   }
 }

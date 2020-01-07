@@ -49,8 +49,8 @@ public class ContaCorrenteResourceIT {
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
-    private static final MetodoPagamento DEFAULT_METODO_PAGAMENTO = MetodoPagamento.DINHEIRO;
-    private static final MetodoPagamento UPDATED_METODO_PAGAMENTO = MetodoPagamento.CARTAO;
+    private static final MetodoPagamento DEFAULT_METODO_PAGAMENTO = MetodoPagamento.CREDITO;
+    private static final MetodoPagamento UPDATED_METODO_PAGAMENTO = MetodoPagamento.DEBITO;
 
     private static final SituacaoContaCorrente DEFAULT_SITUACAO = SituacaoContaCorrente.PAGO;
     private static final SituacaoContaCorrente UPDATED_SITUACAO = SituacaoContaCorrente.DISPONIVEL_BANCO;

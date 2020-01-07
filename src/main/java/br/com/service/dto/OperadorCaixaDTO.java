@@ -12,7 +12,7 @@ public class OperadorCaixaDTO implements Serializable {
 
     private String nome;
 
-    private Float cpf;
+    private String cpf;
 
     private SituacaoOperadorCaixa situacao;
 
@@ -36,11 +36,11 @@ public class OperadorCaixaDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Float getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Float cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

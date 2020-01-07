@@ -26,7 +26,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new ContaCorrente(0, 0, currentDate, 'AAAAAAA', MetodoPagamento.DINHEIRO, SituacaoContaCorrente.PAGO);
+      elemDefault = new ContaCorrente(0, 0, currentDate, 'AAAAAAA', MetodoPagamento.CREDITO, SituacaoContaCorrente.PAGO);
     });
 
     describe('Service methods', () => {

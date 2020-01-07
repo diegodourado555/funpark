@@ -16,7 +16,7 @@
         {
             "fieldName": "metodoPagamento",
             "fieldType": "MetodoPagamento",
-            "fieldValues": "DINHEIRO,CARTAO,CHEQUE"
+            "fieldValues": "CREDITO,DEBITO,PARCELADO"
         },
         {
             "fieldName": "situacao",

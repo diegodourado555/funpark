@@ -9,6 +9,12 @@ public final class AuthoritiesConstants {
 
     public static final String USER = "ROLE_USER";
     
+    public static final String MENU_CADASTROS = "MENU_CADASTROS";
+    public static final String MENU_FINANCEIRO = "MENU_FINANCEIRO";
+    public static final String MENU_ESTOQUE = "MENU_ESTOQUE";
+    public static final String MENU_EVENTOS = "MENU_EVENTOS";
+    public static final String MENU_MANUTENCAO = "MENU_MANUTENCAO";
+    
     public static final String CONTA_CORRENTE = "ROLE_CONTA_CORRENTE";
     public static final String CONTA_CORRENTE_VIEW = "ROLE_CONTA_CORRENTE_VIEW";
     public static final String CONTA_CORRENTE_NEW = "ROLE_CONTA_CORRENTE_NEW";

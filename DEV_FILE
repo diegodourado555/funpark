@@ -89,6 +89,22 @@ values
 (6, 'Kidds e Parks - São José', 'A C Alcântara', '15.555.476/0002-47', 'Av. Cosme Ferreira 4605 - lojas 59/60 - 2° Andar - Shopping São José'),
 (7, 'Lanchonete Funpark Via Norte', 'A P Holanda', '22.041.314/0001-75', 'Av. Arquiteto José Henrique Bento Rodrigues 3760 - Anexo Estacionamento - Shopping Manaus Via Norte');
 ----------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (2, 'Soian Patrícia Galucio Serrão', NULL, 'ATIVO', 4);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (3, 'Rômulo Gabriel dos Santos Silva', NULL, 'ATIVO', 4);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (4, 'Nayandra Souza de Almeida', NULL, 'ATIVO', 4);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (5, 'Ana Vitória Auanario Galvão', NULL, 'ATIVO', 4);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (6, 'Jozileia Pinto Santana', NULL, 'ATIVO', 4);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (7, 'Deigiane Barbosa Inhuma', NULL, 'ATIVO', 1);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (8, 'Francisca Cleidiane Rodrigues Oliveira', NULL, 'ATIVO', 1);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (9, 'Janiele Alves Marinho', NULL, 'ATIVO', 1);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (10, 'Dayana Campos de Melo', NULL, 'ATIVO', 1);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (954, 'Francielem Peres Ferreira da Silva', NULL, 'ATIVO', 1);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (955, 'Carla Karine Rodrigues da Silva', NULL, 'ATIVO', 2);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (956, 'Leonardo França de Oliveira', NULL, 'ATIVO', 2);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (957, 'Lilia Maria Sousa Soares de Almeida', NULL, 'ATIVO', 2);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (958, 'Fernanda dos Santos Carvalho', NULL, 'ATIVO', 2);
+INSERT INTO public.operador_caixa (id, nome, cpf, situacao, loja_id) VALUES (1, 'Sabrina Campos da Fonseca', NULL, 'ATIVO', 4);
+----------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO public.receitas (id, codigo, descricao) VALUES (1, '111.01.001', 'EQUIPAMENTOS COLETIVOS');
 INSERT INTO public.receitas (id, codigo, descricao) VALUES (2, '111.01.002', 'KIDDIES RIDERS');
 INSERT INTO public.receitas (id, codigo, descricao) VALUES (3, '111.01.003', 'TRANSPORT 6');
