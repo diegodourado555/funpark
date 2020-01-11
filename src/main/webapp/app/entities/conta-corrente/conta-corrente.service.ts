@@ -46,6 +46,12 @@ export class ContaCorrenteService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
+  search(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<IContaCorrente[]>(`${this.resourceUrl}/search/Wooden`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

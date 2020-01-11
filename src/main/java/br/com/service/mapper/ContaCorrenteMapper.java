@@ -3,6 +3,8 @@ package br.com.service.mapper;
 import br.com.domain.*;
 import br.com.service.dto.ContaCorrenteDTO;
 
+import java.util.List;
+
 import org.mapstruct.*;
 
 /**
@@ -20,7 +22,9 @@ public interface ContaCorrenteMapper extends EntityMapper<ContaCorrenteDTO, Cont
     @Mapping(source = "loja.id", target = "lojaId")
     @Mapping(source = "loja.nomeFantasia", target = "lojaNomeFantasia")
     ContaCorrenteDTO toDto(ContaCorrente contaCorrente);
-
+    
+    List<ContaCorrenteDTO> toDtoList(List<ContaCorrente> listaContaCorrente);
+    
     @Mapping(source = "receitaId", target = "receita")
     @Mapping(source = "despesaId", target = "despesa")
     @Mapping(source = "operadorCaixaId", target = "operadorCaixa")
@@ -35,4 +39,6 @@ public interface ContaCorrenteMapper extends EntityMapper<ContaCorrenteDTO, Cont
         contaCorrente.setId(id);
         return contaCorrente;
     }
+
+	
 }

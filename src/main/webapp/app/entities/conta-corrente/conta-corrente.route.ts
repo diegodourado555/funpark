@@ -49,6 +49,19 @@ export const contaCorrenteRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
+    path: 'search',
+    component: ContaCorrenteComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams
+    },
+    data: {
+      authorities: ['ROLE_CONTA_CORRENTE'],
+      defaultSort: 'id,asc',
+      pageTitle: 'funparkApp.contaCorrente.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
     path: ':id/view',
     component: ContaCorrenteDetailComponent,
     resolve: {

@@ -38,9 +38,33 @@ public class ContaCorrenteDTO implements Serializable {
     private Long lojaId;
 
     private String lojaNomeFantasia;
-    
 
-    public Long getId() {
+    public ContaCorrenteDTO() {
+    	super();
+    }
+    
+    public ContaCorrenteDTO(Long id, Double valor, Instant data, String descricao, MetodoPagamento metodoPagamento,
+			SituacaoContaCorrente situacao, Long receitaId, String receitaDescricao, Long despesaId,
+			String despesaDescricao, Long operadorCaixaId, String operadorCaixaNome, Long lojaId,
+			String lojaNomeFantasia) {
+		super();
+		this.id = id;
+		this.valor = valor;
+		this.data = data;
+		this.descricao = descricao;
+		this.metodoPagamento = metodoPagamento;
+		this.situacao = situacao;
+		this.receitaId = receitaId;
+		this.receitaDescricao = receitaDescricao;
+		this.despesaId = despesaId;
+		this.despesaDescricao = despesaDescricao;
+		this.operadorCaixaId = operadorCaixaId;
+		this.operadorCaixaNome = operadorCaixaNome;
+		this.lojaId = lojaId;
+		this.lojaNomeFantasia = lojaNomeFantasia;
+	}
+
+	public Long getId() {
         return id;
     }
 

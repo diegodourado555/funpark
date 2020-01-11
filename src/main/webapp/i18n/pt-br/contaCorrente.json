@@ -5,7 +5,8 @@
         "title": "Conta Correntes",
         "createLabel": "Criar novo Conta Corrente",
         "createOrEditLabel": "Criar ou editar Conta Corrente",
-        "notFound": "Nenhum Conta Corrente encontrado"
+        "notFound": "Nenhum Conta Corrente encontrado",
+        "searchLabel": "Consultar"
       },
       "created": "Um novo Conta Corrente foi criado com o identificador {{ param }}",
       "updated": "Um Conta Corrente foi atualizado com o identificador {{ param }}",
@@ -19,6 +20,7 @@
       "valor": "Valor",
       "data": "Data",
       "descricao": "Descricao",
+      "descricaoFilter": "Descricao",
       "metodoPagamento": "Metodo Pagamento",
       "situacao": "Situacao",
       "receita": "Receita",

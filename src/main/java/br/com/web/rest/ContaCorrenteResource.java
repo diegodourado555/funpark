@@ -100,6 +100,14 @@ public class ContaCorrenteResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/conta-correntes/search/{descricao}")
+    public ResponseEntity<List<ContaCorrenteDTO>> search(Pageable pageable, @PathVariable String descricao) {
+    	log.debug("REST request to get a page of ContaCorrentes by descricao: {}", descricao);
+    	Page<ContaCorrenteDTO> page = contaCorrenteService.search(descricao);
+    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+    	return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code GET  /conta-correntes/:id} : get the "id" contaCorrente.
      *

@@ -27,6 +27,14 @@ public interface ContaCorrenteService {
      * @return the list of entities.
      */
     Page<ContaCorrenteDTO> findAll(Pageable pageable);
+    
+    /**
+     * Get all the contaCorrentes accordingly with filter.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<ContaCorrenteDTO> search(String descricao);
 
 
     /**

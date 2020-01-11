@@ -9,10 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -59,6 +61,20 @@ public class ContaCorrenteServiceImpl implements ContaCorrenteService {
         log.debug("Request to get all ContaCorrentes");
         return contaCorrenteRepository.findAll(pageable)
             .map(contaCorrenteMapper::toDto);
+    }
+
+    /**
+     * Get all the contaCorrentes accordingly with filter.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ContaCorrenteDTO> search(String descricao) {
+    	log.debug("Request to get all ContaCorrentes accordingly with filter");
+    	List<ContaCorrente> listaContaCorrente = contaCorrenteRepository.search(descricao);
+    	return new PageImpl<ContaCorrenteDTO>(contaCorrenteMapper.toDtoList(listaContaCorrente));
     }
 
 

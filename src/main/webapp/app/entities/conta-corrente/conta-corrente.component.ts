@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { FormBuilder, Validators } from '@angular/forms';
 import { IContaCorrente } from 'app/shared/model/conta-corrente.model';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
@@ -16,6 +16,9 @@ import { ContaCorrenteDeleteDialogComponent } from './conta-corrente-delete-dial
   templateUrl: './conta-corrente.component.html'
 })
 export class ContaCorrenteComponent implements OnInit, OnDestroy {
+  searchForm = this.fb.group({
+    descricaoFilter: []
+  });
   contaCorrentes?: IContaCorrente[];
   eventSubscriber?: Subscription;
   totalItems = 0;
@@ -30,7 +33,8 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private fb: FormBuilder
   ) {}
 
   loadPage(page?: number): void {
@@ -41,10 +45,7 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
         size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe(
-        (res: HttpResponse<IContaCorrente[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
-        () => this.onError()
-      );
+      .subscribe((res: HttpResponse<IContaCorrente[]>) => this.onSuccess(res.body, res.headers, pageToLoad), () => this.onError());
   }
 
   ngOnInit(): void {
@@ -76,6 +77,10 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   delete(contaCorrente: IContaCorrente): void {
     const modalRef = this.modalService.open(ContaCorrenteDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.contaCorrente = contaCorrente;
+  }
+
+  search() {
+    this.contaCorrentes = this.contaCorrenteService.search();
   }
 
   sort(): string[] {
