@@ -13,6 +13,8 @@ import { LojaService } from './loja.service';
   templateUrl: './loja-update.component.html'
 })
 export class LojaUpdateComponent implements OnInit {
+  public myModel = '';
+  public mask = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   isSaving = false;
 
   editForm = this.fb.group({
@@ -28,6 +30,7 @@ export class LojaUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ loja }) => {
       this.updateForm(loja);
+      this.myModel = loja.cNPJ;
     });
   }
 
@@ -67,10 +70,7 @@ export class LojaUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ILoja>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {

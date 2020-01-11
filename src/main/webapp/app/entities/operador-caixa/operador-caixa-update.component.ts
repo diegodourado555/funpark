@@ -38,9 +38,9 @@ export class OperadorCaixaUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.myModel = '';
     this.activatedRoute.data.subscribe(({ operadorCaixa }) => {
       this.updateForm(operadorCaixa);
+      this.myModel = operadorCaixa.cpf;
 
       this.lojaService
         .query()

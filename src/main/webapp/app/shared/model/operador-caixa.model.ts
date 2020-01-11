@@ -3,7 +3,7 @@ import { SituacaoOperadorCaixa } from 'app/shared/model/enumerations/situacao-op
 export interface IOperadorCaixa {
   id?: number;
   nome?: string;
-  cpf?: number;
+  cpf?: string;
   situacao?: SituacaoOperadorCaixa;
   lojaId?: number;
   lojaNomeFantasia?: string;
@@ -13,7 +13,7 @@ export class OperadorCaixa implements IOperadorCaixa {
   constructor(
     public id?: number,
     public nome?: string,
-    public cpf?: number,
+    public cpf?: string,
     public situacao?: SituacaoOperadorCaixa,
     public lojaId?: number
   ) {}

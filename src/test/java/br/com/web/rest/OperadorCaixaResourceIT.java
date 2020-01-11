@@ -40,8 +40,8 @@ public class OperadorCaixaResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final Float DEFAULT_CPF = 1F;
-    private static final Float UPDATED_CPF = 2F;
+    private static final String DEFAULT_CPF = "19100000000";
+    private static final String UPDATED_CPF = "19100000000";
 
     private static final SituacaoOperadorCaixa DEFAULT_SITUACAO = SituacaoOperadorCaixa.ATIVO;
     private static final SituacaoOperadorCaixa UPDATED_SITUACAO = SituacaoOperadorCaixa.INATIVO;
@@ -172,7 +172,7 @@ public class OperadorCaixaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(operadorCaixa.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
-            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF.doubleValue())))
+            .andExpect(jsonPath("$.[*].cpf").value(hasItem(DEFAULT_CPF)))
             .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())));
     }
     
@@ -188,7 +188,7 @@ public class OperadorCaixaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(operadorCaixa.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
-            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF.doubleValue()))
+            .andExpect(jsonPath("$.cpf").value(DEFAULT_CPF))
             .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.toString()));
     }
 

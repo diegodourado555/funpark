@@ -34,7 +34,7 @@
             <tbody>
             <tr *ngFor="let contaCorrente of contaCorrentes ;trackBy: trackId">
                 <td><a [routerLink]="['/conta-corrente', contaCorrente.id, 'view' ]">{{contaCorrente.id}}</a></td>
-                <td>{{contaCorrente.valor}}</td>
+                <td>{{contaCorrente.valor | currency:'R$ '}}</td>
                 <td>{{contaCorrente.data | date:'medium'}}</td>
                 <td>{{contaCorrente.descricao}}</td>
                 <td jhiTranslate="{{'funparkApp.MetodoPagamento.' + contaCorrente.metodoPagamento}}">{{contaCorrente.metodoPagamento}}</td>

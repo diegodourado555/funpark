@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="funparkApp.loja.cNPJ" for="field_cNPJ">C NPJ</label>
-                    <input type="text" class="form-control" name="cNPJ" id="field_cNPJ"
+                    <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text" class="form-control" name="cNPJ" id="field_cNPJ"
                            formControlName="cNPJ"/>
                 </div>
                 <div class="form-group">

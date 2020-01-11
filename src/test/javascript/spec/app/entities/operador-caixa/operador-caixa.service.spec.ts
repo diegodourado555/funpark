@@ -21,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(OperadorCaixaService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new OperadorCaixa(0, 'AAAAAAA', 0, SituacaoOperadorCaixa.ATIVO);
+      elemDefault = new OperadorCaixa(0, 'AAAAAAA', '0', SituacaoOperadorCaixa.ATIVO);
     });
 
     describe('Service methods', () => {

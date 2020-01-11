@@ -25,7 +25,7 @@ public class OperadorCaixa implements Serializable {
     private String nome;
 
     @Column(name = "cpf")
-    private Float cpf;
+    private String cpf;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao")
@@ -57,16 +57,16 @@ public class OperadorCaixa implements Serializable {
         this.nome = nome;
     }
 
-    public Float getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public OperadorCaixa cpf(Float cpf) {
+    public OperadorCaixa cpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
 
-    public void setCpf(Float cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
