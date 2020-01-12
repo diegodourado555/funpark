@@ -19,6 +19,7 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   searchForm = this.fb.group({
     descricaoFilter: []
   });
+  descricaoFilter: string;
   contaCorrentes?: IContaCorrente[];
   eventSubscriber?: Subscription;
   totalItems = 0;
@@ -49,6 +50,7 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.descricaoFilter = '';
     this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
       this.ascending = data.pagingParams.ascending;
@@ -80,7 +82,11 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    var res = this.contaCorrenteService.search();
+    var descricaoFilter = this.searchForm.get(['descricaoFilter'])!.value;
+    if (!descricaoFilter) {
+      descricaoFilter = ' ';
+    }
+    var res = this.contaCorrenteService.search(this.searchForm.get(['descricaoFilter'])!.value);
     res.subscribe(x => {
       this.contaCorrentes = x.body;
     });

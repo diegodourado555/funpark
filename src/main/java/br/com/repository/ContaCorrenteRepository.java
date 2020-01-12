@@ -24,7 +24,7 @@ public interface ContaCorrenteRepository extends JpaRepository<ContaCorrente, Lo
 			+ "LEFT OUTER JOIN Despesas d ON d.id = cc.despesa.id  "
 			+ "LEFT OUTER JOIN OperadorCaixa op ON op.id = cc.operadorCaixa.id "
 			+ "LEFT OUTER JOIN Loja l ON l.id = cc.loja.id "
-			+ "WHERE cc.descricao like %:descricao%")
+			+ "WHERE LOWER(cc.descricao) like LOWER(CONCAT('%', :descricao,'%'))")
 	List<ContaCorrente> search(@Param("descricao") String descricao);
 
 }

@@ -1,4 +1,6 @@
-    	<form name="searchForm" role="form" novalidate [formGroup]="searchForm">
+<div>
+    <h2 id="page-heading">
+        <form name="searchForm" role="form" novalidate [formGroup]="searchForm">
 	    	<div class="form-group">
 	            <label class="form-control-label" jhiTranslate="funparkApp.contaCorrente.descricaoFilter" for="field_descricaoFilter">Descricao</label>
 	            <input type="text" class="form-control" name="descricaoFilter" id="field_descricaoFilter"
@@ -11,9 +13,7 @@
 	            </span>
 	        </button>
         </form>
-        <br/><br/><br/>	
-<div>
-    <h2 id="page-heading">
+        <br/><br/><br/>
         <span jhiTranslate="funparkApp.contaCorrente.home.title">Conta Correntes</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-conta-corrente" [routerLink]="['/conta-corrente/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
