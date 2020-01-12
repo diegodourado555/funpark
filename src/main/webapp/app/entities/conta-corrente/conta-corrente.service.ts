@@ -47,7 +47,6 @@ export class ContaCorrenteService {
   }
 
   search(descricaoFilter: string): Observable<EntityArrayResponseType> {
-    console.log('descricaoFilter service: ' + descricaoFilter);
     if (descricaoFilter) {
       return this.http
         .get<IContaCorrente[]>(`${this.resourceUrl}/search/${descricaoFilter}`, { observe: 'response' })
