@@ -80,7 +80,10 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    this.contaCorrentes = this.contaCorrenteService.search();
+    var res = this.contaCorrenteService.search();
+    res.subscribe(x => {
+      this.contaCorrentes = x.body;
+    });
   }
 
   sort(): string[] {
