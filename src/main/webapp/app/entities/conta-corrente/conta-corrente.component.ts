@@ -82,11 +82,11 @@ export class ContaCorrenteComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    const descricaoFilter = this.searchForm.get(['descricaoFilter'])!.value;
+    let descricaoFilter = this.searchForm.get(['descricaoFilter'])!.value;
     if (!descricaoFilter) {
       descricaoFilter = ' ';
     }
-    const res = this.contaCorrenteService.search(this.searchForm.get(['descricaoFilter'])!.value);
+    let res = this.contaCorrenteService.search(this.searchForm.get(['descricaoFilter'])!.value);
     res.subscribe(x => {
       this.contaCorrentes = x.body;
     });
