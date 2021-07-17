@@ -57,6 +57,9 @@ public class MaquinaResource {
         if (maquinaDTO.getId() != null) {
             throw new BadRequestAlertException("A new maquina cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        //test git intelliJ
+
         MaquinaDTO result = maquinaService.save(maquinaDTO);
         return ResponseEntity.created(new URI("/api/maquinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
