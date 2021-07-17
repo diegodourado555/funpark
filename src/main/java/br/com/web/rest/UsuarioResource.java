@@ -78,6 +78,9 @@ public class UsuarioResource {
         if (usuarioDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        
+        //test git change Diego Dourado
+
         UsuarioDTO result = usuarioService.save(usuarioDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, usuarioDTO.getId().toString()))
